@@ -5,7 +5,7 @@ package
 	
 	/**
 	 * ...
-	 * @author Kevin DOu
+	 * @author Kevin Duu
 	 */
 	public class Main extends Sprite 
 	{
