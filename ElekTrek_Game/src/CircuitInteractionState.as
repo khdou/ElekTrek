@@ -6,16 +6,16 @@ package
 	
 	import org.flixel.*;
 	
-	public class BaseLevelState extends FlxState
+	public class CircuitInteractionState extends FlxState
 	{
 		public var myLoader:URLLoader;
 		public static var items:Array;
 		private var run:FlxButton;
 		//[Embed(source="background.")] private var bckgrndClass:Class;
 		
-		[Embed(source="bluetile.JPG")] public var BlueTile:Class;
-		[Embed(source="redtile.JPG")] public var RedTile:Class;
-		[Embed(source="yellowtile.JPG")] public var YellowTile:Class;
+		public var BlueTile:Class;
+		public var RedTile:Class;
+		public var YellowTile:Class;
 		
 		override public function create():void
 		{
