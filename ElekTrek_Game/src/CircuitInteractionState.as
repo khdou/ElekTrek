@@ -13,10 +13,6 @@ package
 		private var run:FlxButton;
 		//[Embed(source="background.")] private var bckgrndClass:Class;
 		
-		public var BlueTile:Class;
-		public var RedTile:Class;
-		public var YellowTile:Class;
-		
 		override public function create():void
 		{
 			//myLoader = new URLLoader(new URLRequest("items.csv"));
@@ -32,34 +28,34 @@ package
 			var j:Number;
 			for (i = 0; i < 5; i++) {
 				for (j = 0; j < 5; j++) {
-					var component:FlxSprite = new FlxSprite(i * 100, j * 100, BlueTile);
+					var component:FlxSprite = new FlxSprite(i * 100, j * 100, CircuitAssets.BlueTile);
 					add(component);
 				}
 			}
 			
-			var compo:Item = new Item("wire", 0, 100, YellowTile);
+			var compo:Item = new Item("YellowTile", 0, 100, 0);
 			add(compo);
-			var compo:Item = new Item("wire", 0, 200, YellowTile);
+			var compo:Item = new Item("YellowTile", 0, 200, 0);
 			add(compo);
-			var compo:Item = new Item("wire", 0, 300, YellowTile);
+			var compo:Item = new Item("YellowTile", 0, 300, 0);
 			add(compo);
-			var compo:Item = new Item("wire", 100, 100, YellowTile);
+			var compo:Item = new Item("YellowTile", 100, 100, 0);
 			add(compo);
-			var compo:Item = new Item("wire", 100, 300, YellowTile);
+			var compo:Item = new Item("YellowTile", 100, 300, 0);
 			add(compo);
-			var compo:Item = new Item("wire", 200, 300, YellowTile);
+			var compo:Item = new Item("YellowTile", 200, 300, 0);
 			add(compo);
-			//var compo:Item = new Item("wire", 200, 100, RedTile);
+			//var compo:Item = new Item("wire", 200, 100, CircuitAssets.RedTile);
 			//add(compo);
-			var compo:Item = new Item("wire", 300, 100, YellowTile);
+			var compo:Item = new Item("YellowTile", 300, 100, 0);
 			add(compo);
-			var compo:Item = new Item("wire", 300, 200, YellowTile);
+			var compo:Item = new Item("YellowTile", 300, 200, 0);
 			add(compo);
-			var compo:Item = new Item("wire", 300, 300, YellowTile);
+			var compo:Item = new Item("YellowTile", 300, 300, 0);
 			add(compo);
 			
 			for (i = 0; i < 5; i++) {		
-				var compo:Item = new Item("ehefe", 600, i * 100, RedTile);
+				var compo:Item = new Item("RedTile", 600, i * 100, 0);
 				add(compo);
 			}
 			
