@@ -33,26 +33,31 @@ package
 				}
 			}
 			
-			var compo:Item = new Item("YellowTile", 0, 100, 0);
-			add(compo);
-			var compo:Item = new Item("YellowTile", 0, 200, 0);
-			add(compo);
-			var compo:Item = new Item("YellowTile", 0, 300, 0);
-			add(compo);
-			var compo:Item = new Item("YellowTile", 100, 100, 0);
-			add(compo);
-			var compo:Item = new Item("YellowTile", 100, 300, 0);
-			add(compo);
-			var compo:Item = new Item("YellowTile", 200, 300, 0);
-			add(compo);
-			//var compo:Item = new Item("wire", 200, 100, CircuitAssets.RedTile);
+			//var compo:Item = new Item("YellowTile", 0, 100, 0);
 			//add(compo);
-			var compo:Item = new Item("YellowTile", 300, 100, 0);
-			add(compo);
-			var compo:Item = new Item("YellowTile", 300, 200, 0);
-			add(compo);
-			var compo:Item = new Item("YellowTile", 300, 300, 0);
-			add(compo);
+			//var compo:Item = new Item("YellowTile", 0, 200, 0);
+			//add(compo);
+			//var compo:Item = new Item("YellowTile", 0, 300, 0);
+			//add(compo);
+			//var compo:Item = new Item("YellowTile", 100, 100, 0);
+			//add(compo);
+			//var compo:Item = new Item("YellowTile", 100, 300, 0);
+			//add(compo);
+			//var compo:Item = new Item("YellowTile", 200, 300, 0);
+			//add(compo);
+			////var compo:Item = new Item("wire", 200, 100, CircuitAssets.RedTile);
+			////add(compo);
+			//var compo:Item = new Item("YellowTile", 300, 100, 0);
+			//add(compo);
+			//var compo:Item = new Item("YellowTile", 300, 200, 0);
+			//add(compo);
+			//var compo:Item = new Item("YellowTile", 300, 300, 0);
+			//add(compo);
+			
+			for each (var comp in CircuitConfigs.config)
+			{
+				add(comp);
+			}
 			
 			for (i = 0; i < 5; i++) {		
 				var compo:Item = new Item("RedTile", 600, i * 100, 0);
