@@ -5,16 +5,16 @@ package
 	public class Item extends DraggableFlxSprite
 	{
 		var isVisible:Boolean;
-		var value:int; 
+		var value:Number; 
 		var name:String; 
 		var description:String;
 			
-		public function Item(n:String, X:Number=0,Y:Number=0,SimpleGraphic:Class=null) 
+		public function Item(n:String, X:Number,Y:Number,v:Number) 
 		{
-			super(X, Y, SimpleGraphic);
+			super(X, Y, CircuitAssets[n]);
 			name = n;
 			isVisible = true;
-			value = 1;
+			value = v;
 			description = "hello";
 				
 		}
@@ -22,5 +22,6 @@ package
 		public override function update():void {
 			super.update();
 		}
+	
 	}
 }
