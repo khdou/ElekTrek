@@ -17,12 +17,12 @@ package
 		public var missing;
 
 		public static var config1:Array = [
-			new Item("BatteryVertical", 0, 200, 0), // Type of item, row, column, value
-			new Item("WireCorner1", 0, 100, 0),
-			new Item("WireHorizontal", 100, 100, 0),
-			new Item("WireCorner2", 300, 100, 0),
-			new Item("WireVertical", 300, 200, 0),
-			new Item("WireVertical", 300, 200, 0)
+			new Item("BatteryVertical", 18, 278, 0, false), // Type of item, row, column, value
+			new Item("WireCorner1", 18, 178, 0, false),
+			new Item("WireHorizontal", 118, 178, 0, false),
+			new Item("WireCorner2", 318, 178, 0, false),
+			new Item("WireVertical", 318, 278, 0, false),
+			new Item("WireVertical", 318, 278, 0, false)
 		]; // there could be many map configuration to display for this knowledge model
 		
 		public function PracticeClass1() 
@@ -36,7 +36,7 @@ package
 			
 			// Assuming there would be just one battery, one resistor, and one current in this config
 			// Setup values for problem
-			for each (var item in circuitConfig)
+			for each (var item in config1)
 			{
 				var indicator = item.name.charAt(0);
 				// Battery

@@ -52,7 +52,7 @@ package
 			//var compo:Item = new Item("YellowTile", 300, 300, 0);
 			//add(compo);
 			
-			for each (var comp in CircuitConfigs.config)
+			for each (var comp in PracticeClass1.config1)
 			{
 				add(comp);
 				add(comp.info);
