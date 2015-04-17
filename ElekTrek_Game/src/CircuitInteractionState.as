@@ -22,17 +22,15 @@ package
 			FlxG.bgColor = 0xffaaaaaa;
 			FlxG.mouse.show();
 			
-			items = new Array(1);
+			items = new Array(5);
+			items[0] = [null, null, null, null, null];
+			items[1] = [null, null, null, null, null];
+			items[2] = [null, null, null, null, null];
+			items[3] = [null, null, null, null, null];
+			items[4] = [null, null, null, null, null];
 			
-			var i:Number;
-			var j:Number;
-			for (i = 0; i < 5; i++) {
-				for (j = 0; j < 5; j++) {
-					var component:FlxSprite = new FlxSprite(i * 100, j * 100, CircuitAssets.BlueTile);
-					add(component);
-				}
-			}
 			
+			add(new FlxSprite(0, 0, CircuitAssets.Screen));
 			//var compo:Item = new Item("YellowTile", 0, 100, 0);
 			//add(compo);
 			//var compo:Item = new Item("YellowTile", 0, 200, 0);
@@ -57,12 +55,15 @@ package
 			for each (var comp in CircuitConfigs.config)
 			{
 				add(comp);
+				add(comp.info);
 			}
-			
-			for (i = 0; i < 5; i++) {		
-				var compo:Item = new Item("RedTile", 600, i * 100, 0);
-				add(compo);
-			}
+					
+			add(new Item("RedTile", 543, 183, 0));
+			add(new Item("RedTile", 663, 183, 0));
+			add(new Item("RedTile", 543, 300, 0));
+			add(new Item("RedTile", 663, 300, 0));
+			add(new Item("RedTile", 543, 415, 0));
+			add(new Item("RedTile", 663, 415, 0));
 			
 			run = new FlxButton(100, FlxG.height -60, "Run Circuit", runCircuit);
 			run.scale.x = 3;

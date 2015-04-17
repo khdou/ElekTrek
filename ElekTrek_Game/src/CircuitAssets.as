@@ -7,6 +7,9 @@ package
 	 */
 	public class CircuitAssets 
 	{
+		[Embed(source = "../assets/CircuitScreen/screen.png")] 
+		public static var Screen:Class;
+		
 		[Embed(source = "../assets/CircuitScreen/battery_vertical.png")] 
 		public static var BatteryVertical:Class;
 		
@@ -48,6 +51,8 @@ package
 		
 		[Embed(source = "../assets/yellowtile.JPG")] 
 		public static var YellowTile:Class;
+		
+		
 		
 		public function CircuitAssets() 
 		{
