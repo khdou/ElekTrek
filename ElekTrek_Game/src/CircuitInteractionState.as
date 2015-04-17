@@ -31,26 +31,6 @@ package
 			
 			
 			add(new FlxSprite(0, 0, CircuitAssets.Screen));
-			//var compo:Item = new Item("YellowTile", 0, 100, 0);
-			//add(compo);
-			//var compo:Item = new Item("YellowTile", 0, 200, 0);
-			//add(compo);
-			//var compo:Item = new Item("YellowTile", 0, 300, 0);
-			//add(compo);
-			//var compo:Item = new Item("YellowTile", 100, 100, 0);
-			//add(compo);
-			//var compo:Item = new Item("YellowTile", 100, 300, 0);
-			//add(compo);
-			//var compo:Item = new Item("YellowTile", 200, 300, 0);
-			//add(compo);
-			////var compo:Item = new Item("wire", 200, 100, CircuitAssets.RedTile);
-			////add(compo);
-			//var compo:Item = new Item("YellowTile", 300, 100, 0);
-			//add(compo);
-			//var compo:Item = new Item("YellowTile", 300, 200, 0);
-			//add(compo);
-			//var compo:Item = new Item("YellowTile", 300, 300, 0);
-			//add(compo);
 			
 			for each (var comp in PracticeClass1.config1)
 			{
@@ -70,12 +50,18 @@ package
 				add(comp);
 			}
 					
-			add(new Item("RedTile", 543, 183, 0));
-			add(new Item("RedTile", 663, 183, 0));
-			add(new Item("RedTile", 543, 300, 0));
-			add(new Item("RedTile", 663, 300, 0));
-			add(new Item("RedTile", 543, 415, 0));
-			add(new Item("RedTile", 663, 415, 0));
+			//add(new Item("RedTile", 543, 183, 9));
+			//add(new Item("RedTile", 663, 183, 8));
+			//add(new Item("RedTile", 543, 300, 7));
+			//add(new Item("RedTile", 663, 300, 6));
+			//add(new Item("RedTile", 543, 415, 5));
+			//add(new Item("RedTile", 663, 415, 4));
+			
+			for each (var comp in Inventory.getItems(0))
+			{
+				add(comp);
+			}
+			
 			
 			run = new FlxButton(100, FlxG.height -60, "Run Circuit", runCircuit);
 			run.scale.x = 3;
@@ -84,6 +70,10 @@ package
 			
 			super.create();
 			
+		}
+		
+		public function getItem(x:int, y:int) {
+			return items[x][y];
 		}
 		
 		public function runCircuit():void 
