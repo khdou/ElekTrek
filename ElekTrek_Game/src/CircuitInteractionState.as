@@ -45,7 +45,7 @@ package
 			//add(new Item("RedTile", 543, 415, 5));
 			//add(new Item("RedTile", 663, 415, 4));
 			
-			for each (var comp in Inventory.getItems(0))
+			for each (var comp in Inventory.getItems(1))
 			{
 				add(comp);
 			}
@@ -60,7 +60,7 @@ package
 			
 		}
 		
-		public function getItem(x:int, y:int) {
+		public function getItem(x:int, y:int):Item {
 			return items[x][y];
 		}
 		
