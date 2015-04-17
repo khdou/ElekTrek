@@ -4,10 +4,10 @@ package
 	
 	public class Item extends DraggableFlxSprite
 	{
-		var isVisible:Boolean;
-		var value:Number; 
-		var name:String; 
-		var description:String;
+		public var isVisible:Boolean;
+		public var value:Number; 
+		public var name:String; 
+		public var description:String;
 			
 		public function Item(n:String, X:Number,Y:Number,v:Number,drag:Boolean=true) 
 		{
