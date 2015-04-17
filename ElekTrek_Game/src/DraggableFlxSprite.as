@@ -49,7 +49,7 @@ package
 				this.dragging = true;
 				var xx:Number = int(this.x / 100);
 				var yy:Number = int(this.y / 100);
-				BaseLevelState.items[xx][yy] = null;
+				CircuitInteractionState.items[xx][yy] = null;
 			}
 			
 		}
@@ -67,7 +67,7 @@ package
 					var yy:Number = int(this.y / 100);
 					this.x = int((this.x + 50)/ 100) * 100;
 					this.y = int((this.y + 50)/ 100) * 100;
-					BaseLevelState.items[xx][yy] = this
+					CircuitInteractionState.items[xx][yy] = this
 				}
 				else {
 					this.x = startX;

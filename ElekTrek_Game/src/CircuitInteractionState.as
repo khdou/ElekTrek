@@ -6,16 +6,12 @@ package
 	
 	import org.flixel.*;
 	
-	public class BaseLevelState extends FlxState
+	public class CircuitInteractionState extends FlxState
 	{
 		public var myLoader:URLLoader;
 		public static var items:Array;
 		private var run:FlxButton;
 		//[Embed(source="background.")] private var bckgrndClass:Class;
-		
-		[Embed(source="bluetile.JPG")] public var BlueTile:Class;
-		[Embed(source="redtile.JPG")] public var RedTile:Class;
-		[Embed(source="yellowtile.JPG")] public var YellowTile:Class;
 		
 		override public function create():void
 		{
@@ -32,34 +28,39 @@ package
 			var j:Number;
 			for (i = 0; i < 5; i++) {
 				for (j = 0; j < 5; j++) {
-					var component:FlxSprite = new FlxSprite(i * 100, j * 100, BlueTile);
+					var component:FlxSprite = new FlxSprite(i * 100, j * 100, CircuitAssets.BlueTile);
 					add(component);
 				}
 			}
 			
-			var compo:Item = new Item("wire", 0, 100, YellowTile);
-			add(compo);
-			var compo:Item = new Item("wire", 0, 200, YellowTile);
-			add(compo);
-			var compo:Item = new Item("wire", 0, 300, YellowTile);
-			add(compo);
-			var compo:Item = new Item("wire", 100, 100, YellowTile);
-			add(compo);
-			var compo:Item = new Item("wire", 100, 300, YellowTile);
-			add(compo);
-			var compo:Item = new Item("wire", 200, 300, YellowTile);
-			add(compo);
-			//var compo:Item = new Item("wire", 200, 100, RedTile);
+			//var compo:Item = new Item("YellowTile", 0, 100, 0);
 			//add(compo);
-			var compo:Item = new Item("wire", 300, 100, YellowTile);
-			add(compo);
-			var compo:Item = new Item("wire", 300, 200, YellowTile);
-			add(compo);
-			var compo:Item = new Item("wire", 300, 300, YellowTile);
-			add(compo);
+			//var compo:Item = new Item("YellowTile", 0, 200, 0);
+			//add(compo);
+			//var compo:Item = new Item("YellowTile", 0, 300, 0);
+			//add(compo);
+			//var compo:Item = new Item("YellowTile", 100, 100, 0);
+			//add(compo);
+			//var compo:Item = new Item("YellowTile", 100, 300, 0);
+			//add(compo);
+			//var compo:Item = new Item("YellowTile", 200, 300, 0);
+			//add(compo);
+			////var compo:Item = new Item("wire", 200, 100, CircuitAssets.RedTile);
+			////add(compo);
+			//var compo:Item = new Item("YellowTile", 300, 100, 0);
+			//add(compo);
+			//var compo:Item = new Item("YellowTile", 300, 200, 0);
+			//add(compo);
+			//var compo:Item = new Item("YellowTile", 300, 300, 0);
+			//add(compo);
+			
+			for each (var comp in CircuitConfigs.config)
+			{
+				add(comp);
+			}
 			
 			for (i = 0; i < 5; i++) {		
-				var compo:Item = new Item("ehefe", 600, i * 100, RedTile);
+				var compo:Item = new Item("RedTile", 600, i * 100, 0);
 				add(compo);
 			}
 			
