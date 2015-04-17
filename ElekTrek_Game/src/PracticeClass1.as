@@ -64,7 +64,8 @@ package
 		
 		public function isCorrect(): String {
 			var missingComp = CircuitInteractionState.getItem(2,1);
-			return V / I;
+			var answer = V / I;
+			return answer.toString() + missingComp.value.toString();
 		}
 	}
 
