@@ -5,15 +5,15 @@ package
 	public class Inventory extends DraggableFlxSprite
 	{
 		public static var items:Array = [
-			new Item("RedTile", 543, 183, 9),
-			new Item("RedTile", 663, 183, 8),
-			new Item("RedTile", 543, 300, 7),
-			new Item("RedTile", 663, 300, 6),
-			new Item("RedTile", 543, 415, 5),
-			new Item("RedTile", 663, 415, 4),
-			new Item("RedTile", 543, 183, 9),
-			new Item("RedTile", 663, 183, 8),
-			new Item("RedTile", 543, 300, 7)
+			new Item("ResistorHorizontal", 543, 183, 9),
+			new Item("ResistorHorizontal", 663, 183, 8),
+			new Item("ResistorHorizontal", 543, 300, 7),
+			new Item("ResistorHorizontal", 663, 300, 6),
+			new Item("ResistorHorizontal", 543, 415, 5),
+			new Item("ResistorHorizontal", 663, 415, 4),
+			new Item("ResistorHorizontal", 543, 183, 9),
+			new Item("ResistorHorizontal", 663, 183, 8),
+			new Item("ResistorHorizontal", 543, 300, 7)
 		];
 		
 		public static var column:Array = [543, 663]
