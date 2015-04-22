@@ -17,6 +17,9 @@ package
 		public var page:int;
 		public static var currItems:Array;
 		
+		// Practice Type 1
+		public var practice1:PracticeClass1 = new PracticeClass1();
+		
 		//[Embed(source="background.")] private var bckgrndClass:Class;
 		
 		override public function create():void
@@ -39,7 +42,7 @@ package
 			
 			add(new FlxSprite(0, 0, CircuitAssets.Screen));
 			
-			for each (var comp in PracticeClass1.config1)
+			for each (var comp in practice1.getCircuitConfig())
 			{
 				//var indicator = comp.name.charAt(0);
 				//// Battery
@@ -84,8 +87,7 @@ package
 		
 		public function runCircuit():void 
 		{
-			var pp:PracticeClass1 = new PracticeClass1();
-			var output:String = pp.isCorrect();
+			var output:String = practice1.isCorrect();
 			add(new FlxText(500, 500, 100, output));
 		}
 		
