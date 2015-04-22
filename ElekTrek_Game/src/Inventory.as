@@ -42,7 +42,7 @@ package
 		
 		public static function getItems(page:Number):Array {
 			if ((page * 6) > items.length )
-				return [];
+				return null;
 			if ((page + 1) * 6 > items.length )
 				return items.slice(6*page);
 			return items.slice(6 * page, 6 * (page + 1));

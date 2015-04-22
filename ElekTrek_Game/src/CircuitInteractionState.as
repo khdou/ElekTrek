@@ -11,6 +11,12 @@ package
 		public var myLoader:URLLoader;
 		public static var items:Array;
 		private var run:FlxButton;
+		private var prev:FlxButton;
+		private var next:FlxButton;
+		private var ret:FlxButton;
+		public var page:int;
+		public static var currItems:Array;
+		
 		//[Embed(source="background.")] private var bckgrndClass:Class;
 		
 		override public function create():void
@@ -18,6 +24,7 @@ package
 			//myLoader = new URLLoader(new URLRequest("items.csv"));
 			//myLoader.addEventListener(Event.COMPLETE, loadComplete);
 			
+			page = 0;
 			
 			FlxG.bgColor = 0xffaaaaaa;
 			FlxG.mouse.show();
@@ -49,25 +56,22 @@ package
 				//comp.add(i)
 				add(comp);
 			}
-					
-			//add(new Item("RedTile", 543, 183, 9));
-			//add(new Item("RedTile", 663, 183, 8));
-			//add(new Item("RedTile", 543, 300, 7));
-			//add(new Item("RedTile", 663, 300, 6));
-			//add(new Item("RedTile", 543, 415, 5));
-			//add(new Item("RedTile", 663, 415, 4));
-			
-			for each (var comp in Inventory.getItems(1))
-			{
-				add(comp);
-			}
+			currItems = Inventory.getItems(0)
+			addItems();
 			
 			
-			run = new FlxButton(100, FlxG.height -60, "Run Circuit", runCircuit);
+			run = new FlxButton(100, FlxG.height - 60, "Run Circuit", runCircuit);
 			run.scale.x = 3;
 			run.scale.y = 3;
 			add(run);
+			//ret = new FlxButton(100, FlxG.height - 60, "Back", ret);
+			//add(ret);
 			
+			//add buttons for next and prev
+			//next = new FlxButton(100, FlxG.height - 60, "Next", nextPage);
+			//prev = new FlxButton(100, FlxG.height - 60, "Prev", prevPage);
+			//add(next);
+			//add(prev);
 			super.create();
 			
 		}
@@ -79,20 +83,44 @@ package
 		public function runCircuit():void 
 		{
 			var output:String = PracticeClass1.isCorrect();
-			//var i:Number;
-			//var j:Number;
-			//for (i = 0; i < 5; i++) {
-				//for (j = 0; j < 5; j++) {
-					//if (items[i][j] != null) {
-						//output += (i * j);
-					//}
-				//}
-			//}
 			add(new FlxText(500, 500, 100, output));
 		}
 		
-		public function changePage(p:int):void {
-			Inventory.getItems
+		public function prevPage():void {
+			if (page == 0)
+				return;
+			page = page - 1;
+			removeItems();
+			currItems = Inventory.getItems(page);
+			addItems();
+			
+		}
+		
+		public function nextPage():void {
+			if (Inventory.getItems(page + 1) == null)
+				return;
+			page = page + 1;
+			removeItems();
+			currItems = Inventory.getItems(page);
+			addItems();
+		}
+		
+		public function addItems():void {
+			for each (var comp in currItems)
+			{
+				add(comp);
+			}
+		}
+		
+		public function removeItems():void {
+			for each (var comp in currItems)
+			{
+				comp.kill();
+			}
+		}
+		
+		public function ret():void {
+			FlxG.switchState(new Overworld());
 		}
 		
 		override public function update():void
@@ -100,36 +128,5 @@ package
 			super.update();
 		}
 		
-		/*
-		public function loadComplete(e:Event):void
-		{
-			items = new Array();
-			var entries:Array = myLoader.data.split("\n\r");
-			
-			var temp:Array;
-			for(var entry:String in entries){
-				temp = entries[entry].split(",");
-				var item:Item = new Item(temp[0]);
-				item.visible = false;
-				//path to image
-				item.loadGraphic(temp[1]);
-				items.push(item);
-			}
-			
-			
-			
-			var i:Number;
-			var j:Number;
-			for (i = 0; i < 5; i++) {
-				for (j = 0; j < 5; j++) {
-					temp = entries[5 * i + j].split(",");
-					var component:Item = new Item(temp[0], i * 100, j * 100);
-					component.loadGraphic(ImgTile);
-					items.push(component);
-					add(component);
-				}
-			}		
-		}
-		*/
 	}
 }
