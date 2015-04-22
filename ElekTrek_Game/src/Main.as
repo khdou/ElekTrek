@@ -1,25 +1,23 @@
 package
 {
-	import flash.display.Sprite;
-	import flash.events.Event;
+	import org.flixel.*;
 	
 	/**
-	 * ...
-	 * @author Kevin Duu
+	 * 
+	 * @author Kevin
 	 */
-	public class Main extends Sprite 
+	
+	// tell Flash to use a 480x480 window with a white background.
+    [SWF(width = "800", height = "600", backgroundColor = "#ffffff")]	
+	// tell Flash to use our Preloader class while loading.
+    [Frame(factoryClass="Preloader")]
+	
+	public class Main extends FlxGame 
 	{
 		
 		public function Main() 
 		{
-			if (stage) init();
-			else addEventListener(Event.ADDED_TO_STAGE, init);
-		}
-		
-		private function init(e:Event = null):void 
-		{
-			removeEventListener(Event.ADDED_TO_STAGE, init);
-			// entry point
+			super(800,600,CircuitInteractionState);
 		}
 		
 	}
