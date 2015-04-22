@@ -60,12 +60,14 @@ package
 			addItems();
 			
 			
-			run = new FlxButton(100, FlxG.height - 60, "Run Circuit", runCircuit);
-			run.scale.x = 3;
-			run.scale.y = 3;
+			run = new FlxButton(450, 30, "Run", runCircuit);
+			run.scale.x = .7;
+			run.scale.y = 2.5;
 			add(run);
-			//ret = new FlxButton(100, FlxG.height - 60, "Back", ret);
-			//add(ret);
+			ret = new FlxButton(6, 30, "Back", ret_func);
+			ret.scale.x = .7;
+			ret.scale.y = 2.5;
+			add(ret);
 			
 			//add buttons for next and prev
 			//next = new FlxButton(100, FlxG.height - 60, "Next", nextPage);
@@ -76,13 +78,14 @@ package
 			
 		}
 		
-		public function getItem(x:int, y:int):Item {
+		public static function getItem(x:int, y:int):Item {
 			return items[x][y];
 		}
 		
 		public function runCircuit():void 
 		{
-			var output:String = PracticeClass1.isCorrect();
+			var pp:PracticeClass1 = new PracticeClass1();
+			var output:String = pp.isCorrect();
 			add(new FlxText(500, 500, 100, output));
 		}
 		
@@ -119,7 +122,7 @@ package
 			}
 		}
 		
-		public function ret():void {
+		public function ret_func():void {
 			FlxG.switchState(new Overworld());
 		}
 		
