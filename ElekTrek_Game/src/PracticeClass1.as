@@ -61,6 +61,12 @@ package
 			
 			return config1;
 		}
+		
+		public function isCorrect(): String {
+			var missingComp = CircuitInteractionState.getItem(2,1);
+			var answer = V / I;
+			return answer.toString() + missingComp.value.toString();
+		}
 	}
 
 }

@@ -34,8 +34,20 @@ package
 			
 			for each (var comp in PracticeClass1.config1)
 			{
+				//var indicator = comp.name.charAt(0);
+				//// Battery
+				//if (indicator == "B") {
+					//comp.value = V;
+				//}else if (indicator == "R" || indicator == "L") {
+					//comp.value = R;
+				//}else {
+					//comp.value = I;
+				//}
+				//var i:FlxText = null;
+//
+					//i = new FlxText(0, 0, 100, v.toString());
+				//comp.add(i)
 				add(comp);
-				add(comp.info);
 			}
 					
 			//add(new Item("RedTile", 543, 183, 9));
@@ -66,16 +78,16 @@ package
 		
 		public function runCircuit():void 
 		{
-			var output:String = "";
-			var i:Number;
-			var j:Number;
-			for (i = 0; i < 5; i++) {
-				for (j = 0; j < 5; j++) {
-					if (items[i][j] != null) {
-						output += (i * j);
-					}
-				}
-			}
+			var output:String = PracticeClass1.isCorrect();
+			//var i:Number;
+			//var j:Number;
+			//for (i = 0; i < 5; i++) {
+				//for (j = 0; j < 5; j++) {
+					//if (items[i][j] != null) {
+						//output += (i * j);
+					//}
+				//}
+			//}
 			add(new FlxText(500, 500, 100, output));
 		}
 		
