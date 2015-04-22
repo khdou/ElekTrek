@@ -79,6 +79,10 @@ package
 			add(new FlxText(500, 500, 100, output));
 		}
 		
+		public function changePage(p:int):void {
+			Inventory.getItems
+		}
+		
 		override public function update():void
 		{
 			super.update();
