@@ -16,18 +16,17 @@ package
 		
 		public var missing;
 
-		public static var config1:Array = [
-			new Item("BatteryVertical", 20, 279, 0, false), // Type of item, row, column, value
-			new Item("WireCorner1", 20, 179, -1, false),
-			new Item("WireHorizontal", 120, 179, -1, false),
-			new Item("WireCorner2", 320, 179, -1, false),
-			new Item("WireVertical", 320, 279, -1, false),
-			new Item("WireVertical", 320, 279, -1, false)
-		]; // there could be many map configuration to display for this knowledge model
+		public var config1:Array;
 		
 		public function PracticeClass1() 
 		{
-			//Need to figure out how map will communicate with the equation
+			config1 = [
+				new Item("BatteryVertical", 20, 279, 0, false), // Type of item, row, column, value
+				new Item("WireCorner1", 20, 179, -1, false),
+				new Item("WireHorizontal", 120, 179, -1, false),
+				new Item("WireCorner2", 320, 179, -1, false),
+				new Item("WireVertical", 320, 279, -1, false),
+				new Item("WireVertical", 320, 279, -1, false)];
 		}
 
 		
@@ -85,13 +84,7 @@ package
 		
 		private function getResistanceFromInventory(): Array 
 		{
-			var resistors:Array = [];
-			for each (var item:Item in Inventory.items)
-			{
-				if (item.name.charAt(0) == "R")
-					resistors.push(item.value);
-			}
-			return resistors;
+			return Inventory.items;
 		}
 	}
 
