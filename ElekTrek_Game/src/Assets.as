@@ -21,6 +21,8 @@ package
  		[Embed(source = "../assets/temp_wallTile.png")] public static var WALL_TILE:Class;
  		[Embed(source = "../assets/Furnitures/computerscreen_medium.png")] public static var COMPUTER:Class;
  		[Embed(source = "../assets/Furnitures/table_large.png")] public static var TABLE:Class;
+ 		[Embed(source = "../assets/Furnitures/trunk.png")] public static var TRUNK:Class;
+ 		[Embed(source = "../assets/Furnitures/Portal.png")] public static var PORTAL:Class;
 		
     }
 }
