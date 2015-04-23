@@ -86,13 +86,15 @@ package
 		
 		private function getResistanceFromInventory(): Array 
 		{
-			var resistors:Array = [];
-			for each (var item:Item in Inventory.items)
-			{
-				if (item.name.charAt(0) == "R")
-					resistors.push(item.value);
-			}
-			return resistors;
+			//var resistors:Array = [];
+			//for each (var item:Item in Inventory.items)
+			//{
+				//if (item.name.charAt(0) == "R")
+					//resistors.push(item.value);
+			//}
+			//return resistors;
+			
+			return Inventory.items;
 		}
 	}
 
