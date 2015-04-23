@@ -4,6 +4,7 @@ package
 	import flash.events.*;
 	import flash.net.*;
 	import flash.utils.*;
+	
 	import org.flixel.*;
 	
 	public class CircuitInteractionState extends FlxState
@@ -50,25 +51,15 @@ package
 			add(new FlxSprite(530, 17, CircuitAssets.LightBulbOff));
 			
 			for each (var comp in pp.getCircuitConfig())
-			{
-				//var indicator = comp.name.charAt(0);
-				//// Battery
-				//if (indicator == "B") {
-					//comp.value = V;
-				//}else if (indicator == "R" || indicator == "L") {
-					//comp.value = R;
-				//}else {
-					//comp.value = I;
-				//}
-				//var i:FlxText = null;
-//				
-				var inf:FlxText = new FlxText(200,200,100, "erere");
-				comp.info = inf;
+			{			
+				//var inf:FlxText = new FlxText(200,200,100, "erere");
+				//comp.info = inf;
 				add(comp);
 				add(comp.info);
 			}
-			currItems = Inventory.getItems(0)
-			addItems();
+			
+			var temp:Array = Inventory.getItems(0);
+			addItems(temp);
 			
 			
 			run = new FlxButton(450, 30, "Run", runCircuit);
@@ -89,6 +80,7 @@ package
 			prev.scale.y = 2;
 			add(next);
 			add(prev);
+			
 			super.create();
 			
 		}
@@ -108,15 +100,14 @@ package
 				//timer.start();
 			}
 		}
-	
 		
 		public function prevPage():void {
 			if (page == 0)
 				return;
 			page = page - 1;
 			removeItems();
-			currItems = Inventory.getItems(page);
-			addItems();
+			var temp:Array = Inventory.getItems(page);
+			addItems(temp);
 			
 		}
 		
@@ -125,16 +116,19 @@ package
 				return;
 			page = page + 1;
 			removeItems();
-			currItems = Inventory.getItems(page);
-			addItems();
+			var temp:Array = Inventory.getItems(page);
+			addItems(temp);
 		}
 		
-		public function addItems():void {
-			for each (var comp in currItems)
-			{
-				add(comp);
-				add(comp.info);
+		public function addItems(temp:Array):void {
+			currItems = new Array();
+			for (var i:int = 0; i < temp.length; i++) {
+				var item:Item = new Item("ResistorHorizontal", Inventory.getX(i), Inventory.getY(i), temp[i]);
+				currItems.push(item);
+				add(item);
+				add(item.info);
 			}
+			
 		}
 		
 		public function removeItem(i:Item):void {
@@ -152,7 +146,6 @@ package
 		}
 		
 		public function ret_func():void {
-			removeItems();
 			FlxG.switchState(new OverworldState());
 		}
 		

@@ -16,7 +16,11 @@ package
 		
 		public var missing;
 
-		public var config1:Array = [
+		public var config1:Array; // there could be many map configuration to display for this knowledge model
+
+		public function PracticeClass1() 
+		{
+			config1 = [
 			new Item("BatteryVertical", 20, 279, 0, false), // Type of item, row, column, value
 			new Item("WireCorner1", 20, 179, -1, false),
 			new Item("WireHorizontal", 120, 179, -1, false),
@@ -26,13 +30,8 @@ package
 			new Item("WireHorizontal", 220, 379, -1, false),
 			new Item("WireHorizontal", 120, 379, -1, false),
 			new Item("WireCorner4", 20, 379, -1, false)
-		]; // there could be many map configuration to display for this knowledge model
-		
-		public function PracticeClass1() 
-		{
-			//Need to figure out how map will communicate with the equation
+			];
 		}
-
 		
 		private function setupCircuitConfig(): void
 		{
