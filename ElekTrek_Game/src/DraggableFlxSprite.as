@@ -51,7 +51,8 @@ package
 				this.dragging = true;
 				var xx:Number = int(this.x / 100);
 				var yy:Number = int(this.y / 100);
-				CircuitInteractionState.items[xx][yy] = null;
+				if (xx < 5 && yy < 5)
+					CircuitInteractionState.items[xx][yy] = null;
 			}
 			
 		}
