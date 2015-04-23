@@ -101,9 +101,9 @@ package
 			//add(new FlxText(500, 500, 100, output));
 			if (output) {
 				add(new FlxSprite(530, 17, CircuitAssets.LightBulbOn));
-				var timer:Timer = new Timer(1000);
-				timer.addEventListener(TimerEvent.TIMER, ret_func); // will call callback()
-				timer.start();
+				//var timer:Timer = new Timer(1000);
+				//timer.addEventListener(TimerEvent.TIMER, ret_func); // will call callback()
+				//timer.start();
 			}
 		}
 	
