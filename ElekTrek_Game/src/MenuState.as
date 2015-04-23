@@ -19,7 +19,7 @@ package
 		override public function update():void
 		{
 			if(FlxG.keys.justReleased("ENTER"))
-				FlxG.switchState(new Overworld());
+				FlxG.switchState(new OverworldState());
 		}		
 		
 	}
