@@ -13,6 +13,7 @@ package
 		 * Custom groups
 		 */
 		protected var objectGroup:FlxGroup; // objects and obstacles (with collisions)
+		protected var circuitGroup:FlxGroup; // switch to circuit interaction here
 
 		/**
 		 * Game objects
@@ -121,6 +122,7 @@ package
 			var sprite:FlxSprite;
 			// create custom groups
 			objectGroup = new FlxGroup();
+			circuitGroup = new FlxGroup();
 
 			computer = new FlxSprite(
 				11 * tileSize.x, // x location
@@ -136,7 +138,7 @@ package
 				Assets.TABLE // image to use
 			);
 			table.immovable = true; // don't allow the player to move this object
-			objectGroup.add(table);		
+			circuitGroup.add(table);		
 		}		
 		
 		/**
@@ -146,6 +148,7 @@ package
 			add(floorGroup);
 			add(wallGroup);
 			add(objectGroup);
+			add(circuitGroup);
 			add(player);
 			add(guiGroup);
 		}
@@ -156,6 +159,9 @@ package
 		override public function update():void {
 			super.update(); // NOTE: map -> player collision happens in super.update()
 			FlxG.collide(objectGroup, player);
+			if (FlxG.overlap(player,circuitGroup)) {
+				FlxG.switchState(new CircuitInteractionState)
+			}
 		}		
     }
 }
