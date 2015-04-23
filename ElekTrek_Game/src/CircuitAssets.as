@@ -7,6 +7,7 @@ package
 	 */
 	public class CircuitAssets 
 	{
+		
 		[Embed(source = "../assets/CircuitScreen/screen-01.png")] 
 		public static var Screen:Class;
 		
