@@ -78,7 +78,7 @@ package
 			
 			if (dragging) {
 				
-				if (this.x < 450 && this.y < 450) {
+				if (this.x >= 18 && this.y >= 78 && this.x < 500 && this.y < 550) {
 					this.x = int((this.x)/ 100) * 100 + 18;
 					this.y = int((this.y)/ 100) * 100 + 79;
 					var xx:Number = int((this.x - 18) / 100);
@@ -93,8 +93,15 @@ package
 			}
 			else {
 				if (overlapsPoint(new FlxPoint(FlxG.mouse.x, FlxG.mouse.y))) {
-					this.x = startX;
-					this.y = startY;
+					if( CircuitInteractionState.currItems.indexOf( this ) > -1 ) {
+						this.x = startX;
+						this.y = startY;
+					}
+					else {
+						this.x = startX;
+						this.y = startY;
+						CircuitInteractionState.itemRemove = this;
+					}
 				}
 			}
 			this.dragging = false;
