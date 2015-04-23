@@ -16,13 +16,16 @@ package
 		
 		public var missing;
 
-		public static var config1:Array = [
+		public var config1:Array = [
 			new Item("BatteryVertical", 20, 279, 0, false), // Type of item, row, column, value
 			new Item("WireCorner1", 20, 179, -1, false),
 			new Item("WireHorizontal", 120, 179, -1, false),
 			new Item("WireCorner2", 320, 179, -1, false),
 			new Item("WireVertical", 320, 279, -1, false),
-			new Item("WireVertical", 320, 279, -1, false)
+			new Item("WireCorner3", 320, 379, -1, false),
+			new Item("WireHorizontal", 220, 379, -1, false),
+			new Item("WireHorizontal", 120, 379, -1, false),
+			new Item("WireCorner4", 20, 379, -1, false)
 		]; // there could be many map configuration to display for this knowledge model
 		
 		public function PracticeClass1() 
@@ -77,10 +80,9 @@ package
 		{
 			var missingComp = CircuitInteractionState.getItem(2,1);
 			
-			if (missingComp == null)
-				return false;
-			else
-				return missingComp.value == R ? true : false;
+			if (missingComp == null) return false;
+			
+			return missingComp.value == R ? true : false;
 		}
 		
 		private function getResistanceFromInventory(): Array 
