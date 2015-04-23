@@ -19,6 +19,9 @@ package
 		public static var currItems:Array;
 		public var pp:PracticeClass1;
 		
+		// Practice Type 1
+		public var practice1:PracticeClass1 = new PracticeClass1();
+		
 		//[Embed(source="background.")] private var bckgrndClass:Class;
 		
 		override public function create():void
@@ -93,7 +96,6 @@ package
 		
 		public function runCircuit():void 
 		{
-
 			var output:String = pp.isCorrect();
 			add(new FlxText(500, 500, 100, output));
 		}
