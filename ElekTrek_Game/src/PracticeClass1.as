@@ -77,7 +77,10 @@ package
 		{
 			var missingComp = CircuitInteractionState.getItem(2,1);
 			
-			return missingComp.value == R ? true : false;
+			if (missingComp == null)
+				return false;
+			else
+				return missingComp.value == R ? true : false;
 		}
 		
 		private function getResistanceFromInventory(): Array 
