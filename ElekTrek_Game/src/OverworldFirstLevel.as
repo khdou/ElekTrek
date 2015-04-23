@@ -160,7 +160,7 @@ package
 			super.update(); // NOTE: map -> player collision happens in super.update()
 			FlxG.collide(objectGroup, player);
 			if (FlxG.overlap(player,circuitGroup)) {
-				FlxG.switchState(new CircuitInteractionState)
+				FlxG.switchState(new CircuitInteractionState())
 			}
 		}		
     }

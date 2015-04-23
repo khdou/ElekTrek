@@ -14,7 +14,7 @@ package
 		{
 
 			//if (n.indexOf("Wire") != 0)
-				info = new FlxText(200,200,100, "erere");
+			info = new FlxText(200,200,100, "erere");
 			super(X, Y, CircuitAssets[n], drag);
 			name = n;
 			isVisible = true;

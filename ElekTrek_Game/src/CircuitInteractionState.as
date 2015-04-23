@@ -61,7 +61,9 @@ package
 					//comp.value = I;
 				//}
 				//var i:FlxText = null;
-//
+//				
+				var inf:FlxText = new FlxText(200,200,100, "erere");
+				comp.info = inf;
 				add(comp);
 				add(comp.info);
 			}
@@ -150,6 +152,7 @@ package
 		}
 		
 		public function ret_func():void {
+			removeItems();
 			FlxG.switchState(new Overworld());
 		}
 		
