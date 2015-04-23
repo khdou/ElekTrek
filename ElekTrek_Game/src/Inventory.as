@@ -19,7 +19,8 @@ package
 		public static var column:Array = [543, 663]
 		public static var row:Array = [183, 300, 415]
 		
-		public static function addItem(item:Item):void {
+		public static function addItem():void {
+			var item:Item = new Item("ResistorHorizontal", column[(items.length % 6) % 2], row[(length % 6) / 2], Math.ceil(Math.random()*20));
 			items.concat(item);
 		}
 		
