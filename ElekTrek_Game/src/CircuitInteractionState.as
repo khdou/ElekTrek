@@ -157,6 +157,7 @@ package
 		{
 			if (itemRemove != null) {				
 				remove(itemRemove);
+				remove(itemRemove.info);
 				itemRemove = null;
 			}
 			super.update();
