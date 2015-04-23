@@ -10,12 +10,14 @@ package
 	{
 		public var myLoader:URLLoader;
 		public static var items:Array;
+		public static var itemRemove;
 		private var run:FlxButton;
 		private var prev:FlxButton;
 		private var next:FlxButton;
 		private var ret:FlxButton;
 		public var page:int;
 		public static var currItems:Array;
+		public var pp:PracticeClass1;
 		
 		// Practice Type 1
 		public var practice1:PracticeClass1 = new PracticeClass1();
@@ -27,12 +29,15 @@ package
 			//myLoader = new URLLoader(new URLRequest("items.csv"));
 			//myLoader.addEventListener(Event.COMPLETE, loadComplete);
 			
+			pp = new PracticeClass1();
+			
 			page = 0;
 			
 			FlxG.bgColor = 0xffaaaaaa;
 			FlxG.mouse.show();
 			
 			items = new Array(5);
+			itemRemove = null;
 			items[0] = [null, null, null, null, null];
 			items[1] = [null, null, null, null, null];
 			items[2] = [null, null, null, null, null];
@@ -42,7 +47,7 @@ package
 			
 			add(new FlxSprite(0, 0, CircuitAssets.Screen));
 			
-			for each (var comp in practice1.getCircuitConfig())
+			for each (var comp in pp.getCircuitConfig())
 			{
 				//var indicator = comp.name.charAt(0);
 				//// Battery
@@ -73,10 +78,14 @@ package
 			add(ret);
 			
 			//add buttons for next and prev
-			//next = new FlxButton(100, FlxG.height - 60, "Next", nextPage);
-			//prev = new FlxButton(100, FlxG.height - 60, "Prev", prevPage);
-			//add(next);
-			//add(prev);
+			next = new FlxButton(700, FlxG.height - 60, "Next", nextPage);
+			next.scale.x = .7;
+			next.scale.y = 2;
+			prev = new FlxButton(530, FlxG.height - 60, "Prev", prevPage);
+			prev.scale.x = .7;
+			prev.scale.y = 2;
+			add(next);
+			add(prev);
 			super.create();
 			
 		}
@@ -87,7 +96,7 @@ package
 		
 		public function runCircuit():void 
 		{
-			var output:String = practice1.isCorrect();
+			var output:String = pp.isCorrect();
 			add(new FlxText(500, 500, 100, output));
 		}
 		
@@ -117,10 +126,15 @@ package
 			}
 		}
 		
+		public function removeItem(i:Item):void {
+			remove(i);
+		}
+		
 		public function removeItems():void {
 			for each (var comp in currItems)
 			{
-				comp.kill();
+				if (comp.x > 418 || comp.y > 500)
+					remove(comp);
 			}
 		}
 		
@@ -130,6 +144,10 @@ package
 		
 		override public function update():void
 		{
+			if (itemRemove != null) {				
+				remove(itemRemove);
+				itemRemove = null;
+			}
 			super.update();
 		}
 		

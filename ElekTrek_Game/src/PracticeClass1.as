@@ -17,12 +17,12 @@ package
 		public var missing;
 
 		public static var config1:Array = [
-			new Item("BatteryVertical", 18, 278, 0, false), // Type of item, row, column, value
-			new Item("WireCorner1", 18, 178, 0, false),
-			new Item("WireHorizontal", 118, 178, 0, false),
-			new Item("WireCorner2", 318, 178, 0, false),
-			new Item("WireVertical", 318, 278, 0, false),
-			new Item("WireVertical", 318, 278, 0, false)
+			new Item("BatteryVertical", 18, 279, 0, false), // Type of item, row, column, value
+			new Item("WireCorner1", 18, 179, 0, false),
+			new Item("WireHorizontal", 118, 179, 0, false),
+			new Item("WireCorner2", 318, 179, 0, false),
+			new Item("WireVertical", 318, 279, 0, false),
+			new Item("WireVertical", 318, 279, 0, false)
 		]; // there could be many map configuration to display for this knowledge model
 		
 		public function PracticeClass1() 
