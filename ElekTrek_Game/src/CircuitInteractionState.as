@@ -3,7 +3,7 @@ package
 	import flash.display.Sprite;
 	import flash.events.*;
 	import flash.net.*;
-	
+	import flash.utils.*;
 	import org.flixel.*;
 	
 	public class CircuitInteractionState extends FlxState
@@ -36,6 +36,7 @@ package
 			FlxG.bgColor = 0xffaaaaaa;
 			FlxG.mouse.show();
 			
+			
 			items = new Array(5);
 			itemRemove = null;
 			items[0] = [null, null, null, null, null];
@@ -46,6 +47,7 @@ package
 			
 			
 			add(new FlxSprite(0, 0, CircuitAssets.Screen));
+			add(new FlxSprite(530, 17, CircuitAssets.LightBulbOff));
 			
 			for each (var comp in pp.getCircuitConfig())
 			{
@@ -96,9 +98,16 @@ package
 		
 		public function runCircuit():void 
 		{
-			var output:String = pp.isCorrect();
-			add(new FlxText(500, 500, 100, output));
+			var output:Boolean = pp.isCorrect();
+			//add(new FlxText(500, 500, 100, output));
+			if (output) {
+				add(new FlxSprite(530, 17, CircuitAssets.LightBulbOn));
+				var timer:Timer = new Timer(1000);
+				timer.addEventListener(TimerEvent.TIMER, ret_func); // will call callback()
+				timer.start();
+			}
 		}
+	
 		
 		public function prevPage():void {
 			if (page == 0)

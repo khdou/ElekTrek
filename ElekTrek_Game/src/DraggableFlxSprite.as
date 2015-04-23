@@ -78,10 +78,10 @@ package
 			
 			if (dragging) {
 				
-				if (this.x >= 18 && this.y >= 78 && this.x < 500 && this.y < 550) {
-					this.x = int((this.x)/ 100) * 100 + 18;
+				if (this.x >= 20 && this.y >= 78 && this.x < 500 && this.y < 550) {
+					this.x = int((this.x)/ 100) * 100 + 20;
 					this.y = int((this.y)/ 100) * 100 + 79;
-					var xx:Number = int((this.x - 18) / 100);
+					var xx:Number = int((this.x - 20) / 100);
 					var yy:Number = int((this.y - 79) / 100);
 					CircuitInteractionState.items[xx][yy] = this
 				}
