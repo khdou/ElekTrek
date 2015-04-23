@@ -52,20 +52,42 @@ package
 		
 		public function getCircuitConfig(): Array 
 		{
+			// Get all resistors from Inventory
+			var resistors:Array = getResistanceFromInventory();
+			
+			// needs more than 2 items for good answer
+			if (resistors.length < 2)
+				return null;
+				
 			// These values should be randomized
-			V = 9;
-			R = 100;
-			I = 2;
+			I = Math.floor(Math.random() * 10) + 1;
+			
+			var index = Math.floor(Math.random() * resistors.length);
+			R = resistors[index];
+			
+			V = I * R
 			
 			setupCircuitConfig();
 			
 			return config1;
 		}
 		
-		public function isCorrect(): String {
+		public function isCorrect(): Boolean 
+		{
 			var missingComp = CircuitInteractionState.getItem(2,1);
-			var answer = V / I;
-			return answer.toString() + missingComp.value.toString();
+			
+			return missingComp.value == R ? true : false;
+		}
+		
+		private function getResistanceFromInventory(): Array 
+		{
+			var resistors:Array = [];
+			for each (var item:Item in Inventory.items)
+			{
+				if (item.name.charAt(0) == "R")
+					resistors.push(item.value);
+			}
+			return resistors;
 		}
 	}
 
