@@ -152,8 +152,7 @@ package
 		}
 		
 		public function ret_func():void {
-			removeItems();
-			FlxG.switchState(new Overworld());
+			FlxG.switchState(new OverworldState());
 		}
 		
 		override public function update():void
