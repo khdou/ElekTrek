@@ -62,9 +62,8 @@ package
 				//}
 				//var i:FlxText = null;
 //
-					//i = new FlxText(0, 0, 100, v.toString());
-				//comp.add(i)
 				add(comp);
+				add(comp.info);
 			}
 			currItems = Inventory.getItems(0)
 			addItems();
@@ -132,11 +131,13 @@ package
 			for each (var comp in currItems)
 			{
 				add(comp);
+				add(comp.info);
 			}
 		}
 		
 		public function removeItem(i:Item):void {
 			remove(i);
+			remove(i.info);
 		}
 		
 		public function removeItems():void {
@@ -144,6 +145,7 @@ package
 			{
 				if (comp.x > 418 || comp.y > 500)
 					remove(comp);
+					remove(comp.info);
 			}
 		}
 		

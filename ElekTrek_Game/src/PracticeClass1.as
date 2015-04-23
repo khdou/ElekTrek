@@ -18,11 +18,11 @@ package
 
 		public static var config1:Array = [
 			new Item("BatteryVertical", 20, 279, 0, false), // Type of item, row, column, value
-			new Item("WireCorner1", 20, 179, 0, false),
-			new Item("WireHorizontal", 120, 179, 0, false),
-			new Item("WireCorner2", 320, 179, 0, false),
-			new Item("WireVertical", 320, 279, 0, false),
-			new Item("WireVertical", 320, 279, 0, false)
+			new Item("WireCorner1", 20, 179, -1, false),
+			new Item("WireHorizontal", 120, 179, -1, false),
+			new Item("WireCorner2", 320, 179, -1, false),
+			new Item("WireVertical", 320, 279, -1, false),
+			new Item("WireVertical", 320, 279, -1, false)
 		]; // there could be many map configuration to display for this knowledge model
 		
 		public function PracticeClass1() 
