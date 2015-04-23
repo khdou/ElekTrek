@@ -8,7 +8,7 @@ package
 	public class Spaceman extends AbstractCharacter 
 	{
 		
-		public function Spaceman(X:Number=100, Y:Number=100) 
+		public function Spaceman(X:Number, Y:Number) 
 		{
 			super(X, Y);
 			loadGraphic(

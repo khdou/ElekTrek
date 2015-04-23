@@ -33,6 +33,8 @@ package
         public override function update():void {
             updateControls();
             super.update();
+			Information.X_LOCATION = this.x;
+			Information.Y_LOCATION = this.y;
         }
          
         /**
