@@ -17,6 +17,8 @@ package
 		
 		public function Main() 
 		{
+			Information.X_LOCATION = 100;
+			Information.Y_LOCATION = 100;
 			super(800,600,Overworld);
 		}
 		

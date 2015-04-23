@@ -3,7 +3,7 @@ package
     import flash.utils.ByteArray;
     /**
      * Embeds and imports all assets for the game
-     * @author Cody Sandahl
+     * @author Kevin
      */
     public class Assets
     {
