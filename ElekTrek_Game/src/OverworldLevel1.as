@@ -6,7 +6,7 @@ package
 	 * ...
 	 * @author Kevin 
 	 */
-	public class OverworldFirstLevel extends AbstractOverworld 
+	public class OverworldLevel1 extends AbstractOverworld 
     {
 		
 		/**
@@ -79,7 +79,7 @@ package
          * @param   levelSize   Width and height of level (in pixels)
          * @param   blockSize   Default width and height of each tile (in pixels)
          */
-        public function OverworldFirstLevel(state:FlxState, levelSize:FlxPoint, blockSize:FlxPoint):void {
+        public function OverworldLevel1(state:FlxState, levelSize:FlxPoint, blockSize:FlxPoint):void {
             super(state, levelSize, blockSize);
         }
          
@@ -160,8 +160,11 @@ package
 			super.update(); // NOTE: map -> player collision happens in super.update()
 			FlxG.collide(objectGroup, player);
 			if (FlxG.overlap(player,circuitGroup)) {
-				FlxG.switchState(new CircuitInteractionState())
+				FlxG.switchState(new CircuitInteractionState);
 			}
+			if (FlxG.overlap(player,objectGroup)) {
+				Information.LEVEL = 2;
+			}			
 		}		
     }
 }

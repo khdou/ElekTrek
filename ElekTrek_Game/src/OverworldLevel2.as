@@ -6,7 +6,7 @@ package
 	 * ...
 	 * @author Kevin 
 	 */
-	public class OverworldFirstLevel extends AbstractOverworld 
+	public class OverworldLevel2 extends AbstractOverworld 
     {
 		
 		/**
@@ -79,7 +79,7 @@ package
          * @param   levelSize   Width and height of level (in pixels)
          * @param   blockSize   Default width and height of each tile (in pixels)
          */
-        public function OverworldFirstLevel(state:FlxState, levelSize:FlxPoint, blockSize:FlxPoint):void {
+        public function OverworldLevel2(state:FlxState, levelSize:FlxPoint, blockSize:FlxPoint):void {
             super(state, levelSize, blockSize);
         }
          
@@ -125,8 +125,8 @@ package
 			circuitGroup = new FlxGroup();
 
 			computer = new FlxSprite(
-				11 * tileSize.x, // x location
-				5 * tileSize.y, // y location 
+				1 * tileSize.x, // x location
+				1 * tileSize.y, // y location 
 				Assets.COMPUTER // image to use
 			);
 			computer.immovable = true; // don't allow the player to move this object
@@ -160,7 +160,7 @@ package
 			super.update(); // NOTE: map -> player collision happens in super.update()
 			FlxG.collide(objectGroup, player);
 			if (FlxG.overlap(player,circuitGroup)) {
-				FlxG.switchState(new CircuitInteractionState())
+				FlxG.switchState(new CircuitInteractionState)
 			}
 		}		
     }

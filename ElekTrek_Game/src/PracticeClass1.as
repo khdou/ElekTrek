@@ -16,18 +16,17 @@ package
 		
 		public var missing;
 
-		public static var config1:Array = [
-			new Item("BatteryVertical", 18, 279, 0, false), // Type of item, row, column, value
-			new Item("WireCorner1", 18, 179, 0, false),
-			new Item("WireHorizontal", 118, 179, 0, false),
-			new Item("WireCorner2", 318, 179, 0, false),
-			new Item("WireVertical", 318, 279, 0, false),
-			new Item("WireVertical", 318, 279, 0, false)
-		]; // there could be many map configuration to display for this knowledge model
+		public var config1:Array;
 		
 		public function PracticeClass1() 
 		{
-			//Need to figure out how map will communicate with the equation
+			config1 = [
+				new Item("BatteryVertical", 20, 279, 0, false), // Type of item, row, column, value
+				new Item("WireCorner1", 20, 179, -1, false),
+				new Item("WireHorizontal", 120, 179, -1, false),
+				new Item("WireCorner2", 320, 179, -1, false),
+				new Item("WireVertical", 320, 279, -1, false),
+				new Item("WireVertical", 320, 279, -1, false)];
 		}
 
 		
@@ -52,20 +51,40 @@ package
 		
 		public function getCircuitConfig(): Array 
 		{
+			// Get all resistors from Inventory
+			var resistors:Array = getResistanceFromInventory();
+			
+			// needs more than 2 items for good answer
+			if (resistors.length < 2)
+				return null;
+				
 			// These values should be randomized
-			V = 9;
-			R = 100;
-			I = 2;
+			I = Math.floor(Math.random() * 10) + 1;
+			
+			var index = Math.floor(Math.random() * resistors.length);
+			R = resistors[index];
+			
+			V = I * R
 			
 			setupCircuitConfig();
 			
 			return config1;
 		}
 		
-		public function isCorrect(): String {
+
+		public function isCorrect(): Boolean 
+		{
 			var missingComp = CircuitInteractionState.getItem(2,1);
-			var answer = V / I;
-			return answer.toString() + missingComp.value.toString();
+			
+			if (missingComp == null)
+				return false;
+			else
+				return missingComp.value == R ? true : false;
+		}
+		
+		private function getResistanceFromInventory(): Array 
+		{
+			return Inventory.items;
 		}
 	}
 

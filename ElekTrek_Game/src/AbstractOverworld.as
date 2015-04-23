@@ -21,7 +21,7 @@ package
         /**
          * Player
          */
-        public var player:Character;
+        public var player:AbstractCharacter;
         public var playerStart:FlxPoint = new FlxPoint(120, 120);
          
         /**
@@ -66,7 +66,7 @@ package
          * Create the player, bullets, etc
          */
         protected function createPlayer():void {
-            player = new Spaceman(playerStart.x, playerStart.y);
+            player = new Spaceman(Information.X_LOCATION,Information.Y_LOCATION);
         }
          
         /**

@@ -5,18 +5,18 @@ package
 	 * ...
 	 * @author Kevin 
 	 */
-	public class Spaceman extends Character 
+	public class Spaceman extends AbstractCharacter 
 	{
 		
-		public function Spaceman(X:Number=100, Y:Number=100) 
+		public function Spaceman(X:Number, Y:Number) 
 		{
 			super(X, Y);
 			loadGraphic(
 				Assets.OVERWORLD_SPACEMAN, // image to use
 				false, // animated
 				false, // don't generate "flipped" images since they're already in the image
-				Character.SIZE.x, // width of each frame (in pixels)
-				Character.SIZE.y // height of each frame (in pixels)
+				AbstractCharacter.SIZE.x, // width of each frame (in pixels)
+				AbstractCharacter.SIZE.y // height of each frame (in pixels)
 			);			
 		}
 		
