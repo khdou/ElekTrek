@@ -17,6 +17,7 @@ package
 		private var ret:FlxButton;
 		public var page:int;
 		public static var currItems:Array;
+		public var pp:PracticeClass1;
 		
 		//[Embed(source="background.")] private var bckgrndClass:Class;
 		
@@ -24,6 +25,8 @@ package
 		{
 			//myLoader = new URLLoader(new URLRequest("items.csv"));
 			//myLoader.addEventListener(Event.COMPLETE, loadComplete);
+			
+			pp = new PracticeClass1();
 			
 			page = 0;
 			
@@ -41,7 +44,7 @@ package
 			
 			add(new FlxSprite(0, 0, CircuitAssets.Screen));
 			
-			for each (var comp in PracticeClass1.config1)
+			for each (var comp in pp.getCircuitConfig())
 			{
 				//var indicator = comp.name.charAt(0);
 				//// Battery
@@ -90,7 +93,7 @@ package
 		
 		public function runCircuit():void 
 		{
-			var pp:PracticeClass1 = new PracticeClass1();
+
 			var output:String = pp.isCorrect();
 			add(new FlxText(500, 500, 100, output));
 		}
