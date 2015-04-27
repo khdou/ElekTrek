@@ -12,7 +12,7 @@ package
 
 		
         // sprites
- 		[Embed(source = "../assets/temp_spaceman.png")] public static var OVERWORLD_SPACEMAN:Class;
+ 		[Embed(source = "../assets/Characters/spaceman_spritesheet-01.png")] public static var OVERWORLD_SPACEMAN:Class;
 
         // tiles
  		[Embed(source = "../assets/Furnitures/computerscreen_medium.png")] public static var OVERWORLD_COMPUTER:Class;
