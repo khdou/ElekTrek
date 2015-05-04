@@ -123,7 +123,7 @@ package
 		public function addItems(temp:Array):void {
 			currItems = new Array();
 			for (var i:int = 0; i < temp.length; i++) {
-				var item:Item = new Item("ResistorHorizontal", Inventory.getX(i), Inventory.getY(i), temp[i]);
+				var item:Item = new Item("ResistorHorizontal", 6, i, temp[i]);
 				currItems.push(item);
 				add(item);
 				add(item.info);
