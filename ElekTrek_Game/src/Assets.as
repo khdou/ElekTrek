@@ -9,7 +9,6 @@ package
     {
 		// backgrounds
 		[Embed(source = "../assets/temp_menu.png")] public static var MENU_BACKGROUND:Class;
-
 		
         // sprites
  		[Embed(source = "../assets/Characters/spaceman_spritesheet-01.png")] public static var OVERWORLD_SPACEMAN:Class;
