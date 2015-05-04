@@ -1,27 +1,38 @@
-package 
+package
 {
 	import org.flixel.*;
-	
-	/**
-	 * ...
-	 * @author Kevin Dou
-	 */
-	public class MenuState extends FlxState 
+	import org.flixel.plugin.photonstorm.*;
+	public class MenuState extends FlxState
 	{
-		
-		public function MenuState() 
+		override public function create():void
 		{
-			super();
-			FlxG.bgColor = 0xff756f00;
+            FlxG.mouse.show();			
 			
+			var background = new FlxSprite(0, 0, Assets.MENU_BACKGROUND);
+			add(background);
+			
+			var playButton:FlxButtonPlus = new FlxButtonPlus(FlxG.width / 3, FlxG.height / 3 - 10, playButtonCallback, null, "New Game");
+			add(playButton);			
+			
+		} 
+ 
+		public function playButtonCallback():void
+		{
+			FlxG.switchState(new OverworldState);
 		}
 		
 		override public function update():void
 		{
-			if(FlxG.keys.justReleased("ENTER"))
-				FlxG.switchState(new OverworldState());
-		}		
-		
-	}
-
+			super.update(); // calls update on everything you added to the game loop
+		} 
+ 
+ 
+		public function MenuState()
+		{
+			super();
+ 
+		} 
+ 
+	} 
 }
+ 

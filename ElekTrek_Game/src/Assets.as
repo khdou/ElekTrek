@@ -9,10 +9,10 @@ package
     {
 		// backgrounds
 		[Embed(source = "../assets/temp_menu.png")] public static var MENU_BACKGROUND:Class;
-
 		
         // sprites
  		[Embed(source = "../assets/Characters/spaceman_spritesheet-01.png")] public static var OVERWORLD_SPACEMAN:Class;
+ 		[Embed(source = "../assets/healthbar.png")] public static var HEALTH_BAR:Class;
 
         // tiles
  		[Embed(source = "../assets/Furnitures/computerscreen_medium.png")] public static var OVERWORLD_COMPUTER:Class;
