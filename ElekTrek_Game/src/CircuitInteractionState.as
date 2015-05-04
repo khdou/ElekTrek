@@ -20,8 +20,6 @@ package
 		public static var currItems:Array;
 		public var pp:PracticeClass1;
 		
-		// Practice Type 1
-		public var practice1:PracticeClass1 = new PracticeClass1();
 		
 		//[Embed(source="background.")] private var bckgrndClass:Class;
 		
