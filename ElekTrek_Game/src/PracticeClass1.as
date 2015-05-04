@@ -21,15 +21,15 @@ package
 		public function PracticeClass1() 
 		{
 			config1 = [
-			new Item("BatteryVertical", 20, 279, 0, false), // Type of item, row, column, value
-			new Item("WireCorner1", 20, 179, -1, false),
-			new Item("WireHorizontal", 120, 179, -1, false),
-			new Item("WireCorner2", 320, 179, -1, false),
-			new Item("WireVertical", 320, 279, -1, false),
-			new Item("WireCorner3", 320, 379, -1, false),
-			new Item("WireHorizontal", 220, 379, -1, false),
-			new Item("WireHorizontal", 120, 379, -1, false),
-			new Item("WireCorner4", 20, 379, -1, false)
+			new Item("BatteryVertical", 0, 2, 0, false), // Type of item, row, column, value
+			new Item("WireCorner1", 0, 1, -1, false),
+			new Item("WireHorizontal", 1, 1, -1, false),
+			new Item("WireCorner2", 3, 1, -1, false),
+			new Item("WireVertical", 3, 2, -1, false),
+			new Item("WireCorner3", 3, 3, -1, false),
+			new Item("WireHorizontal", 2, 3, -1, false),
+			new Item("WireHorizontal", 1, 3, -1, false),
+			new Item("WireCorner4", 0, 3, -1, false)
 			];
 		}
 		
