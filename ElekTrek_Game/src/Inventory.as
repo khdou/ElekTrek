@@ -2,34 +2,50 @@ package
 {
 	import org.flixel.*;
 	
-	public class Inventory extends DraggableFlxSprite
+	/**
+	 * Wrapper class around an array to support the adding and removing of items.
+	 */
+	public class Inventory
 	{
-		public static var items:Array = [9,8,7,6,5,4];
+		// Backing data structure to keep track of the items in the inventory
+		private var items:Array;
 		
-		public static var column:Array = [543, 663]
-		public static var row:Array = [183, 300, 415]
-		
-		public static function addItem():void {
-			items.concat(Math.ceil(Math.random()*20));
+		public function Inventory(): void {
+			
+			items = new Array();
+			// some random values for now
+			var num = 9;
+			for (var i = 1; i < num; i++) {
+				addItem(new Item(Item.WIRE, i));
+			}
 		}
 		
-		public static function getX(i:int):int {
-			if (i % 2 == 0)
-				return column[0];
-			else 
-				return column[1];
+		/**
+		 * Add an item into the Inventory
+		 * @param	item
+		 */
+		public function addItem(item:Item):void {
+			items.push(item);
 		}
 		
-		public static function getY(i:int):int {
-			return row[int(i / 2)];
+		/**
+		 * Get an item with the array's index
+		 */
+		public function getItem(index:int):Item {
+			return items[index];
 		}
 		
-		public static function getItems(page:Number):Array {
-			if ((page * 6) > items.length )
-				return null;
-			if ((page + 1) * 6 > items.length )
-				return items.slice(6*page);
-			return items.slice(6 * page, 6 * (page + 1));
+		/**
+		 * Remove an item from the array and return it
+		 */
+		public function removeItem(index:int):Item {
+			var item = items[index];
+			items.splice(index, 1);
+			return item;
+		}
+		
+		public function getSize():int {
+			return items.length;
 		}
 		
 	}
