@@ -1,6 +1,7 @@
 package 
 {
 	import org.flixel.*;
+	import org.flixel.plugin.photonstorm.FlxBar;
 	
 	/**
 	 * ...
@@ -178,7 +179,7 @@ package
 		 * Create text, buttons, indicators, etc
 		 */
 		override protected function createGUI():void {
-			var instructions:FlxText = new FlxText(0, 0, 800, "Level2- Use ARROW keys to walk around. Go to the Table to Solve Circuits. Go to the Portal to move to the next level");
+			var instructions:FlxText = new FlxText(0, 0, 800, "Level2");
 			instructions.alignment = "center";
 			instructions.size = 20;
 			guiGroup.add(instructions);

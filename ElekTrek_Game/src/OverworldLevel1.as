@@ -1,6 +1,7 @@
 package 
 {
 	import org.flixel.*;
+	import org.flixel.plugin.photonstorm.FlxBar;
 	
 	/**
 	 * ...
@@ -23,7 +24,7 @@ package
 		protected var table:FlxSprite;		
 		protected var portal:FlxSprite;		
 		protected var trunk:FlxSprite;		
-				
+		var repairBar:FlxBar;		
         /**
          * Floor layer
          */
@@ -178,10 +179,14 @@ package
 		 * Create text, buttons, indicators, etc
 		 */
 		override protected function createGUI():void {
-			var instructions:FlxText = new FlxText(0, 0, 800, "Level1- Use ARROW keys to walk around. Go to the Table to Solve Circuits. Go to the Portal to move to the next level");
+			var instructions:FlxText = new FlxText(0, 0, 800, "Level1");
 			instructions.alignment = "center";
 			instructions.size = 20;
 			guiGroup.add(instructions);
+			
+			repairBar = new FlxBar(450, 10, FlxBar.FILL_LEFT_TO_RIGHT);
+			repairBar.createImageBar(null, Assets.HEALTH_BAR, 0x88000000);
+			guiGroup.add(repairBar);			
 		}		
 		
 		/**
@@ -196,7 +201,8 @@ package
 			if (FlxG.overlap(player,teleportGroup)) {
 				Information.LEVEL = 2;
 				FlxG.switchState(new OverworldState);
-			}			
+			}
+			repairBar.percent = Information.REPAIR_STATUS;
 		}		
     }
 }

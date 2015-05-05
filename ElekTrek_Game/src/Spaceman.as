@@ -37,10 +37,13 @@ package
 			if (FlxG.keys.pressed("DOWN"))
 				movement.y += 1;
 			// check final movement direction
-			if (movement.x < 0)
+			if (movement.x < 0) {
 				moveLeft();
-			else if (movement.x > 0)
+				Information.REPAIR_STATUS--;
+			} else if (movement.x > 0) {
 				moveRight();
+				Information.REPAIR_STATUS++;
+			}
 			if (movement.y < 0)
 				moveUp();
 			else if (movement.y > 0)

@@ -4,7 +4,7 @@ package
 	
 	public class Inventory extends DraggableFlxSprite
 	{
-		public static var items:Array = [9,8,7,6,5,4,3,2,1];
+		public static var items:Array = [9,8,7,6,5,4];
 		
 		public static var column:Array = [543, 663]
 		public static var row:Array = [183, 300, 415]
