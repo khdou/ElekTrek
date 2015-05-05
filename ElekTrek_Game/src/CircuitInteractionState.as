@@ -1,5 +1,6 @@
 package
 {
+	import mx.core.FlexSprite;
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.*;
 	
@@ -16,10 +17,12 @@ package
 	public class CircuitInteractionState extends FlxState
 	{
 		private var itemsTracker:Array; // Tracking the item in the grid using 2D array. [row][column]
+		private var practiceProblem;
 		/**
 		 * Similar to the constructor, FlxG call this after FlxG.switchState() is done
 		 */
 		override public function create(): void{
+			
 			FlxG.bgColor = 0xffaaaaaa;
 			FlxG.mouse.show();
 			
@@ -30,8 +33,11 @@ package
 				itemsTracker[i] = new Array(size);
 			}
 			
+			// Practice problem;
+			//practiceProblem = new PracticeClass1();
+			
 			generateCircuitGrid();	
-            generateInventoryView();
+            add(generateInventoryView());
 			
 
 			
@@ -45,11 +51,21 @@ package
 		}
 		
 		// Load items from the Inventory and display it
-		private function generateInventoryView(): FlxSprite {
+		private function generateInventoryView(): FlxGroup {
+			
+			var inventoryView = new FlxGroup();
+			
 			for (var i = 0; i < Information.INVENTORY.getSize(); i++) {
 				// Display the inventory item here
-				
+				// inventoryView.add(new FlxSprite(100, 100, CircuitAssets[Item.WIRE_HORIZONTAL]));
 			}
+			
+			return inventoryView;
+		}
+		
+		private function generateCircuitView():FlxGroup {
+			var circuitView = new FlxGroup();
+			return circuitView;
 		}
 	}
 }

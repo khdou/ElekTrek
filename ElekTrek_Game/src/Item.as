@@ -9,11 +9,17 @@ package
 	 */
 	public class Item
 	{
-		public static const WIRE:int = 1;
-		public static const RESISTOR:int = 2;
-		public static const BATTERY:int = 3;
+		public static const WIRE_HORIZONTAL:String = "WireHorizontal";
+		public static const WIRE_VERTICAL:String = "WireVertical";
+		public static const WIRE_CORNER1:String = "WireCorner1";
+		public static const WIRE_CORNER2:String = "WireCorner2";
+		public static const WIRE_CORNER3:String = "WireCorner3";
+		public static const WIRE_CORNER4:String = "WireCorner4";
+		public static const RESISTOR_HORIZONTAL:String = "ResistorHorizontal";
+		public static const RESISTOR_VERTICAL:String = "ResistorVertical";
+		public static const BATTERY_VERTICAL:String = "BatteryVertical";
 		
-		public var type:int;
+		public var name:String;
 		public var value:Number; 
 		public var description:String;
 			
@@ -23,9 +29,9 @@ package
 		 * @param	value			Value of the item
 		 * @param	description		Other information
 		 */
-		public function Item(type:int, value:Number=0,description:String='') 
+		public function Item(name:String, value:Number=0,description:String='') 
 		{
-			this.type = type;
+			this.name = name;
 			this.value = value;
 			this.description = description;
 		}
