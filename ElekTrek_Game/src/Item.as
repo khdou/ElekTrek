@@ -19,6 +19,7 @@ package
 		public static const RESISTOR_VERTICAL:String = "ResistorVertical";
 		public static const BATTERY_VERTICAL:String = "BatteryVertical";
 		public static const LIGHTBULB_BLOCK_OFF:String = "LightBulbBlockOff";
+		public static const LIGHTBULB_BLOCK_On:String = "LightBulbBlockOn";
 		
 		public var name:String;
 		public var value:Number; 

@@ -74,8 +74,8 @@ package
 		[Embed(source = "../assets/CircuitScreen/Lightbulb_off_block.png")] 
 		public static var LightBulbBlockOff:Class;
 		
-		//[Embed(source = "../assets/CircuitScreen/Lightbulb_on_block.png.png")] 
-		//public static var LightBulbBlockOn:Class;
+		[Embed(source = "../assets/CircuitScreen/Lightbulb_on_block.png")] 
+		public static var LightBulbBlockOn:Class;
 		
 		
 

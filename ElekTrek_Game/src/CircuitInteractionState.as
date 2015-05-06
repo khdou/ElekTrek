@@ -211,8 +211,9 @@ package
 				var prevItem = practiceProblem.insertItemAt( _currDragItem, coord.X, coord.Y);
 				
 				if (practiceProblem.isCorrect()) {
+					
 					playSuccessAnimation();
-				
+					textArea.text = "Success!";
 					if (prevItem != null)
 						Information.INVENTORY.addItem(prevItem);
 				}
@@ -255,8 +256,9 @@ package
 			for each (var c:Coordinate in coords) {
 				for each (var sprite in circuitView) {
 					var tempCoord:Coordinate = translateCoordinateForPracticeProblem(sprite.x, sprite.y);
-					if (c.equals(tempCoord))
+					if (c.equals(tempCoord)) {
 						sprite.play(practiceProblem.getItemAt(c.X, c.Y).name);
+					}						
 				}
 			}
 		}
