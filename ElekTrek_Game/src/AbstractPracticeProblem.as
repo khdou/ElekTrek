@@ -65,6 +65,23 @@ package
 		protected function validatePracticeProblem():Boolean {
 			return true;
 		}
+		
+		/**
+		 * Grab the items from the Inventory in order to generate some problem
+		 * Value should be present in the Inventory in order for the problem to
+		 * have an answer
+		 */
+		protected function getItemsFromInventory():Array {
+			
+		}
+		
+		/**
+		 * Fill the item in itemContainer with randomly generated value 
+		 * based on getValuesFromInventory
+		 */
+		protected function generateValues():void {
+			
+		}
 	}
 
 }
