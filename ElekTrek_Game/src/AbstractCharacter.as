@@ -12,7 +12,7 @@ package
          * Constants
          */
         public static const SIZE:FlxPoint = new FlxPoint(30, 38); // size in pixels
-        public static const RUNSPEED:int = 300;
+        public static const RUNSPEED:int = 150;
          
         /**
          * Constructor
@@ -32,10 +32,10 @@ package
 		 * NOTE: these will be different if your art is different
 		 */
 		protected function createAnimations():void {
-			addAnimation("idle_up", [1]);
-			addAnimation("idle_right", [5]);
-			addAnimation("idle_down", [9]);
-			addAnimation("idle_left", [13]);
+			addAnimation("idle_up", [9]);
+			addAnimation("idle_right", [13]);
+			addAnimation("idle_down", [1]);
+			addAnimation("idle_left", [5]);
 			addAnimation("walk_down", [0, 1, 2, 3], 12); // 12 = frames per second for this animation
 			addAnimation("walk_left", [4, 5, 6, 7], 12);
 			addAnimation("walk_up", [8, 9, 10, 11], 12);

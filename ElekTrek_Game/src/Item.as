@@ -18,8 +18,7 @@ package
 		public static const RESISTOR_HORIZONTAL:String = "ResistorHorizontal";
 		public static const RESISTOR_VERTICAL:String = "ResistorVertical";
 		public static const BATTERY_VERTICAL:String = "BatteryVertical";
-		public static const LIGHTBULB_BLOCK_OFF:String = "LightBulbBlockOff";
-		public static const LIGHTBULB_BLOCK_On:String = "LightBulbBlockOn";
+		public static const LIGHTBULB_HORIZONTAL:String = "LightbulbHorizontal";
 		
 		public var name:String;
 		public var value:Number; 
@@ -69,11 +68,14 @@ package
 		 * 
 		 * @param	sprite
 		 */
-		public static function strapFlxSpriteWithAnimation(sprite:SpecialFlxSprite) {
-			
+		public static function loadFlxSpriteAnimation(sprite:SpecialFlxSprite) {
+			const on = "ON";
+			const off = "OFF";
+
 			switch (sprite.itemName) {
-				case Item.LIGHTBULB_BLOCK_OFF:
-					//sprite.addAnimation( SpecialFlxSprite.itemName
+				case Item.LIGHTBULB_HORIZONTAL:
+					sprite.addAnimation( sprite.itemName + "OFF", [0]);
+					sprite.addAnimation( sprite.itemName + "ON", [1]);
 					break;
 					
 			}
