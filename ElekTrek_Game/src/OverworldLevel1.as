@@ -14,7 +14,9 @@ package
 		 * Custom groups
 		 */
 		protected var objectGroup:FlxGroup; // objects and obstacles (with collisions)
-		protected var circuitGroup:FlxGroup; // switch to circuit interaction here
+		protected var circuitGroup1:FlxGroup; // switch to circuit interaction here
+		protected var circuitGroup2:FlxGroup; // switch to circuit interaction here
+		
 		protected var teleportGroup:FlxGroup; // switch to circuit interaction here
 
 		/**
@@ -126,7 +128,8 @@ package
 			var sprite:FlxSprite;
 			// create custom groups
 			objectGroup = new FlxGroup();
-			circuitGroup = new FlxGroup();
+			circuitGroup1 = new FlxGroup();
+			circuitGroup2 = new FlxGroup();
 			teleportGroup = new FlxGroup();
 			
 			computer = new FlxSprite(
@@ -143,7 +146,7 @@ package
 				Assets.TRUNK // image to use
 			);
 			trunk.immovable = true; // don't allow the player to move this object
-			objectGroup.add(trunk);	
+			circuitGroup2.add(trunk);	
 			
 			table = new FlxSprite(
 				15 * tileSize.x, // x location
@@ -151,7 +154,7 @@ package
 				Assets.TABLE // image to use
 			);
 			table.immovable = true; // don't allow the player to move this object
-			circuitGroup.add(table);			
+			circuitGroup1.add(table);			
 			
 			portal = new FlxSprite(
 				1 * tileSize.x, // x location
@@ -169,7 +172,8 @@ package
 			add(floorGroup);
 			add(wallGroup);
 			add(objectGroup);
-			add(circuitGroup);
+			add(circuitGroup1);
+			add(circuitGroup2);
 			add(teleportGroup);
 			add(player);
 			add(guiGroup);
@@ -195,9 +199,14 @@ package
 		override public function update():void {
 			super.update(); // NOTE: map -> player collision happens in super.update()
 			FlxG.collide(objectGroup, player);
-			if (FlxG.overlap(player,circuitGroup)) {
+			if (FlxG.overlap(player, circuitGroup1)) {
+				Information.CURRENT_PROBLEM = new PracticeClass1();
 				FlxG.switchState(new CircuitInteractionState);
 			}
+			if (FlxG.overlap(player, circuitGroup2)) {
+				Information.CURRENT_PROBLEM = new PracticeClass2();
+				FlxG.switchState(new CircuitInteractionState);
+			}			
 			if (FlxG.overlap(player,teleportGroup)) {
 				Information.LEVEL = 2;
 				FlxG.switchState(new OverworldState);
