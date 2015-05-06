@@ -39,13 +39,27 @@ package
 		 */
 		public function insertToEmptySpot(item:Item, row:int, col:int):Item {
 			// Make sure the [row][col] is in the emptyLocation
+			var isEmpty = false;
+			var c:Coordinate = new Coordinate(row, col);
+			for ( var cc:Coordinate in missingCoord ) {
+				if (cc.equals(c))
+					isEmpty = true;
+			}
+			
+			var i:Item = itemContainer[row][col];
+			
+			if (isEmpty) {
+				itemContainer[row][col] = item;
+			}
+			
+			return i;
+			
 			
 			// Return an item if there is one in [row][col] and place in the new item
 		}
 		
 		public function removeFromEmptySpot(row:int, col:int):Item {
-			// Make sure the [row][col] is in the emptyLocation
-			// Return an item if there is one in [row][col] and place in the new item
+			itemContainer[row][col] = null;	
 		}
 		/**
 		 * Get item information of this practice problem
