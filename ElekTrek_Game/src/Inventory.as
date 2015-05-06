@@ -16,7 +16,7 @@ package
 			// some random values for now
 			var num = 9;
 			for (var i = 1; i < num; i++) {
-				addItem(new Item(Item.WIRE, i));
+				addItem(new Item(Item.WIRE_HORIZONTAL, i));
 			}
 		}
 		
