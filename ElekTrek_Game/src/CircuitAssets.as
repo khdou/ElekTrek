@@ -74,8 +74,8 @@ package
 		[Embed(source = "../assets/CircuitScreen/Lightbulb_off_block.png")] 
 		public static var LightBulbBlockOff:Class;
 		
-		[Embed(source = "../assets/CircuitScreen/Lightbulb_on_block.png.png")] 
-		public static var LightBulbBlockOn:Class;
+		//[Embed(source = "../assets/CircuitScreen/Lightbulb_on_block.png.png")] 
+		//public static var LightBulbBlockOn:Class;
 		
 		
 
@@ -102,11 +102,11 @@ package
 		[Embed(source = "../assets/CircuitScreen/medBlackwire_vertical.png")] 
 		public static var medWireVertical:Class;
 		
-		[Embed(source = "../assets/CircuitScreen/medcircuit_lightbulb_on.png")] 
-		public static var medLightBulbOn:Class;
+		//[Embed(source = "../assets/CircuitScreen/medcircuit_lightbulb_on.png")] 
+		//public static var medLightBulbOn:Class;
 		
-		[Embed(source = "../assets/CircuitScreen/medcircuit_lightbulb_off.png")] 
-		public static var medLightBulbOff:Class;
+		//[Embed(source = "../assets/CircuitScreen/medcircuit_lightbulb_off.png")] 
+		//public static var medLightBulbOff:Class;
 		
 		[Embed(source = "../assets/CircuitScreen/medResistor_horizontal.png")] 
 		public static var medResistorHorizontal:Class;
@@ -126,23 +126,23 @@ package
 		//[Embed(source = "../assets/CircuitScreen/medleftT.png")] 
 		//public static var medWireT4:Class;
 		
-		[Embed(source = "../assets/CircuitScreen/medflashlight_largeOff.png")] 
-		public static var medFlashlightOff:Class;
+		//[Embed(source = "../assets/CircuitScreen/medflashlight_largeOff.png")] 
+		//public static var medFlashlightOff:Class;
 		
-		[Embed(source = "../assets/CircuitScreen/medflashlight_largeOn.png")] 
-		public static var medFlashlightOn:Class;
+		//[Embed(source = "../assets/CircuitScreen/medflashlight_largeOn.png")] 
+		//public static var medFlashlightOn:Class;
 		
 		[Embed(source = "../assets/CircuitScreen/medLightbulb_block_vertical.png")] 
 		public static var medLightBulbBlockOnVertical:Class;
 		
-		[Embed(source = "../assets/CircuitScreen/medLightbulboff_block_vertical.png")] 
-		public static var medLightBulbBlockOffVertical:Class;
+		//[Embed(source = "../assets/CircuitScreen/medLightbulboff_block_vertical.png")] 
+		//public static var medLightBulbBlockOffVertical:Class;
 		
 		[Embed(source = "../assets/CircuitScreen/medLightbulb_off_block.png")] 
 		public static var medLightBulbBlockOff:Class;
 		
-		[Embed(source = "../assets/CircuitScreen/medLightbulb_on_block.png.png")] 
-		public static var medLightBulbBlockOn:Class;
+		//[Embed(source = "../assets/CircuitScreen/medLightbulb_on_block.png.png")] 
+		//public static var medLightBulbBlockOn:Class;
 		
 		
 		
