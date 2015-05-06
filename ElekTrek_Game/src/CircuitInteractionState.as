@@ -16,8 +16,8 @@ package
 	 */
 	public class CircuitInteractionState extends FlxState
 	{
-		private var itemsTracker:Array; // Tracking the item in the grid using 2D array. [row][column]
-		private var practiceProblem;
+		private var itemsTracker:Array; // Tracking the item in the grid using 2D array. [row][col]
+		private var practiceProblem:AbstractPracticeProblem;
 		/**
 		 * Similar to the constructor, FlxG call this after FlxG.switchState() is done
 		 */
@@ -27,7 +27,7 @@ package
 			FlxG.mouse.show();
 			
 			// Instantiate the item tracking array
-			var size = 5;
+			var size = AbstractPracticeProblem.SIZE;
 			itemsTracker = new Array(size);
 			for (var i = 0; i < size; i++) {
 				itemsTracker[i] = new Array(size);
@@ -65,6 +65,14 @@ package
 		
 		private function generateCircuitView():FlxGroup {
 			var circuitView = new FlxGroup();
+			
+				var size = AbstractPracticeProblem.SIZE;
+				for (int i = 0; i < size; i++) {
+					for (int j = 0; j < size; j++) {
+						var item:Item = practiceProblem.getItemAt(i, j);
+						circuitView.add(new FlxSprite(i * 100, j * 100, CircuitAssets[item.name]);
+					}
+				}
 			return circuitView;
 		}
 	}
