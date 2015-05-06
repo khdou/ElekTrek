@@ -34,10 +34,11 @@ package
 			}
 			
 			// Practice problem;
-			//practiceProblem = new PracticeClass1();
+			practiceProblem = new PracticeClass1();
 			
 			generateCircuitGrid();	
             add(generateInventoryView());
+			add(generateCircuitView());
 			
 
 			
@@ -67,10 +68,12 @@ package
 			var circuitView = new FlxGroup();
 			
 				var size = AbstractPracticeProblem.SIZE;
-				for (int i = 0; i < size; i++) {
-					for (int j = 0; j < size; j++) {
+				for (var i = 0; i < size; i++) {
+					for (var j = 0; j < size; j++) {
 						var item:Item = practiceProblem.getItemAt(i, j);
-						circuitView.add(new FlxSprite(i * 100, j * 100, CircuitAssets[item.name]);
+						if (item != null) {
+							circuitView.add(new FlxSprite(j * 100, i * 100, CircuitAssets[item.name]));
+						}
 					}
 				}
 			return circuitView;

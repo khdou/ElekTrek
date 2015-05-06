@@ -16,9 +16,9 @@ package
 		public function AbstractPracticeProblem() 
 		{
 			// Intantiate the itemContainer
-			itemContainer = new Array(size);
-			for (var i = 0; i < size; i++) {
-				itemContainer[i] = new Array(size);
+			itemContainer = new Array(SIZE);
+			for (var i = 0; i < SIZE; i++) {
+				itemContainer[i] = new Array(SIZE);
 			}
 		}
 		
@@ -39,13 +39,30 @@ package
 		 */
 		public function insertToEmptySpot(item:Item, row:int, col:int):Item {
 			// Make sure the [row][col] is in the emptyLocation
+			var isEmpty = false;
+			var c:Coordinate = new Coordinate(row, col);
+			for each ( var cc:Coordinate in missingCoord ) {
+				if (cc.equals(c))
+					isEmpty = true;
+			}
+			
+			var i:Item = itemContainer[row][col];
+			
+			if (isEmpty) {
+				itemContainer[row][col] = item;
+			}
+			
+			return i;
+			
 			
 			// Return an item if there is one in [row][col] and place in the new item
 		}
 		
 		public function removeFromEmptySpot(row:int, col:int):Item {
-			// Make sure the [row][col] is in the emptyLocation
-			// Return an item if there is one in [row][col] and place in the new item
+			var i:Item = itemContainer[row][col];
+			
+			itemContainer[row][col] = null;	
+			return i;
 		}
 		/**
 		 * Get item information of this practice problem
@@ -72,7 +89,7 @@ package
 		 * have an answer
 		 */
 		protected function getItemsFromInventory():Array {
-			
+			return null;
 		}
 		
 		/**
