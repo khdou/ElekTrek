@@ -204,8 +204,18 @@ package
 			return new Coordinate(i,j);
 		}
 		
+		/**
+		 * Play animations of components 
+		 */
 		private function playSuccessAnimation():void {
-			
+			var coords:Array = practiceProblem.getAnimatedLocations();
+			for each (var c:Coordinate in coords) {
+				for each (var sprite in circuitView) {
+					var tempCoord:Coordinate = translateCoordinateForPracticeProblem(sprite.x, sprite.y);
+					if (c.equals(tempCoord))
+						sprite.play(practiceProblem.getItemAt(c.X, c.Y).name);
+				}
+			}
 		}
 		
 		/**
