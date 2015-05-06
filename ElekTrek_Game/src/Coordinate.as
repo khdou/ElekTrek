@@ -11,7 +11,7 @@ package
 			Y = y;
 		}
 		
-		public function equals(Coordinate other) 
+		public function equals(other:Coordinate) 
 		{
 			if (other.X == X && other.Y == Y) {
 				return true;

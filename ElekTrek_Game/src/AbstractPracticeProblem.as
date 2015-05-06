@@ -41,7 +41,7 @@ package
 			// Make sure the [row][col] is in the emptyLocation
 			var isEmpty = false;
 			var c:Coordinate = new Coordinate(row, col);
-			for ( var cc:Coordinate in missingCoord ) {
+			for each ( var cc:Coordinate in missingCoord ) {
 				if (cc.equals(c))
 					isEmpty = true;
 			}
@@ -59,7 +59,10 @@ package
 		}
 		
 		public function removeFromEmptySpot(row:int, col:int):Item {
+			var i:Item = itemContainer[row][col];
+			
 			itemContainer[row][col] = null;	
+			return i;
 		}
 		/**
 		 * Get item information of this practice problem
