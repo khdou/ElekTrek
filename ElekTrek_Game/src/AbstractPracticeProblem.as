@@ -93,7 +93,7 @@ package
 		 * Value should be present in the Inventory in order for the problem to
 		 * have an answer
 		 */
-		protected function getItemsFromInventory():Array {
+		public function getItemsFromInventory():Array {
 			return null;
 		}
 		
@@ -109,7 +109,7 @@ package
 		 * Return locations in coordinates to animate
 		 */
 		public function getAnimatedLocations():Array {
-			return [];
+			return config;
 		}
 	}
 

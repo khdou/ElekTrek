@@ -57,7 +57,8 @@ package
 			}
 			
 			// Practice problem;
-			practiceProblem = new PracticeClass1();
+			practiceProblem = Information.CURRENT_PROBLEM;
+
 			
 			setupMiscellaneous();
 			
@@ -199,6 +200,7 @@ package
 			var coord:Coordinate = translateCoordinateForPracticeProblem(FlxG.mouse.x, FlxG.mouse.y);
 			
 			textArea.text = "Mouse Pressed at: x " + FlxG.mouse.x + ",y " + FlxG.mouse.y;
+			//textArea.text = "Mouse Pressed at: x " + coord.X + ",y " + coord.Y;
 			
 			// Prevent player from dropping onto the original practice problem pieces
 			var isModdingProblem = practiceProblem.isOriginalPieces(coord);
@@ -209,18 +211,24 @@ package
 				
 				var prevItem = practiceProblem.insertItemAt( _currDragItem, coord.X, coord.Y);
 				
-				if (prevItem != null) {
-					Information.INVENTORY.addItem(prevItem);
+				if (practiceProblem.isCorrect()) {
+					
+					playSuccessAnimation();
+					textArea.text = "Success!";
 				}
+				
+				if (prevItem != null)
+					Information.INVENTORY.addItem(prevItem);
+					
 				remove( _currFlxSprite );
 				
-				// run animation, check practiceProblem.isCorrect()
-			}else {
+			}
+			else {
 				// Return to the inventory
 				Information.INVENTORY.addItem(_currDragItem);
 				
-				if (isModdingProblem) 
-					textArea.text = "You shouldn't modify the original problem";
+				//if (isModdingProblem) 
+					//textArea.text = "You shouldn't modify the original problem";
 			}
 			remove( _currFlxSprite );		// Detach this item from the Inventory view
 		}
@@ -251,8 +259,9 @@ package
 			for each (var c:Coordinate in coords) {
 				for each (var sprite in circuitView) {
 					var tempCoord:Coordinate = translateCoordinateForPracticeProblem(sprite.x, sprite.y);
-					if (c.equals(tempCoord))
+					if (c.equals(tempCoord)) {
 						sprite.play(practiceProblem.getItemAt(c.X, c.Y).name);
+					}						
 				}
 			}
 		}

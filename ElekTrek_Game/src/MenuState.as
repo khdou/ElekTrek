@@ -11,7 +11,7 @@ package
 			var background = new FlxSprite(0, 0, Assets.MENU_BACKGROUND);
 			add(background);
 			
-			var playButton:FlxButtonPlus = new FlxButtonPlus(FlxG.width / 3, FlxG.height / 3 - 10, playButtonCallback, null, "New Game");
+			var playButton:FlxButtonPlus = new FlxButtonPlus(233,253, playButtonCallback, null, "New Game");
 			add(playButton);			
 			
 		} 

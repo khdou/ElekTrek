@@ -18,6 +18,8 @@ package
 		public static const RESISTOR_HORIZONTAL:String = "ResistorHorizontal";
 		public static const RESISTOR_VERTICAL:String = "ResistorVertical";
 		public static const BATTERY_VERTICAL:String = "BatteryVertical";
+		public static const LIGHTBULB_BLOCK_OFF:String = "LightBulbBlockOff";
+		public static const LIGHTBULB_BLOCK_On:String = "LightBulbBlockOn";
 		
 		public var name:String;
 		public var value:Number; 
@@ -59,6 +61,23 @@ package
 			}
 			
 			return unit;
+		}
+		
+		/**
+		 * Adding the animation for this sprite based on its Item name. To play
+		 * its animation, call sprite.play(sprite.itemName);
+		 * 
+		 * @param	sprite
+		 */
+		public static function strapFlxSpriteWithAnimation(sprite:SpecialFlxSprite) {
+			
+			switch (sprite.itemName) {
+				case Item.LIGHTBULB_BLOCK_OFF:
+					//sprite.addAnimation( SpecialFlxSprite.itemName
+					break;
+					
+			}
+			
 		}
 	}
 }

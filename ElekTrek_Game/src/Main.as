@@ -19,7 +19,7 @@ package
 		{
 
 			//super(800,600,OverworldState);
-			super(800,600,MenuState);
+			super(800, 600, MenuState);
 		}
 		
 	}
