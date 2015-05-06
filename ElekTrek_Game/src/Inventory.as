@@ -44,6 +44,10 @@ package
 			return item;
 		}
 		
+		public function getItems():Array {
+			return items;
+		}
+		
 		public function getSize():int {
 			return items.length;
 		}
