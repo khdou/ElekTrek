@@ -25,8 +25,8 @@ package
 		/**
 		 * Must be override to check emptyLocation in the itemContainer
 		 */
-		public function isCorrect() {
-			
+		public function isCorrect():Boolean {
+			return true;
 		}
 		
 		/**
