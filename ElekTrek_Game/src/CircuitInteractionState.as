@@ -57,7 +57,7 @@ package
 			}
 			
 			// Practice problem;
-			practiceProblem = new PracticeClass1();
+			practiceProblem = new PracticeClass0();
 			
 			setupMiscellaneous();
 			
