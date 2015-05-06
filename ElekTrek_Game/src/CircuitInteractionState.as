@@ -117,11 +117,18 @@ package
 				// On MouseUp
 				draggableSprite.mouseReleasedCallback = function(obj:FlxExtendedSprite, x:int, y:int) {
 					
+					var coord:Coordinate = translateCoordinateForPracticeProblem(FlxG.mouse.x, FlxG.mouse.y);
+					
 					textArea.text = "Mouse Pressed at: x " + FlxG.mouse.x + ",y " + FlxG.mouse.y;
 					
-					if (y < 400 && x > 300) {
-						// Within circuitView boundary, should have a better way for this
-						// @TODO Store the practiceProblem's itemContainer
+					if (coord.X != -1) {
+						// Within circuitView boundary
+						// Store the practiceProblem's itemContainer
+						var prevItem = practiceProblem.insertItemAt( _currDragItem, coord.X, coord.Y);
+						
+						if (prevItem != null) {
+							Information.INVENTORY.addItem(prevItem);
+						}
 						remove( _currFlxSprite );
 						
 						// run animation, check practiceProblem.isCorrect()
@@ -156,10 +163,21 @@ package
 							}else {
 								// Draggable
 								// Define dropping area
-								var draggable = new SpecialFlxSprite(20 + j * 100, 83 + i * 100, CircuitAssets[item.name]);
-								draggable.enableMouseDrag();
+								var draggableSprite = new SpecialFlxSprite(20 + j * 100, 83 + i * 100, CircuitAssets[item.name]);
+								draggableSprite.enableMouseDrag();
+								circuitView.add(draggableSprite);
 								
-								circuitView.add(draggable);
+								draggableSprite.mousePressedCallback = function(obj:SpecialFlxSprite, x:int, y:int) {
+									_currDragItem = Information.INVENTORY.removeItem(obj.inventoryID);
+									_currFlxSprite = obj;
+									inventoryView.remove(obj); // Detach this item from the Inventory view
+									add(obj); // add it to the state
+								}
+								
+								draggableSprite.mousePressedCallback = function(obj:SpecialFlxSprite, x:int, y:int) {
+									
+								}
+								
 							}
 						}
 					}
