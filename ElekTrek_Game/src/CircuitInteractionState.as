@@ -20,12 +20,26 @@ package
 		private var practiceProblem:AbstractPracticeProblem;
 		
 		private var inventoryView:FlxGroup;
-		private var CircuitView:FlxGroup;
+		private var circuitView:FlxGroup;
+		
+		private currentDragItem;
 		
 		/**
 		 * Similar to the constructor, FlxG call this after FlxG.switchState() is done
 		 */
 		override public function create(): void{
+			
+			if (FlxG.getPlugin(FlxMouseControl) == null)
+			{
+				FlxG.addPlugin(new FlxMouseControl);
+			}
+			
+			var test = new FlxGroup();
+			var drag = new FlxExtendedSprite(50, 50, CircuitAssets[Item.BATTERY_VERTICAL]);
+			drag.enableMouseDrag(true);
+			
+			test.add(drag);
+			add(test);
 			
 			FlxG.bgColor = 0xffaaaaaa;
 			FlxG.mouse.show();
@@ -40,12 +54,13 @@ package
 			// Practice problem;
 			practiceProblem = new PracticeClass1();
 			
-			loadBackground();
+			//loadBackground();
 			
-			//
-            inventoryView = generateInventoryView());
-			add(generateCircuitView());
-			
+			// Storing these group to remove them in updates
+            inventoryView = generateInventoryView();
+			circuitView = generateCircuitView();
+			add(inventoryView);
+			add(circuitView);
 
 			
 			super.create();
@@ -65,7 +80,7 @@ package
 			
 			var inventoryView = new FlxGroup();
 			
-			for (var i = 0; i < Information.INVENTORY.getSize(); i++) {
+			for (var i:int = 0; i < Information.INVENTORY.getSize(); i++) {
 				// Adding items in the inventory corresponding to the CircuitAssetts.Screen coordinate
 				var item:Item = Information.INVENTORY.getItem(i);
 				
@@ -77,7 +92,12 @@ package
 				//		2) PracticeProblem.itemContainer -- if the mouseCoordiate is inside CircuitView boundary
 				// 
 				// 		
-				inventoryView.add(new FlxSprite(540 + (i%3 * 90), 139 + (i/3 * 90), CircuitAssets[item.name]));
+				var draggableSprite = new FlxExtendedSprite(540 + (i % 3 * 90), 139 + (i / 3 * 90), CircuitAssets[item.name]);
+				draggableSprite.enableMouseDrag();
+				draggableSprite.mousePressedCallback = function(obj:FlxExtendedSprite, x:int, y:int) {
+					obj.loadGraphic(CircuitAssets[Item.BATTERY_VERTICAL]);
+				}
+				inventoryView.add(draggableSprite);
 			}
 			
 			return inventoryView;
@@ -95,11 +115,15 @@ package
 					for (var j = 0; j < size; j++) {
 						var item:Item = practiceProblem.getItemAt(i, j);
 						if (item != null) {
-							if (
-							// Not draggable
-							circuitView.add(new FlxSprite(j * 100, 100 + i * 100, CircuitAssets[item.name]));
+							if (practiceProblem.isMissingCoord(new Coordinate(i, j))) {
+								// Draggable
+								//var flxDraggable;
+								circuitView.add(new FlxSprite(j * 100, 100 + i * 100, CircuitAssets[item.name]));
+							}else {
+								// Not draggable
+								circuitView.add(new FlxSprite(j * 100, 100 + i * 100, CircuitAssets[item.name]));
+							}
 						}
-						
 					}
 				}
 			return circuitView;
@@ -110,8 +134,14 @@ package
 		 */
 		override public function update():void
 		{
-			// @Jason
 			// REgenerate circuitView and inventoryView here to reflect change in data
+			//remove(inventoryView);
+			//remove(circuitView);
+            //inventoryView = generateInventoryView();
+			//circuitView = generateCircuitView();
+			//add(inventoryView);
+			//add(circuitView);
+			
 			super.update();
 		}
 	}
