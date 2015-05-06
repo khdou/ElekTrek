@@ -120,30 +120,7 @@ package
 				}
 				
 				// On MouseUp
-				draggableSprite.mouseReleasedCallback = function(obj:FlxExtendedSprite, x:int, y:int) {
-					
-					var coord:Coordinate = translateCoordinateForPracticeProblem(FlxG.mouse.x, FlxG.mouse.y);
-					
-					textArea.text = "Mouse Pressed at: x " + FlxG.mouse.x + ",y " + FlxG.mouse.y;
-					
-					if (coord.X != -1) {
-						// Within circuitView boundary
-						// Store the practiceProblem's itemContainer
-						var prevItem = practiceProblem.insertItemAt( _currDragItem, coord.X, coord.Y);
-						
-						if (prevItem != null) {
-							Information.INVENTORY.addItem(prevItem);
-						}
-						remove( _currFlxSprite );
-						
-						// run animation, check practiceProblem.isCorrect()
-					}else {
-						// Return to the inventory
-						Information.INVENTORY.addItem(_currDragItem);
-					}
-					remove( _currFlxSprite );		// Detach this item from the Inventory view
-				}
-				
+				draggableSprite.mouseReleasedCallback = onMouseReleased;
 				
 			}
 			
@@ -190,28 +167,7 @@ package
 									add(obj); // add it to the state
 								}
 								
-								draggableSprite.mouseReleasedCallback = function(obj:SpecialFlxSprite, x:int, y:int) {
-									var coord:Coordinate = translateCoordinateForPracticeProblem(FlxG.mouse.x, FlxG.mouse.y);
-					
-									textArea.text = "Mouse Pressed at: x " + FlxG.mouse.x + ",y " + FlxG.mouse.y;
-									
-									if (coord.X != -1) {
-										// Within circuitView boundary
-										// Store the practiceProblem's itemContainer
-										var prevItem = practiceProblem.insertItemAt( _currDragItem, coord.X, coord.Y);
-										
-										if (prevItem != null) {
-											Information.INVENTORY.addItem(prevItem);
-										}
-										remove( _currFlxSprite );
-										
-										// run animation, check practiceProblem.isCorrect()
-									}else {
-										// Return to the inventory
-										Information.INVENTORY.addItem(_currDragItem);
-									}
-									remove( _currFlxSprite );		// Detach this item from the Inventory view
-								}
+								draggableSprite.mouseReleasedCallback = onMouseReleased;
 								
 							}
 						}
@@ -229,15 +185,19 @@ package
 		 * @param	x
 		 * @param	y
 		 */
-		private function onMouseReleased (obj:FlxExtendedSprite, x:int, y:int) {
+		private function onMouseReleased (obj:FlxExtendedSprite, x:int, y:int):void {
 					
 			var coord:Coordinate = translateCoordinateForPracticeProblem(FlxG.mouse.x, FlxG.mouse.y);
 			
 			textArea.text = "Mouse Pressed at: x " + FlxG.mouse.x + ",y " + FlxG.mouse.y;
 			
-			if (coord.X != -1) {
+			// Prevent player from dropping onto the original practice problem pieces
+			var isModdingProblem = practiceProblem.isOriginalPieces(coord);
+			
+			if (coord.X != -1 && !isModdingProblem) {
 				// Within circuitView boundary
 				// Store the practiceProblem's itemContainer
+				
 				var prevItem = practiceProblem.insertItemAt( _currDragItem, coord.X, coord.Y);
 				
 				if (prevItem != null) {
@@ -249,12 +209,14 @@ package
 			}else {
 				// Return to the inventory
 				Information.INVENTORY.addItem(_currDragItem);
+				
+				if (isModdingProblem) 
+					textArea.text = "You shouldn't modify the original problem";
 			}
 			remove( _currFlxSprite );		// Detach this item from the Inventory view
 		}
 		
 		/**
-		 * @TODO 
 		 * Translate the screen X,Y coordinate to the Practice Problem [row][col]
 		 * 
 		 * @param	screenX		The mouseX position on the screen 
