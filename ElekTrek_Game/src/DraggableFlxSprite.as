@@ -19,6 +19,20 @@ package
 		public var startX:Number;
 		public var startY:Number;
 		
+		public var inventoryID:int;
+		public var itemName:String;
+		
+		/**
+		 * Function called when the mouse is pressed down on this sprite. Function is passed these parameters: obj:FlxExtendedSprite, x:int, y:int
+		 * @default null
+		 */
+		public var mousePressedCallback:Function;
+		
+		/**
+		 * Function called when the mouse is released from this sprite. Function is passed these parameters: obj:FlxExtendedSprite, x:int, y:int
+		 * @default null
+		 */
+		public var mouseReleasedCallback:Function;
 		
 		public function DraggableFlxSprite(X:Number=0,Y:Number=0,SimpleGraphic:Class=null,drag:Boolean=true) 
 		{
@@ -48,6 +62,10 @@ package
 			}
 			if (overlapsPoint(new FlxPoint(FlxG.mouse.x, FlxG.mouse.y))) {
 				this.dragging = true;
+				if (mouseReleasedCallback is Function)
+				{
+					mouseReleasedCallback.apply(null, [ this, FlxG.mouse.x, FlxG.mouse.y ] );
+				}
 				//var xx:Number = int(this.x / 100);
 				//var yy:Number = int(this.y / 100);
 				//if (xx < 5 && yy < 5)
@@ -67,7 +85,10 @@ package
 				/**add your callback function here with this.x and this.y as coordinates
 				 *  example callback(this.x, this.y);
 				 **/
-				
+				if (mousePressedCallback is Function)
+				{
+					mousePressedCallback.apply(null, [ this, FlxG.mouse.x, FlxG.mouse.y ] );
+				}
 				
 				
 				/*

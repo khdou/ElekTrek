@@ -10,7 +10,9 @@ package
 	 * based on screensize 800x600. 
 	 * 
 	 * Information about the Practice Problems should be loaded in. 
-	 * Such as what circuit puzzle problem it is
+	 * Such as what circuit puzzle problem it is. This can be think 
+	 * of as the View from the MVC model. Inventory and Practice is 
+	 * the Collection
 	 * 
 	 * @author Tomit Huynh
 	 */
@@ -103,7 +105,7 @@ package
 				
 				// On MouseDown
 				draggableSprite.mousePressedCallback = function(obj:SpecialFlxSprite, x:int, y:int) {
-					textArea.text = "Mouse Pressed at: x " + x + ",y " + y;
+					textArea.text = "Mouse Pressed at: x " + FlxG.mouse.x + ",y " + FlxG.mouse.y;
 					obj.loadGraphic(CircuitAssets[obj.itemName]);
 					_currDragItem = Information.INVENTORY.removeItem(obj.inventoryID);
 					_currFlxSprite = obj;
@@ -114,7 +116,7 @@ package
 				// On MouseUp
 				draggableSprite.mouseReleasedCallback = function(obj:FlxExtendedSprite, x:int, y:int) {
 					
-					textArea.text = "Mouse Released at: x " + x + ",y " + y;
+					textArea.text = "Mouse Pressed at: x " + FlxG.mouse.x + ",y " + FlxG.mouse.y;
 					
 					if (y < 400 && x > 300) {
 						// Within circuitView boundary, should have a better way for this
