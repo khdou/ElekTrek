@@ -59,7 +59,9 @@ package
 		}
 		
 		public function removeFromEmptySpot(row:int, col:int):Item {
+			var item = itemContainer[row][col];
 			itemContainer[row][col] = null;	
+			return item;
 		}
 		/**
 		 * Get item information of this practice problem

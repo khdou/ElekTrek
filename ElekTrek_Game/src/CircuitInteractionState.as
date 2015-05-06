@@ -36,8 +36,9 @@ package
 			// Practice problem;
 			practiceProblem = new PracticeClass1();
 			
-			add(generateCircuitGrid());	
+			generateCircuitGrid();	
             add(generateInventoryView());
+			add(generateCircuitView());
 			
 
 			
@@ -70,7 +71,9 @@ package
 				for (var i = 0; i < size; i++) {
 					for (var j = 0; j < size; j++) {
 						var item:Item = practiceProblem.getItemAt(i, j);
-						circuitView.add(new FlxSprite(i * 100, j * 100, CircuitAssets[item.name]));
+						if (item != null) {
+							circuitView.add(new FlxSprite(j * 100, i * 100, CircuitAssets[item.name]));
+						}
 					}
 				}
 			return circuitView;
