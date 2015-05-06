@@ -210,7 +210,10 @@ package
 				
 				var prevItem = practiceProblem.insertItemAt( _currDragItem, coord.X, coord.Y);
 				
-				if (prevItem != null) {
+				if practiceProblem.isCorrect()
+					playSuccessAnimation();
+				
+					if (prevItem != null) {
 					Information.INVENTORY.addItem(prevItem);
 				}
 				remove( _currFlxSprite );
