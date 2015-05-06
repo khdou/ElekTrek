@@ -149,15 +149,17 @@ package
 					for (var j = 0; j < size; j++) {
 						var item:Item = practiceProblem.getItemAt(i, j);
 						if (item != null) {
-							if (practiceProblem.isOriginalPieces(new Coordinate(i, j))) {
-								// Not draggable
-								circuitView.add(new FlxSprite(20 + j * 100, 83 + i * 100, CircuitAssets[item.name]));
+							
+							var auxSprite;
+							var currentCoord = new Coordinate(i, j);
+							// Initialize the animation of this object
+							if (practiceProblem.isOriginalPieces(currentCoord)) {
+								// Generate a not draggable Sprite
+								sprite = new FlxSprite(20 + j * 100, 83 + i * 100, CircuitAssets[item.name]);
 							}else {
-								// Draggable
-								// Define dropping area
-								var draggableSprite = new SpecialFlxSprite(20 + j * 100, 83 + i * 100, CircuitAssets[item.name]);
-								draggableSprite.enableMouseDrag();
-								circuitView.add(draggableSprite);
+								// Generate a draggable Sprite
+								sprite = new SpecialFlxSprite(20 + j * 100, 83 + i * 100, CircuitAssets[item.name]);
+								sprite.enableMouseDrag();
 								
 								var infoText = new FlxText( 20 + j * 100, 93 + i * 100, 100, item.value == -1 ? "" : item.value + " " + item.getUnit() );
 								infoText.size = 12;
@@ -166,18 +168,27 @@ package
 								circuitView.add(infoText);
 								
 								// Need to save this because of AS dynamic binding
-								draggableSprite.relativeLocale = new Coordinate(i, j);
+								sprite.relativeLocale = currentCoord;
 								// Saving this for later use too
-								draggableSprite.itemName = item.name; 		
+								sprite.itemName = item.name; 		
 								
-								draggableSprite.mousePressedCallback = function(obj:SpecialFlxSprite, x:int, y:int) {
+								sprite.mousePressedCallback = function(obj:SpecialFlxSprite, x:int, y:int) {
 									_currDragItem = practiceProblem.removeItemAt(obj.relativeLocale.X, obj.relativeLocale.Y);
 									_currFlxSprite = obj;
 									circuitView.remove(obj); // Detach this item from the Circuit view
 									add(obj); // add it to the state
 								}
 								
-								draggableSprite.mouseReleasedCallback = onMouseReleased;
+								sprite.mouseReleasedCallback = onMouseReleased;
+								
+								circuitView.add(sprite);
+								
+								// For animation load the animation info
+								//var coordArr:Array = practiceProblem.getAnimatedLocations();
+								//for each (var c:Coordinate in coordArr) {
+									//if (c.equals(currentCoord))
+										//Item.loadFlxSpriteAnimation(sprite);
+								//}
 								
 							}
 						}
@@ -260,7 +271,7 @@ package
 				for each (var sprite in circuitView) {
 					var tempCoord:Coordinate = translateCoordinateForPracticeProblem(sprite.x, sprite.y);
 					if (c.equals(tempCoord)) {
-						sprite.play(practiceProblem.getItemAt(c.X, c.Y).name);
+						sprite.play(sprite.itemName+"ON");
 					}						
 				}
 			}
