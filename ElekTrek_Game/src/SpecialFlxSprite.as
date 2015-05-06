@@ -8,13 +8,13 @@ package
 	 */
 	public class SpecialFlxSprite extends FlxExtendedSprite
 	{
-		public var inventoryID:int;
+		public var relativeLocale;	// Use for arbitrary location in different views...
 		public var itemName:String;
 		
 		public function SpecialFlxSprite(X:Number=0,Y:Number=0,SimpleGraphic:Class=null ) 
 		{
 			super(X, Y, SimpleGraphic);
-			inventoryID = null;
+			relativeLocale = null;
 			itemName = null;
 		}
 		

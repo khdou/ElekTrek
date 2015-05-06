@@ -15,6 +15,10 @@ package
 	 * of as the View from the MVC model. Inventory and Practice is 
 	 * the Collection
 	 * 
+	 * There are two major interaction in this state, user dragging
+	 * from the circuitView and the inventoryView. MouseUp and 
+	 * MouseDown are significant event
+	 * 
 	 * @author Tomit Huynh
 	 */
 	public class CircuitInteractionState extends FlxState
@@ -95,12 +99,13 @@ package
 				//		2) PracticeProblem.itemContainer -- if the mouseCoordiate is inside CircuitView boundary
 				
 				var draggableSprite = new SpecialFlxSprite(568 + (i % 3 * 77), 130 + (int(i / 3) * 90), CircuitAssets["med" + item.name]);
-				var infoText = new FlxText( 568 + (i % 3 * 77), 190 + (int(i / 3) * 90), 70, item.value == -1 ? "" : item.value + " " + item.getUnit() );
+				var infoText = new FlxText( 558 + (i % 3 * 77), 190 + (int(i / 3) * 90), 70, item.value == -1 ? "" : item.value + " " + item.getUnit() );
+				
 				inventoryView.add(draggableSprite);
 				inventoryView.add(infoText);
 				
-				draggableSprite.inventoryID = i; 		// Need to save this because of AS dynamic binding
-				draggableSprite.itemName = item.name; 	// Saving this for later use too
+				draggableSprite.relativeLocale = i; 		// Need to save this because of AS dynamic binding
+				draggableSprite.itemName = item.name; 		// Saving this for later use too
 				
 				draggableSprite.enableMouseDrag(false,true);
 				
@@ -108,7 +113,7 @@ package
 				draggableSprite.mousePressedCallback = function(obj:SpecialFlxSprite, x:int, y:int) {
 					textArea.text = "Mouse Pressed at: x " + FlxG.mouse.x + ",y " + FlxG.mouse.y;
 					obj.loadGraphic(CircuitAssets[obj.itemName]);
-					_currDragItem = Information.INVENTORY.removeItem(obj.inventoryID);
+					_currDragItem = Information.INVENTORY.removeItem(obj.relativeLocale);
 					_currFlxSprite = obj;
 					inventoryView.remove(obj); // Detach this item from the Inventory view
 					add(obj); // add it to the state
@@ -167,15 +172,45 @@ package
 								draggableSprite.enableMouseDrag();
 								circuitView.add(draggableSprite);
 								
+								var infoText = new FlxText( 20 + j * 100, 93 + i * 100, 100, item.value == -1 ? "" : item.value + " " + item.getUnit() );
+								infoText.size = 12;
+								infoText.alignment = 'center';
+								
+								circuitView.add(infoText);
+								
+								// Need to save this because of AS dynamic binding
+								draggableSprite.relativeLocale = new Coordinate(i, j);
+								// Saving this for later use too
+								draggableSprite.itemName = item.name; 		
+								
 								draggableSprite.mousePressedCallback = function(obj:SpecialFlxSprite, x:int, y:int) {
-									_currDragItem = Information.INVENTORY.removeItem(obj.inventoryID);
+									_currDragItem = practiceProblem.removeItemAt(obj.relativeLocale.X, obj.relativeLocale.Y);
 									_currFlxSprite = obj;
-									inventoryView.remove(obj); // Detach this item from the Inventory view
+									circuitView.remove(obj); // Detach this item from the Circuit view
 									add(obj); // add it to the state
 								}
 								
-								draggableSprite.mousePressedCallback = function(obj:SpecialFlxSprite, x:int, y:int) {
+								draggableSprite.mouseReleasedCallback = function(obj:SpecialFlxSprite, x:int, y:int) {
+									var coord:Coordinate = translateCoordinateForPracticeProblem(FlxG.mouse.x, FlxG.mouse.y);
+					
+									textArea.text = "Mouse Pressed at: x " + FlxG.mouse.x + ",y " + FlxG.mouse.y;
 									
+									if (coord.X != -1) {
+										// Within circuitView boundary
+										// Store the practiceProblem's itemContainer
+										var prevItem = practiceProblem.insertItemAt( _currDragItem, coord.X, coord.Y);
+										
+										if (prevItem != null) {
+											Information.INVENTORY.addItem(prevItem);
+										}
+										remove( _currFlxSprite );
+										
+										// run animation, check practiceProblem.isCorrect()
+									}else {
+										// Return to the inventory
+										Information.INVENTORY.addItem(_currDragItem);
+									}
+									remove( _currFlxSprite );		// Detach this item from the Inventory view
 								}
 								
 							}
@@ -183,6 +218,39 @@ package
 					}
 				}
 			return circuitView;
+		}
+		
+		
+		/**
+		 * Handle the component drop. If it is within the circuitView, it goes to to the practice
+		 * problem.itemContainer. If not, it goes back to the inventory
+		 * 
+		 * @param	obj
+		 * @param	x
+		 * @param	y
+		 */
+		private function onMouseReleased (obj:FlxExtendedSprite, x:int, y:int) {
+					
+			var coord:Coordinate = translateCoordinateForPracticeProblem(FlxG.mouse.x, FlxG.mouse.y);
+			
+			textArea.text = "Mouse Pressed at: x " + FlxG.mouse.x + ",y " + FlxG.mouse.y;
+			
+			if (coord.X != -1) {
+				// Within circuitView boundary
+				// Store the practiceProblem's itemContainer
+				var prevItem = practiceProblem.insertItemAt( _currDragItem, coord.X, coord.Y);
+				
+				if (prevItem != null) {
+					Information.INVENTORY.addItem(prevItem);
+				}
+				remove( _currFlxSprite );
+				
+				// run animation, check practiceProblem.isCorrect()
+			}else {
+				// Return to the inventory
+				Information.INVENTORY.addItem(_currDragItem);
+			}
+			remove( _currFlxSprite );		// Detach this item from the Inventory view
 		}
 		
 		/**

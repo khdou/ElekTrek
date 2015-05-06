@@ -49,7 +49,7 @@ package
 			// Return an item if there is one in [row][col] and place in the new item
 		}
 		
-		public function removeFromEmptySpot(row:int, col:int):Item {
+		public function removeItemAt(row:int, col:int):Item {
 			var i:Item = itemContainer[row][col];
 			itemContainer[row][col] = null;	
 			return i;
