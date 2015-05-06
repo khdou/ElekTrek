@@ -71,6 +71,7 @@ package
 		public static function loadFlxSpriteAnimation(sprite:SpecialFlxSprite) {
 			const on = "ON";
 			const off = "OFF";
+
 			switch (sprite.itemName) {
 				case Item.LIGHTBULB_HORIZONTAL:
 					sprite.addAnimation( sprite.itemName + "OFF", [0]);
