@@ -74,8 +74,8 @@ package
 		[Embed(source = "../assets/CircuitScreen/Lightbulb_off_block.png")] 
 		public static var LightBulbBlockOff:Class;
 		
-		//[Embed(source = "../assets/CircuitScreen/Lightbulb_on_block.png.png")] 
-		//public static var LightBulbBlockOn:Class;
+		[Embed(source = "../assets/CircuitScreen/Lightbulb_on_block.png")] 
+		public static var LightBulbBlockOn:Class;
 		
 		
 
@@ -144,7 +144,8 @@ package
 		//[Embed(source = "../assets/CircuitScreen/medLightbulb_on_block.png.png")] 
 		//public static var medLightBulbBlockOn:Class;
 		
-		
+		[Embed(source = "../assets/CircuitScreen/backbutton.png")] 
+		public static var BackButton:Class;
 		
 		public function CircuitAssets() 
 		{

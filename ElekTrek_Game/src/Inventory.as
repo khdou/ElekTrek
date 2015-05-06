@@ -18,6 +18,8 @@ package
 			for (var i = 1; i < num; i++) {
 				addItem(new Item(Item.RESISTOR_HORIZONTAL, i));
 			}
+			
+			addItem(new Item(Item.BATTERY_VERTICAL, 1));
 		}
 		
 		/**
