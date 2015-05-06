@@ -26,12 +26,13 @@ package
 			
 			// Coordinate describing the original circuit problem
 			config = [ 
-				new Coordinate(2, 0),
+				new Coordinate(1, 2),
 				new Coordinate(1, 0),
 				new Coordinate(1, 1),
 				new Coordinate(1, 3),
 				new Coordinate(2, 3),
 				new Coordinate(3, 3),
+				new Coordinate(3, 2),
 				new Coordinate(3, 1),
 				new Coordinate(3, 0),
 			];
@@ -50,7 +51,7 @@ package
 			missingCoord = new Array(1);
 			missingCoord[0] = new Coordinate(2, 0);
 		}
-
+		
 		override protected function generateValues():void 
 		{
 			

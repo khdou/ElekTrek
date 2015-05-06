@@ -199,6 +199,7 @@ package
 			var coord:Coordinate = translateCoordinateForPracticeProblem(FlxG.mouse.x, FlxG.mouse.y);
 			
 			textArea.text = "Mouse Pressed at: x " + FlxG.mouse.x + ",y " + FlxG.mouse.y;
+			//textArea.text = "Mouse Pressed at: x " + coord.X + ",y " + coord.Y;
 			
 			// Prevent player from dropping onto the original practice problem pieces
 			var isModdingProblem = practiceProblem.isOriginalPieces(coord);
@@ -215,12 +216,14 @@ package
 				remove( _currFlxSprite );
 				
 				// run animation, check practiceProblem.isCorrect()
+				if (practiceProblem.isCorrect()) 
+					playSuccessAnimation();
 			}else {
 				// Return to the inventory
 				Information.INVENTORY.addItem(_currDragItem);
 				
-				if (isModdingProblem) 
-					textArea.text = "You shouldn't modify the original problem";
+				//if (isModdingProblem) 
+					//textArea.text = "You shouldn't modify the original problem";
 			}
 			remove( _currFlxSprite );		// Detach this item from the Inventory view
 		}

@@ -93,7 +93,7 @@ package
 		 * Value should be present in the Inventory in order for the problem to
 		 * have an answer
 		 */
-		protected function getItemsFromInventory():Array {
+		public function getItemsFromInventory():Array {
 			return null;
 		}
 		
