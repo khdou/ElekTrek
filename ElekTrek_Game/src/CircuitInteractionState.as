@@ -33,6 +33,8 @@ package
 		private var _currDragItem;		// Track the item being drag
 		private var _currFlxSprite;		// Track the graphic rep of _currDragItem
 		
+		private var backButton:FlxExtendedSprite; // Go back to overworld
+		
 		/**
 		 * Similar to the constructor, FlxG call this after FlxG.switchState() is done
 		 */
@@ -57,7 +59,7 @@ package
 			// Practice problem;
 			practiceProblem = new PracticeClass1();
 			
-			loadBackground();
+			setupMiscellaneous();
 			
 			// Storing these group to remove them in updates
             inventoryView = generateInventoryView();
@@ -70,7 +72,7 @@ package
 		}
 		
 		// Just static image for now
-		private function loadBackground(): void {
+		private function setupMiscellaneous(): void {
 			var background = new FlxSprite(0, 0, CircuitAssets.Screen);
 			add(background);
 			textArea = new FlxText(80, 20, 700, "Welcome to the CircuitInteraction!");
@@ -78,6 +80,13 @@ package
 			
 			textArea.color = FlxColor.getColor32(255, 60, 60, 60);
 			textArea.size = 10;
+			
+			backButton = new FlxExtendedSprite(5, 7, CircuitAssets.BackButton);
+			backButton.enableMouseClicks(true);
+			backButton.mouseReleasedCallback = function() {
+				exitCircuitInteractionState();
+			}
+			add(backButton);
 		}
 		
 		/**
@@ -248,6 +257,14 @@ package
 			}
 		}
 		
+
+		/**
+		 * Save practice problem result and Switch back to OverWorld state
+		 */
+		private function exitCircuitInteractionState() {
+			FlxG.switchState(new OverworldState());
+		}
+		 
 		/**
 		 * Handle some Sprite drop before updating
 		 */
