@@ -18,10 +18,23 @@ package
 	{
 		private var itemsTracker:Array; // Tracking the item in the grid using 2D array. [row][col]
 		private var practiceProblem:AbstractPracticeProblem;
+		
+		private var inventoryView:FlxGroup;	// Hold all the FlxSprite to be render for the inventory
+		private var circuitView:FlxGroup;	// Hold all the FlxSprite to be render for the circuit
+		
+		private var _currDragItem;		// Track the item being drag
+		private var _currFlxSprite;		// Track the graphic rep of _currDragItem
+		
 		/**
 		 * Similar to the constructor, FlxG call this after FlxG.switchState() is done
 		 */
 		override public function create(): void{
+			
+			// Fix a weird bug from Flixel Power Tools library
+			if (FlxG.getPlugin(FlxMouseControl) == null)
+			{
+				FlxG.addPlugin(new FlxMouseControl);
+			}
 			
 			FlxG.bgColor = 0xffaaaaaa;
 			FlxG.mouse.show();
@@ -36,34 +49,83 @@ package
 			// Practice problem;
 			practiceProblem = new PracticeClass1();
 			
-			generateCircuitGrid();	
-            add(generateInventoryView());
-			add(generateCircuitView());
+			//loadBackground();
 			
+			// Storing these group to remove them in updates
+            inventoryView = generateInventoryView();
+			circuitView = generateCircuitView();
+			add(inventoryView);
+			add(circuitView);
 
 			
 			super.create();
 		}
 		
 		// Just static image for now
-		private function generateCircuitGrid(): void {
+		private function loadBackground(): void {
 			var background = new FlxSprite(0, 0, CircuitAssets.Screen);
 			add(background);
 		}
 		
-		// Load items from the Inventory and display it
+		/**
+		 * Load items from the Inventory and display it
+		 * @return FlxGroup of items to display
+		 */ 
 		private function generateInventoryView(): FlxGroup {
 			
 			var inventoryView = new FlxGroup();
 			
-			for (var i = 0; i < Information.INVENTORY.getSize(); i++) {
-				// Display the inventory item here
-				// inventoryView.add(new FlxSprite(100, 100, CircuitAssets[Item.WIRE_HORIZONTAL]));
+			for (var i:int = 0; i < Information.INVENTORY.getSize(); i++) {
+				// Adding items in the inventory corresponding to the CircuitAssetts.Screen coordinate
+				var item:Item = Information.INVENTORY.getItem(i);
+				
+				// Setup mouseDrag for this Sprite. 
+				// On mouseDown, remove the item:Item from the Inventory
+				// On mouseUp, add this item:Item to :
+				// 		1) Inventory -- if the mouseCoordiate is outside the CircuitView boundary
+				//		2) PracticeProblem.itemContainer -- if the mouseCoordiate is inside CircuitView boundary
+				
+				var draggableSprite = new SpecialFlxSprite(540 + (i % 3 * 90), 139 + (i / 3 * 90), CircuitAssets["med"+item.name]);
+				draggableSprite.inventoryID = i; 		// Need to save this because of AS dynamic binding
+				draggableSprite.itemName = item.name; 	// Saving this for later use too
+				
+				draggableSprite.enableMouseDrag();
+				
+				// On MouseDown
+				draggableSprite.mousePressedCallback = function(obj:SpecialFlxSprite, x:int, y:int) {
+					obj.loadGraphic(CircuitAssets[obj.itemName]);
+					_currDragItem = Information.INVENTORY.removeItem(obj.inventoryID);
+					_currFlxSprite = obj;
+					inventoryView.remove(obj); // Detach this item from the Inventory view
+					add(obj); // add it to the state
+				}
+				
+				// On MouseUp
+				draggableSprite.mouseReleasedCallback = function(obj:FlxExtendedSprite, x:int, y:int) {
+					
+					if (y < 400 && x > 300) {
+						// Within circuitView boundary, should have a better way for this
+						// @TODO Store the practiceProblem's itemContainer
+						remove( _currFlxSprite );
+						
+						// run animation, check practiceProblem.isCorrect()
+					}else {
+						// Return to the inventory
+						Information.INVENTORY.addItem(_currDragItem);
+					}
+					remove( _currFlxSprite );		// Detach this item from the Inventory view
+				}
+				
+				inventoryView.add(draggableSprite);
 			}
 			
 			return inventoryView;
 		}
 		
+		/**
+		 * Load items from Practice Problems
+		 * @return
+		 */
 		private function generateCircuitView():FlxGroup {
 			var circuitView = new FlxGroup();
 			
@@ -72,11 +134,34 @@ package
 					for (var j = 0; j < size; j++) {
 						var item:Item = practiceProblem.getItemAt(i, j);
 						if (item != null) {
-							circuitView.add(new FlxSprite(j * 100, i * 100, CircuitAssets[item.name]));
+							if (practiceProblem.isMissingCoord(new Coordinate(i, j))) {
+								// Draggable
+								// Define dropping area
+								circuitView.add(new FlxSprite(j * 100, 100 + i * 100, CircuitAssets[item.name]));
+							}else {
+								// Not draggable
+								circuitView.add(new FlxSprite(j * 100, 100 + i * 100, CircuitAssets[item.name]));
+							}
 						}
 					}
 				}
 			return circuitView;
+		}
+		
+		/**
+		 * Handle some Sprite drop before updating
+		 */
+		override public function update():void
+		{
+			// REgenerate circuitView and inventoryView here to reflect change in data
+			remove(inventoryView);
+			remove(circuitView);
+            inventoryView = generateInventoryView();
+			circuitView = generateCircuitView();
+			add(inventoryView);
+			add(circuitView);
+			
+			super.update();
 		}
 	}
 }

@@ -16,7 +16,7 @@ package
 			// some random values for now
 			var num = 9;
 			for (var i = 1; i < num; i++) {
-				addItem(new Item(Item.WIRE_HORIZONTAL, i));
+				addItem(new Item(Item.RESISTOR_HORIZONTAL, i));
 			}
 		}
 		
@@ -42,10 +42,6 @@ package
 			var item = items[index];
 			items.splice(index, 1);
 			return item;
-		}
-		
-		public function getItems():Array {
-			return items;
 		}
 		
 		public function getSize():int {

@@ -25,8 +25,8 @@ package
 		/**
 		 * Must be override to check emptyLocation in the itemContainer
 		 */
-		public function isCorrect() {
-			
+		public function isCorrect():Boolean {
+			return true;
 		}
 		
 		/**
@@ -63,6 +63,21 @@ package
 			
 			itemContainer[row][col] = null;	
 			return i;
+		}
+		
+		/**
+		 * Check if this coordinate is in this practiceMissing coord
+		 * @param	coord
+		 */
+		public function isMissingCoord(coord:Coordinate):Boolean {
+			var isEmpty:Boolean = false;
+			for each ( var cc:Coordinate in missingCoord ) {
+				if (cc.equals(coord)) {
+					isEmpty = true;
+					break;
+				}
+			}
+			return isEmpty;
 		}
 		/**
 		 * Get item information of this practice problem
