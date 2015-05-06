@@ -10,6 +10,8 @@ package
 		protected var missingCoord:Array; // Manage the missing spots to be checked
 		public static const SIZE:int = 5;
 		
+		protected var config:Array;
+		
 		/**
 		 * Initate the backing array
 		 */
@@ -37,47 +39,35 @@ package
 		 * @param	col		col of the container	
 		 * @return	Item	Return the item that was previously at [row][col]
 		 */
-		public function insertToEmptySpot(item:Item, row:int, col:int):Item {
-			// Make sure the [row][col] is in the emptyLocation
-			var isEmpty = false;
-			var c:Coordinate = new Coordinate(row, col);
-			for each ( var cc:Coordinate in missingCoord ) {
-				if (cc.equals(c))
-					isEmpty = true;
-			}
-			
+		public function insertItemAt(item:Item, row:int, col:int):Item {
+
 			var i:Item = itemContainer[row][col];
-			
-			if (isEmpty) {
-				itemContainer[row][col] = item;
-			}
-			
+			itemContainer[row][col] = item;
 			return i;
 			
 			
 			// Return an item if there is one in [row][col] and place in the new item
 		}
 		
-		public function removeFromEmptySpot(row:int, col:int):Item {
+		public function removeItemAt(row:int, col:int):Item {
 			var i:Item = itemContainer[row][col];
-			
 			itemContainer[row][col] = null;	
 			return i;
 		}
 		
 		/**
-		 * Check if this coordinate is in this practiceMissing coord
+		 * Check if this coordinate is part of the original pieces
 		 * @param	coord
 		 */
-		public function isMissingCoord(coord:Coordinate):Boolean {
-			var isEmpty:Boolean = false;
-			for each ( var cc:Coordinate in missingCoord ) {
+		public function isOriginalPieces(coord:Coordinate):Boolean {
+			var isOriginal:Boolean = false;
+			for each ( var cc:Coordinate in config) {
 				if (cc.equals(coord)) {
-					isEmpty = true;
+					isOriginal = true;
 					break;
 				}
 			}
-			return isEmpty;
+			return isOriginal;
 		}
 		/**
 		 * Get item information of this practice problem
@@ -113,6 +103,13 @@ package
 		 */
 		protected function generateValues():void {
 			
+		}
+		
+		/**
+		 * Return locations in coordinates to animate
+		 */
+		public function getAnimatedLocations():Array {
+			return [];
 		}
 	}
 
