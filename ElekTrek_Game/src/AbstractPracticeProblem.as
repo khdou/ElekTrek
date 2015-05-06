@@ -39,21 +39,10 @@ package
 		 * @param	col		col of the container	
 		 * @return	Item	Return the item that was previously at [row][col]
 		 */
-		public function insertToEmptySpot(item:Item, row:int, col:int):Item {
-			// Make sure the [row][col] is in the emptyLocation
-			var isEmpty = false;
-			var c:Coordinate = new Coordinate(row, col);
-			for each ( var cc:Coordinate in missingCoord ) {
-				if (cc.equals(c))
-					isEmpty = true;
-			}
-			
+		public function insertItemAt(item:Item, row:int, col:int):Item {
+
 			var i:Item = itemContainer[row][col];
-			
-			if (isEmpty) {
-				itemContainer[row][col] = item;
-			}
-			
+			itemContainer[row][col] = item;
 			return i;
 			
 			
@@ -62,7 +51,6 @@ package
 		
 		public function removeFromEmptySpot(row:int, col:int):Item {
 			var i:Item = itemContainer[row][col];
-			
 			itemContainer[row][col] = null;	
 			return i;
 		}
