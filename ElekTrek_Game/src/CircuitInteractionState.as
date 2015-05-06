@@ -1,6 +1,7 @@
 package
 {
 	import mx.core.FlexSprite;
+	
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.*;
 	
@@ -149,7 +150,7 @@ package
 						if (item != null) {
 							if (practiceProblem.isOriginalPieces(new Coordinate(i, j))) {
 								// Not draggable
-								circuitView.add(new FlxSprite(20+ j * 100, 83 + i * 100, CircuitAssets[item.name]));
+								circuitView.add(new FlxSprite(20 + j * 100, 83 + i * 100, CircuitAssets[item.name]));
 							}else {
 								// Draggable
 								// Define dropping area
@@ -174,7 +175,13 @@ package
 		 */
 		private function translateCoordinateForPracticeProblem(screenX:int, screenY:int):Coordinate {
 			// validate coordinate
-			return new Coordinate(-1,-1);
+			var j:int = int((screenX - 20) / 100)
+			var i:int = int((screenY - 83) / 100)
+			
+			if (j > 4 || i > 4)	
+				return new Coordinate(-1,-1);
+				
+			return new Coordinate(i,j);
 		}
 		
 		private function playSuccessAnimation():void {
