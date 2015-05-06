@@ -27,7 +27,7 @@ package
 		/**
 		 * Current practice problem
 		 */
-		public static var CURRENT_PROBLEM = new PracticeClass1();
+		public static var CURRENT_PROBLEM:AbstractPracticeProblem = new PracticeClass0();
 	}
 
 }

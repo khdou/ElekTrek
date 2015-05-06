@@ -200,11 +200,11 @@ package
 			super.update(); // NOTE: map -> player collision happens in super.update()
 			FlxG.collide(objectGroup, player);
 			if (FlxG.overlap(player, circuitGroup1)) {
-				Information.CURRENT_PROBLEM = new PracticeClass1();
+				Information.CURRENT_PROBLEM = new PracticeClass0();
 				FlxG.switchState(new CircuitInteractionState);
 			}
 			if (FlxG.overlap(player, circuitGroup2)) {
-				Information.CURRENT_PROBLEM = new PracticeClass2();
+				Information.CURRENT_PROBLEM = new PracticeClass1();
 				FlxG.switchState(new CircuitInteractionState);
 			}			
 			if (FlxG.overlap(player,teleportGroup)) {
