@@ -8,7 +8,7 @@ package
 	 * 
 	 * @author Tomit Huynh
 	 */
-	public class PracticeClass1 
+	public class PracticeClass1 extends AbstractPracticeProblem
 	{
 		private var V:Number;
 		private var I:Number;
@@ -20,6 +20,7 @@ package
 
 		public function PracticeClass1() 
 		{
+			super();
 			config1 = [
 			new Item("BatteryVertical", 0, 2, 0, false), // Type of item, row, column, value
 			new Item("WireCorner1", 0, 1, -1, false),
