@@ -22,6 +22,9 @@ package
  		[Embed(source = "../assets/Furnitures/computerscreen_medium.png")] public static var OVERWORLD_COMPUTER:Class;
  		[Embed(source = "../assets/Furnitures/small_table.png")] public static var OVERWORLD_TABLE:Class;
 
+		
+ 		[Embed(source = "../assets/Furnitures/flashlight.png")] public static var FLASHLIGHT:Class;
+		
  		[Embed(source = "../assets/Furnitures/computerscreen_medium.png")] public static var COMPUTER:Class;
  		[Embed(source = "../assets/Furnitures/table_large.png")] public static var TABLE:Class;
  		[Embed(source = "../assets/Furnitures/trunk.png")] public static var TRUNK:Class;

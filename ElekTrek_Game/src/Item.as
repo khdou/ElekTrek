@@ -69,15 +69,15 @@ package
 		 * 
 		 * @param	sprite
 		 */
-		public static function strapFlxSpriteWithAnimation(sprite:SpecialFlxSprite) {
+//		public static function strapFlxSpriteWithAnimation(sprite:SpecialFlxSprite) {
 			
-			switch (SpecialFlxSprite.itemName) {
-				case Item.LIGHTBULB_BLOCK_OFF:
-					//sprite.addAnimation( SpecialFlxSprite.itemName
-					break;
-					
-			}
-			
-		}
+//			switch (SpecialFlxSprite.itemName) {
+//				case Item.LIGHTBULB_BLOCK_OFF:
+//					//sprite.addAnimation( SpecialFlxSprite.itemName
+//					break;
+//					
+//			}
+//			
+//		}
 	}
 }
