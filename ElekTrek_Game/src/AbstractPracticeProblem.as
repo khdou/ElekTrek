@@ -16,9 +16,9 @@ package
 		public function AbstractPracticeProblem() 
 		{
 			// Intantiate the itemContainer
-			itemContainer = new Array(size);
-			for (var i = 0; i < size; i++) {
-				itemContainer[i] = new Array(size);
+			itemContainer = new Array(SIZE);
+			for (var i = 0; i < SIZE; i++) {
+				itemContainer[i] = new Array(SIZE);
 			}
 		}
 		
@@ -72,7 +72,7 @@ package
 		 * have an answer
 		 */
 		protected function getItemsFromInventory():Array {
-			
+			return null;
 		}
 		
 		/**
