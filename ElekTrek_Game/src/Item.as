@@ -71,7 +71,7 @@ package
 		 */
 		public static function strapFlxSpriteWithAnimation(sprite:SpecialFlxSprite) {
 			
-			switch (SpecialFlxSprite.itemName) {
+			switch (sprite.itemName) {
 				case Item.LIGHTBULB_BLOCK_OFF:
 					//sprite.addAnimation( SpecialFlxSprite.itemName
 					break;
