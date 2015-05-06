@@ -62,5 +62,22 @@ package
 			
 			return unit;
 		}
+		
+		/**
+		 * Adding the animation for this sprite based on its Item name. To play
+		 * its animation, call sprite.play(sprite.itemName);
+		 * 
+		 * @param	sprite
+		 */
+		public static function strapFlxSpriteWithAnimation(sprite:SpecialFlxSprite) {
+			
+			switch (SpecialFlxSprite.itemName) {
+				case Item.LIGHTBULB_BLOCK_OFF:
+					//sprite.addAnimation( SpecialFlxSprite.itemName
+					break;
+					
+			}
+			
+		}
 	}
 }

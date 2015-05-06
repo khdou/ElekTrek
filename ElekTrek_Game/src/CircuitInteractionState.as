@@ -215,9 +215,11 @@ package
 					
 					playSuccessAnimation();
 					textArea.text = "Success!";
-					if (prevItem != null)
-						Information.INVENTORY.addItem(prevItem);
 				}
+				
+				if (prevItem != null)
+					Information.INVENTORY.addItem(prevItem);
+					
 				remove( _currFlxSprite );
 				
 			}
