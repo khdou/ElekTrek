@@ -94,8 +94,8 @@ package
 				// 		1) Inventory -- if the mouseCoordiate is outside the CircuitView boundary
 				//		2) PracticeProblem.itemContainer -- if the mouseCoordiate is inside CircuitView boundary
 				
-				var draggableSprite = new SpecialFlxSprite(568 + (i % 3 * 75), 139 + (i / 3 * 90), CircuitAssets["med" + item.name]);
-				var infoText = new FlxText( 568 + (i % 3 * 75), 199 + (i / 3 * 90), 70, item.value == -1 ? "" : item.value + " " + item.getUnit() );
+				var draggableSprite = new SpecialFlxSprite(568 + (i % 3 * 77), 130 + (int(i / 3) * 90), CircuitAssets["med" + item.name]);
+				var infoText = new FlxText( 568 + (i % 3 * 77), 190 + (int(i / 3) * 90), 70, item.value == -1 ? "" : item.value + " " + item.getUnit() );
 				inventoryView.add(draggableSprite);
 				inventoryView.add(infoText);
 				
