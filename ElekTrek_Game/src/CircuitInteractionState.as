@@ -55,7 +55,7 @@ package
 			}
 			
 			// Practice problem;
-			practiceProblem = new PracticeClass1();
+			practiceProblem = Information.CURRENT_PROBLEM;
 			
 			loadBackground();
 			
