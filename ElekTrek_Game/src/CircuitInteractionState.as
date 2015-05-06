@@ -210,18 +210,16 @@ package
 				
 				var prevItem = practiceProblem.insertItemAt( _currDragItem, coord.X, coord.Y);
 				
-				if practiceProblem.isCorrect()
+				if (practiceProblem.isCorrect()) {
 					playSuccessAnimation();
 				
-					if (prevItem != null) {
-					Information.INVENTORY.addItem(prevItem);
+					if (prevItem != null)
+						Information.INVENTORY.addItem(prevItem);
 				}
 				remove( _currFlxSprite );
 				
-				// run animation, check practiceProblem.isCorrect()
-				if (practiceProblem.isCorrect()) 
-					playSuccessAnimation();
-			}else {
+			}
+			else {
 				// Return to the inventory
 				Information.INVENTORY.addItem(_currDragItem);
 				
