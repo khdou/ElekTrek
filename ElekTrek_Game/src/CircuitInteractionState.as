@@ -21,6 +21,7 @@ package
 		
 		private var inventoryView:FlxGroup;	// Hold all the FlxSprite to be render for the inventory
 		private var circuitView:FlxGroup;	// Hold all the FlxSprite to be render for the circuit
+		private var textArea:FlxText;
 		
 		private var _currDragItem;		// Track the item being drag
 		private var _currFlxSprite;		// Track the graphic rep of _currDragItem
@@ -49,7 +50,7 @@ package
 			// Practice problem;
 			practiceProblem = new PracticeClass1();
 			
-			//loadBackground();
+			loadBackground();
 			
 			// Storing these group to remove them in updates
             inventoryView = generateInventoryView();
@@ -65,6 +66,11 @@ package
 		private function loadBackground(): void {
 			var background = new FlxSprite(0, 0, CircuitAssets.Screen);
 			add(background);
+			textArea = new FlxText(80, 20, 700, "Welcome to the CircuitInteraction!");
+			add(textArea);
+			
+			textArea.color = FlxColor.getColor32(255, 60, 60, 60);
+			textArea.size = 10;
 		}
 		
 		/**
@@ -85,14 +91,19 @@ package
 				// 		1) Inventory -- if the mouseCoordiate is outside the CircuitView boundary
 				//		2) PracticeProblem.itemContainer -- if the mouseCoordiate is inside CircuitView boundary
 				
-				var draggableSprite = new SpecialFlxSprite(540 + (i % 3 * 90), 139 + (i / 3 * 90), CircuitAssets["med"+item.name]);
+				var draggableSprite = new SpecialFlxSprite(568 + (i % 3 * 75), 139 + (i / 3 * 90), CircuitAssets["med" + item.name]);
+				var infoText = new FlxText( 568 + (i % 3 * 75), 199 + (i / 3 * 90), 70, item.value == -1 ? "" : item.value + " " + item.getUnit() );
+				inventoryView.add(draggableSprite);
+				inventoryView.add(infoText);
+				
 				draggableSprite.inventoryID = i; 		// Need to save this because of AS dynamic binding
 				draggableSprite.itemName = item.name; 	// Saving this for later use too
 				
-				draggableSprite.enableMouseDrag();
+				draggableSprite.enableMouseDrag(false,true);
 				
 				// On MouseDown
 				draggableSprite.mousePressedCallback = function(obj:SpecialFlxSprite, x:int, y:int) {
+					textArea.text = "Mouse Pressed at: x " + x + ",y " + y;
 					obj.loadGraphic(CircuitAssets[obj.itemName]);
 					_currDragItem = Information.INVENTORY.removeItem(obj.inventoryID);
 					_currFlxSprite = obj;
@@ -102,6 +113,8 @@ package
 				
 				// On MouseUp
 				draggableSprite.mouseReleasedCallback = function(obj:FlxExtendedSprite, x:int, y:int) {
+					
+					textArea.text = "Mouse Released at: x " + x + ",y " + y;
 					
 					if (y < 400 && x > 300) {
 						// Within circuitView boundary, should have a better way for this
@@ -116,7 +129,7 @@ package
 					remove( _currFlxSprite );		// Detach this item from the Inventory view
 				}
 				
-				inventoryView.add(draggableSprite);
+				
 			}
 			
 			return inventoryView;
@@ -134,18 +147,38 @@ package
 					for (var j = 0; j < size; j++) {
 						var item:Item = practiceProblem.getItemAt(i, j);
 						if (item != null) {
-							if (practiceProblem.isMissingCoord(new Coordinate(i, j))) {
+							if (practiceProblem.isOriginalPieces(new Coordinate(i, j))) {
+								// Not draggable
+								circuitView.add(new FlxSprite(20+ j * 100, 83 + i * 100, CircuitAssets[item.name]));
+							}else {
 								// Draggable
 								// Define dropping area
-								circuitView.add(new FlxSprite(j * 100, 100 + i * 100, CircuitAssets[item.name]));
-							}else {
-								// Not draggable
-								circuitView.add(new FlxSprite(j * 100, 100 + i * 100, CircuitAssets[item.name]));
+								var draggable = new SpecialFlxSprite(20 + j * 100, 83 + i * 100, CircuitAssets[item.name]);
+								draggable.enableMouseDrag();
+								
+								circuitView.add(draggable);
 							}
 						}
 					}
 				}
 			return circuitView;
+		}
+		
+		/**
+		 * @TODO 
+		 * Translate the screen X,Y coordinate to the Practice Problem [row][col]
+		 * 
+		 * @param	screenX		The mouseX position on the screen 
+		 * @param	screenY		The mouseY position on the screen 
+		 * @return	A corresponding [row][col] value for the PracticeProblem. If screen coordinate is invalid, returns [-1][-1]
+		 */
+		private function translateCoordinateForPracticeProblem(screenX:int, screenY:int):Coordinate {
+			// validate coordinate
+			return new Coordinate(-1,-1);
+		}
+		
+		private function playSuccessAnimation():void {
+			
 		}
 		
 		/**

@@ -10,6 +10,8 @@ package
 		protected var missingCoord:Array; // Manage the missing spots to be checked
 		public static const SIZE:int = 5;
 		
+		protected var config:Array;
+		
 		/**
 		 * Initate the backing array
 		 */
@@ -66,18 +68,18 @@ package
 		}
 		
 		/**
-		 * Check if this coordinate is in this practiceMissing coord
+		 * Check if this coordinate is part of the original pieces
 		 * @param	coord
 		 */
-		public function isMissingCoord(coord:Coordinate):Boolean {
-			var isEmpty:Boolean = false;
-			for each ( var cc:Coordinate in missingCoord ) {
+		public function isOriginalPieces(coord:Coordinate):Boolean {
+			var isOriginal:Boolean = false;
+			for each ( var cc:Coordinate in config) {
 				if (cc.equals(coord)) {
-					isEmpty = true;
+					isOriginal = true;
 					break;
 				}
 			}
-			return isEmpty;
+			return isOriginal;
 		}
 		/**
 		 * Get item information of this practice problem
