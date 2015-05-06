@@ -104,6 +104,13 @@ package
 		protected function generateValues():void {
 			
 		}
+		
+		/**
+		 * Return locations in coordinates to animate
+		 */
+		public function getAnimatedLocations():Array {
+			return [];
+		}
 	}
 
 }
