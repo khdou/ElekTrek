@@ -73,7 +73,9 @@ package
 			
 			switch (SpecialFlxSprite.itemName) {
 				case Item.LIGHTBULB_BLOCK_OFF:
-					sprite.addAnimation( SpecialFlxSprite.itemName, 
+					//sprite.addAnimation( SpecialFlxSprite.itemName
+					break;
+					
 			}
 			
 		}
