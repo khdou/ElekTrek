@@ -14,7 +14,7 @@ package
 		public var R:Number;
 		public var version:Number = 0;
 		public var problemText:String
-		
+		public var id:Number;
 		protected var config:Array;
 		
 		/**

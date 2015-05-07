@@ -32,7 +32,8 @@ package
 		protected var table:FlxSprite;		
 		protected var portal:FlxSprite;		
 		protected var trunk:FlxSprite;	
-		protected var door:Door;				
+		protected var door:Door;
+		protected var doorCircuit:FlxSprite;
 		var repairBar:FlxBar;		
 		
         /**
@@ -84,7 +85,7 @@ package
 			2,3,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,3,1,
 			1,2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,
 			3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,1,2,
-			2,3,1,4,5,6,4,5,6,4,5,6,4,5,6,4,5,6,4,5,6,4,5,6,2,3,1
+			2,3,1,4,5,6,4,5,6,4,5,6,0,0,0,0,5,6,4,5,6,4,5,6,2,3,1
         );
          
         /**
@@ -164,12 +165,44 @@ package
 								14 * tileSize.y-7.5);
 				ring.immovable = true;
 				effectGroup.add(ring);					
+			} else {
+				flashlight = new FlxSprite(
+					14 * tileSize.x, // x location
+					14 * tileSize.y-11, // y location 
+					Assets.FLASHLIGHT_ON // image to use
+				);
+				flashlight.immovable = true;
+				objectGroup.add(flashlight)
+			}
+			
+			if (Information.REPAIR_STATUS < 50) {
+				doorCircuit = new FlxSprite(
+					10 * tileSize.x, // x location
+					19 * tileSize.y-1, // y location 
+					Assets.DOOR_CIRCUIT // image to use
+				);
+				doorCircuit.immovable = true;
+				circuitGroup1.add(doorCircuit)
+							
+			} else {
+				doorCircuit = new FlxSprite(
+					10 * tileSize.x, // x location
+					19 * tileSize.y-1, // y location 
+					Assets.DOOR_CIRCUIT // image to use
+				);
+				doorCircuit.immovable = true;
+				circuitGroup1.add(doorCircuit)
+				
+				ring = new Ring(10 * tileSize.x-7.5,
+								19 * tileSize.y-7.5);
+				ring.immovable = true;
+				effectGroup.add(ring);
 			}
 			
 			door = new Door(12 * tileSize.x,
 							19 * tileSize.y);
 			door.immovable = true;
-			objectGroup.add(door);
+			teleportGroup.add(door);
 	
 		
 			
@@ -217,18 +250,19 @@ package
 					Information.CURRENT_PROBLEM = new PracticeClass0();
 					FlxG.switchState(new CircuitInteractionState);
 				}
+			} else if (Information.REPAIR_STATUS < 100) {
+				if (FlxG.overlap(player, circuitGroup1)) {
+					Information.CURRENT_PROBLEM = new PracticeClass1();
+					FlxG.switchState(new CircuitInteractionState);
+				}
+			} else {
+				if (FlxG.overlap(player, teleportGroup)) {
+					door.animate();
+					Information.LEVEL = 2;
+					FlxG.switchState(new OverworldState);
+				}
 			}
-			if (FlxG.overlap(player, circuitGroup1)) {
-				Information.CURRENT_PROBLEM = new PracticeClass1();
-				FlxG.switchState(new CircuitInteractionState);
-			}			
-			if (FlxG.overlap(player,teleportGroup)) {
-				Information.LEVEL = 2;
-				FlxG.switchState(new OverworldState);
-			}
-			if (FlxG.overlap(player,objectGroup)) {
-				door.animate();
-			}			
+		
 			repairBar.percent = Information.REPAIR_STATUS;
 		}		
     }

@@ -22,11 +22,15 @@ package
         // objects
  		[Embed(source = "../assets/Furnitures/computerscreen_medium.png")] public static var OVERWORLD_COMPUTER:Class;
  		[Embed(source = "../assets/Furnitures/small_table.png")] public static var OVERWORLD_TABLE:Class;
+ 		[Embed(source = "../assets/Furnitures/CIRCUIT_MEDIUM.png")] public static var DOOR_CIRCUIT:Class;
 
 		[Embed(source = "../assets/Furnitures/doorAnimation.png")] public static var DOOR:Class;
 
  		[Embed(source = "../assets/Furnitures/flashlight.png")] public static var FLASHLIGHT:Class;
+ 		[Embed(source = "../assets/Furnitures/flashlightOn.png")] public static var FLASHLIGHT_ON:Class;
+		
  		[Embed(source = "../assets/Furnitures/small_redlight.png")] public static var RING:Class;
+		
  		[Embed(source = "../assets/cutscene/scene1.png")] public static var SCENE1:Class;
  		[Embed(source = "../assets/cutscene/scene2.png")] public static var SCENE2:Class;
  		[Embed(source = "../assets/cutscene/scene3.png")] public static var SCENE3:Class;
@@ -36,7 +40,7 @@ package
  		[Embed(source = "../assets/Furnitures/trunk.png")] public static var TRUNK:Class;
  		[Embed(source = "../assets/Furnitures/Portal.png")] public static var PORTAL:Class;
 		
-//		[Embed(source="")	public var BACKGROUND_MUSIC_ELECTRONIC:Class;
+//		[Embed(source="../assets/") public static var BACKGROUND_MUSIC_ELECTRONIC:Class;
 		
     }
 }

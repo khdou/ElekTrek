@@ -36,10 +36,10 @@ package
 			addAnimation("idle_right", [13]);
 			addAnimation("idle_down", [1]);
 			addAnimation("idle_left", [5]);
-			addAnimation("walk_down", [0, 1, 2, 3], 12); // 12 = frames per second for this animation
-			addAnimation("walk_left", [4, 5, 6, 7], 12);
-			addAnimation("walk_up", [8, 9, 10, 11], 12);
-			addAnimation("walk_right", [12, 13, 14, 15], 12);
+			addAnimation("walk_down", [0, 1, 2, 3], 10); // frames per second for this animation
+			addAnimation("walk_left", [4, 5, 6, 7], 7);
+			addAnimation("walk_up", [8, 9, 10, 11], 10);
+			addAnimation("walk_right", [12, 13, 14, 15], 7);
 		}
 		
         /**

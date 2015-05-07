@@ -57,8 +57,8 @@ package
 			}
 			
 			// Practice problem;
-			//practiceProblem = Information.CURRENT_PROBLEM;
-			practiceProblem = new PracticeClass5();
+			practiceProblem = Information.CURRENT_PROBLEM;
+//			practiceProblem = new PracticeClass5();
 
 			
 			setupMiscellaneous();
@@ -225,7 +225,13 @@ package
 					
 //					playSuccessAnimation();
 					textArea.text = "Success!";
-					
+					if (Information.LEVEL == 1) {
+						if (Information.CURRENT_PROBLEM.id == 0) {
+							Information.REPAIR_STATUS = 50;
+						} else if (Information.CURRENT_PROBLEM.id == 1) {
+							Information.REPAIR_STATUS = 100;
+						}
+					}
 				}
 
 				if (prevItem != null)
