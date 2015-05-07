@@ -57,10 +57,12 @@ package
 			}
 			
 			// Practice problem;
-			practiceProblem = Information.CURRENT_PROBLEM;
+			//practiceProblem = Information.CURRENT_PROBLEM;
+			practiceProblem = new PracticeClass2();
 
 			
 			setupMiscellaneous();
+			textArea.text = practiceProblem.V + " " + practiceProblem.I;
 			
 			// Storing these group to remove them in updates
             inventoryView = generateInventoryView();

@@ -8,7 +8,7 @@ package
 	public class Inventory
 	{
 		// Backing data structure to keep track of the items in the inventory
-		private var items:Array;
+		private static var items:Array;
 		
 		public function Inventory(): void {
 			
@@ -46,9 +46,19 @@ package
 			return item;
 		}
 		
+		public static function getSize():int {
+			return items.length;
+		}
+		
 		public function getSize():int {
 			return items.length;
 		}
 		
+		/**
+		 * Get an item with the array's index
+		 */
+		public static function getItem(index:int):Item {
+			return items[index];
+		}
 	}
 }

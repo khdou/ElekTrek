@@ -2,7 +2,7 @@ package
 {
 	
 	//simple parallel
-	public class PracticeClass6
+	public class PracticeClass6 extends AbstractPracticeProblem
 	{
 		private var V:Number;
 		private var I:Number;

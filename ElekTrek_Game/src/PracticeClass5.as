@@ -1,7 +1,7 @@
 package
 {
 	//2 parallel in series
-	public class PracticeClass5
+	public class PracticeClass5 extends AbstractPracticeProblem
 	{
 		private var V:Number;
 		private var I:Number;
