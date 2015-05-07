@@ -78,7 +78,7 @@ package
 			
 		}
 		
-		public function isCorrect(): Boolean 
+		override public function isCorrect(): Boolean 
 		{
 			var missingComp1:Item = itemContainer[missingCoord[0].X][missingCoord[0].Y]
 			var missingComp2:Item = itemContainer[missingCoord[1].X][missingCoord[1].Y]

@@ -3,30 +3,23 @@ package
 	//2 parallel in series
 	public class PracticeClass5 extends AbstractPracticeProblem
 	{
-		private var V:Number;
-		private var I:Number;
-		private var R:Number;
-		
-		public var missing;
-		
-		public var config1:Array; // there could be many map configuration to display for this knowledge model
-		
+	
 		public function PracticeClass5() 
 		{
 			super();
 			itemContainer[2][0] = new Item(Item.BATTERY_VERTICAL);
-			itemContainer[1][0] = new Item(Item.WIRE_CORNER1);
+			itemContainer[1][0] = new Item(Item.WIRE_T4);
 			itemContainer[0][0] = new Item(Item.WIRE_CORNER1);
 			itemContainer[1][1] = new Item(Item.WIRE_HORIZONTAL);
 			itemContainer[0][1] = new Item(Item.WIRE_HORIZONTAL);
 			itemContainer[0][3] = new Item(Item.WIRE_CORNER2);
-			itemContainer[1][3] = new Item(Item.WIRE_CORNER2);
+			itemContainer[1][3] = new Item(Item.WIRE_T3);
 			itemContainer[2][3] = new Item(Item.WIRE_VERTICAL);
-			itemContainer[3][3] = new Item(Item.WIRE_CORNER3);
+			itemContainer[3][3] = new Item(Item.WIRE_T3);
 			itemContainer[4][3] = new Item(Item.WIRE_CORNER3);
 			itemContainer[3][1] = new Item(Item.WIRE_HORIZONTAL);
 			itemContainer[4][1] = new Item(Item.WIRE_HORIZONTAL);
-			itemContainer[3][0] = new Item(Item.WIRE_CORNER4);
+			itemContainer[3][0] = new Item(Item.WIRE_T4);
 			itemContainer[4][0] = new Item(Item.WIRE_CORNER4);
 			
 			// Coordinate describing the original circuit problem
@@ -95,7 +88,7 @@ package
 			
 		}
 			
-		public function isCorrect():Boolean 
+		override public function isCorrect():Boolean 
 		{
 			var missingComp1:Item = itemContainer[missingCoord[0].X][missingCoord[0].Y]
 			var missingComp2:Item = itemContainer[missingCoord[1].X][missingCoord[1].Y]

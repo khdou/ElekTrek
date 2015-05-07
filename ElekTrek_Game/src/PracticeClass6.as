@@ -44,6 +44,8 @@ package
 			missingCoord[1] = new Coordinate(1, 2);
 			generateValues();
 			
+			problemText = "There are two missing resistors on two separate branches(in parallel)! If resistors R1 and R2 are placed the parallel, then the result resistance of the main loop is equal to 1/(1/R1 + 1/R2). The battery is " + V + "volts. Place the correct resistor so the resulting current is " + I + "amps."; 
+			
 		}
 		
 		override protected function generateValues():void 
@@ -56,7 +58,7 @@ package
 			
 			
 			I = Math.floor(Math.random() * 10) + 1;						
-			R = Math.round(1/(1/Inventory.getItem(index1).value + 1/Inventory.getItem(index2).value);
+			R = Math.round(1/(1/Inventory.getItem(index1).value + 1/Inventory.getItem(index2).value));
 			V = I * R;		
 			
 			for (var i:int = 0; i < AbstractPracticeProblem.SIZE; i++) {
@@ -79,7 +81,7 @@ package
 			
 		}
 		
-		public function isCorrect(): Boolean 
+		override public function isCorrect(): Boolean 
 		{
 			var missingComp1:Item = itemContainer[missingCoord[0].X][missingCoord[0].Y]
 			var missingComp2:Item = itemContainer[missingCoord[1].X][missingCoord[1].Y]
