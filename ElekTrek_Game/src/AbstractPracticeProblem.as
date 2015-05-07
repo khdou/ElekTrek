@@ -124,7 +124,7 @@ package
 		 * @return Feedback for what to do in the current problem state
 		 */
 		public function getFeedback():String {
-			
+			return "";
 		}
 		
 		/**

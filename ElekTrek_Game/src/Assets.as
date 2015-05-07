@@ -31,6 +31,7 @@ package
  		[Embed(source = "../assets/Furnitures/trunk.png")] public static var TRUNK:Class;
  		[Embed(source = "../assets/Furnitures/Portal.png")] public static var PORTAL:Class;
 		
+		[Embed(source="")] 	public var BACKGROUND_MUSIC_ELECTRONIC:Class;
 		
     }
 }
