@@ -64,7 +64,7 @@ package
 			
 			// Practice problem;
 			practiceProblem = Information.CURRENT_PROBLEM;
-//			practiceProblem = new PracticeClass5();
+			//practiceProblem = new PracticeClass4();
 			
 			setupMiscellaneous();
 			makeRobotSay(practiceProblem.getProblemText());
@@ -255,7 +255,7 @@ package
 				if (practiceProblem.isCorrect()) {
 					
 //					playSuccessAnimation();
-					textArea.text = "Success!";
+					makeRobotSay("Success!");
 					if (Information.CURRENT_PROBLEM.id == 0) {
 						Information.COMPLETION_STATUS = 50;
 					} else if (Information.CURRENT_PROBLEM.id == 1) {
@@ -268,7 +268,12 @@ package
 						Information.COMPLETION_STATUS = 75;							
 					}
 				}
-
+				else if (practiceProblem.isComplete()) {
+					makeRobotSay(practiceProblem.getFeedback());
+				}
+				else {
+					makeRobotSay(practiceProblem.getProblemText());
+				}
 				if (prevItem != null)
 					Information.INVENTORY.addItem(prevItem);
 					
@@ -280,7 +285,11 @@ package
 				Information.INVENTORY.addItem(_currDragItem);
 			}
 			
-			if (practiceProblem.isCorrect()) {
+			if (!practiceProblem.isComplete() && !practiceProblem.isCorrect()) {
+				makeRobotSay(practiceProblem.getProblemText());
+			}
+			
+			/*if (practiceProblem.isCorrect()) {
 				makeRobotSay("Success!");
 			}else {
 				makeRobotSay("Try again"); // Get some feedback from PracticeProblem
@@ -291,7 +300,7 @@ package
 				{
 					makeRobotSay(practiceProblem.getProblemText());
 				}
-			}
+			}*/
 			
 			changeItemState(practiceProblem.isCorrect());
 			remove( _currFlxSprite );		// Detach this item from the Inventory view
@@ -338,11 +347,12 @@ package
 		/**
 		 * Save practice problem result and Switch back to OverWorld state
 		 */
-		private function exitCircuitInteractionState() {
+		private function exitCircuitInteractionState():void {
 			for (var i = 0; i < AbstractPracticeProblem.SIZE; i++) {
 				for (var j = 0; j < AbstractPracticeProblem.SIZE; j++) {
 					if (practiceProblem.getItemAt(i, j) != null && !practiceProblem.isOriginalPieces(new Coordinate(i, j))) {
 						Information.INVENTORY.addItem(practiceProblem.getItemAt(i, j));
+						practiceProblem.insertItemAt(null, i, j);
 					}
 				}
 			}
