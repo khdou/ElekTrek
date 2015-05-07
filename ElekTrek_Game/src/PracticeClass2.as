@@ -7,6 +7,7 @@ package
 		public function PracticeClass2(type:int=1) 
 		{
 			super();
+			version = type;
 			itemContainer[2][0] = new Item(Item.BATTERY_VERTICAL);
 			itemContainer[1][0] = new Item(Item.WIRE_CORNER1);
 			itemContainer[3][1] = new Item(Item.WIRE_HORIZONTAL);
