@@ -172,6 +172,32 @@ package
 			circuitGroup2 = new FlxGroup();
 			teleportGroup = new FlxGroup();			
 
+			table = new FlxSprite(
+				9 * tileSize.x,
+				3 * tileSize.y,
+				Assets.TABLE);
+			table.immovable = true;
+			objectGroup.add(table);
+			
+			trunk1 = new FlxSprite(
+				20 * tileSize.x,
+				16.5 * tileSize.y,
+				Assets.TRUNK);
+			trunk1.immovable = true;
+			objectGroup.add(trunk1);			
+
+			box1 = new Box(32 * tileSize.x,
+						   15 * tileSize.y);
+			box1.immovable = true;
+			objectGroup.add(box1);			
+			
+			trunk2 = new FlxSprite(
+				16 * tileSize.x,
+				3 * tileSize.y,
+				Assets.TRUNK);
+			trunk2.immovable = true;
+			objectGroup.add(trunk2);
+			
 			door = new Door(5 * tileSize.x,
 							2 * tileSize.y);
 			door.immovable = true;
@@ -179,6 +205,13 @@ package
 				door.close();
 			}
 			objectGroup.add(door);
+			
+			cylinder = new FlxSprite(
+				4 * tileSize.x,
+				16 * tileSize.y,
+				Assets.CYLINDER);
+			cylinder.immovable = true;
+			objectGroup.add(cylinder);				
 			
 			lightbulb1 = new FlxSprite(7 * tileSize.x,
 							17 * tileSize.y,
@@ -296,7 +329,7 @@ package
 				Information.CURRENT_PROBLEM = new PracticeClass2(1);
 				FlxG.switchState(new CircuitInteractionState);
 			}
-			if (FlxG.overlap(player, circuitGroup1)) {
+			if (FlxG.overlap(player, circuitGroup2)) {
 				Information.CURRENT_PROBLEM = new PracticeClass3();
 				FlxG.switchState(new CircuitInteractionState);
 			}			

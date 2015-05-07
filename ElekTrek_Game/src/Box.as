@@ -10,7 +10,7 @@ package
 		public function Box(X:Number=0, Y:Number=0, SimpleGraphic:Class=null) 
 		{
 			super(X, Y, SimpleGraphic);
-			loadGraphic(Assets.BOX, true, false, 32, 30);
+			loadGraphic(Assets.BOX, true, false, 50, 50);
 			play("loop");
 		}
 		

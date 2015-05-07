@@ -183,15 +183,15 @@ package
 			objectGroup.add(table);
 			
 			trunk1 = new FlxSprite(
-				5 * tileSize.x,
-				15 * tileSize.y,
+				4 * tileSize.x,
+				13 * tileSize.y,
 				Assets.TRUNK);
 			trunk1.immovable = true;
 			objectGroup.add(trunk1);
 			
 			trunk2 = new FlxSprite(
-				5 * tileSize.x,
-				17 * tileSize.y,
+				4 * tileSize.x,
+				16 * tileSize.y,
 				Assets.TRUNK);
 			trunk2.immovable = true;
 			objectGroup.add(trunk2);
