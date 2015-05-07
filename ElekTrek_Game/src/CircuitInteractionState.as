@@ -223,12 +223,16 @@ package
 					
 //					playSuccessAnimation();
 					textArea.text = "Success!";
-					if (Information.LEVEL == 1) {
-						if (Information.CURRENT_PROBLEM.id == 0) {
-							Information.REPAIR_STATUS = 50;
-						} else if (Information.CURRENT_PROBLEM.id == 1) {
-							Information.REPAIR_STATUS = 100;
-						}
+					if (Information.CURRENT_PROBLEM.id == 0) {
+						Information.COMPLETION_STATUS = 50;
+					} else if (Information.CURRENT_PROBLEM.id == 1) {
+						Information.COMPLETION_STATUS = 100;
+					} else if (Information.CURRENT_PROBLEM.id == 2) {
+						Information.COMPLETION_STATUS = 25;
+					} else if (Information.CURRENT_PROBLEM.id == 3) {
+						Information.COMPLETION_STATUS = 50;
+					} else if (Information.CURRENT_PROBLEM.id == 4) {
+						Information.COMPLETION_STATUS = 75;							
 					}
 				}
 

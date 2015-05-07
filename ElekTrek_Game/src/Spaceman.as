@@ -39,10 +39,8 @@ package
 			// check final movement direction
 			if (movement.x < 0) {
 				moveLeft();
-				Information.REPAIR_STATUS--;
 			} else if (movement.x > 0) {
 				moveRight();
-				Information.REPAIR_STATUS++;
 			}
 			if (movement.y < 0)
 				moveUp();
