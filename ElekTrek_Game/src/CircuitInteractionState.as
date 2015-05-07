@@ -58,11 +58,11 @@ package
 			
 			// Practice problem;
 			//practiceProblem = Information.CURRENT_PROBLEM;
-			practiceProblem = new PracticeClass5();
+			practiceProblem = new PracticeClass2();
 
 			
 			setupMiscellaneous();
-			makeRobotSay(practiceProblem.V + " " + practiceProblem.I);
+			makeRobotSay(practiceProblem.getProblemText());
 			
 			// Storing these group to remove them in updates
             inventoryView = generateInventoryView();

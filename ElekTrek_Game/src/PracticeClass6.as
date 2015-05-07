@@ -44,7 +44,7 @@ package
 			missingCoord[1] = new Coordinate(1, 2);
 			generateValues();
 			
-			problemText = "There are two missing resistors on two separate branches(in parallel)! If resistors R1 and R2 are placed the parallel, then the result resistance of the main loop is equal to 1/(1/R1 + 1/R2). The battery is " + V + "volts. Place the correct resistor so the resulting current is " + I + "amps."; 
+			problemText = "There are two missing resistors on two separate branches(in parallel)! If resistors R1 and R2 are placed the parallel, then the result resistance of the main loop is equal to 1/(1/R1 + 1/R2). The battery is " + V + " volts. Place the correct resistor so the resulting current is " + I + " amps."; 
 			
 		}
 		
