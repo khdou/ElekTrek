@@ -7,7 +7,7 @@ package
 	public class AbstractPracticeProblem 
 	{
 		protected var itemContainer:Array;	// 2D array representing the [row][col] grid of all practice problem
-		protected var missingCoord:Array; // Manage the missing spots to be checked
+		public var missingCoord:Array; // Manage the missing spots to be checked
 		public static const SIZE:int = 5;
 		public var V:Number;
 		public var I:Number;

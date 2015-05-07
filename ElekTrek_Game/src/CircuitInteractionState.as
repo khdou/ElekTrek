@@ -92,7 +92,7 @@ package
 			backButton = new FlxExtendedSprite(5, 7, CircuitAssets.BackButton);
 			backButton.loadGraphic(CircuitAssets.BackButton, false, false, 55, 45);
 			backButton.addAnimation("OFF", [0]);
-			backButton.addAnimation("HIGHLIGHT", [1]);
+			backButton.addAnimation("HIGHLIGHT",[0,1],2,true);
 			backButton.enableMouseClicks(true);
 			backButton.mouseReleasedCallback = function() {
 				exitCircuitInteractionState();
@@ -104,7 +104,7 @@ package
 			add(robotHead);
 			robotHead.loadGraphic(Assets.ROBOT_HEAD, false, false, 60, 50);
 			robotHead.addAnimation("OFF", [0]);
-			robotHead.addAnimation("HIGHLIGHT", [1]);
+			robotHead.addAnimation("HIGHLIGHT",[0,1],2,true);
 			
 			// Play background music
 			FlxG.stream("../assets/sounds/ElectronicDrums.mp3", 1, true);
@@ -113,6 +113,11 @@ package
 			var message:String = practiceProblem.getDialogue();
 			if (message.length > 0)
 				showDialogWithMessage(message);
+			
+			for each (var cc:Coordinate in practiceProblem.missingCoord) {
+				add(new FlxSprite(20 + cc.Y * 100, 83 + cc.X * 100, CircuitAssets["RedSquare"]));
+			}
+			
 		}
 		
 		private function showDialogWithMessage(message:String) {
