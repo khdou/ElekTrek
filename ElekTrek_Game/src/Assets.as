@@ -11,7 +11,7 @@ package
 		[Embed(source = "../assets/Homescreen/Homescreen-01.png")] public static var MENU_BACKGROUND:Class;
 		
         // sprites
- 		[Embed(source = "../assets/Characters/spaceman_spritesheet-01.png")] public static var OVERWORLD_SPACEMAN:Class;
+ 		[Embed(source = "../assets/Characters/spaceman_spritesheet-01-01.png")] public static var OVERWORLD_SPACEMAN:Class;
 		[Embed(source = "../assets/Characters/robotHead.png")] public static var ROBOT_HEAD:Class;
  		[Embed(source = "../assets/healthbar.png")] public static var HEALTH_BAR:Class;
 
@@ -28,6 +28,8 @@ package
  		[Embed(source = "../assets/Furnitures/flashlight.png")] public static var FLASHLIGHT:Class;
  		[Embed(source = "../assets/Furnitures/small_redlight.png")] public static var RING:Class;
  		[Embed(source = "../assets/cutscene/scene1.png")] public static var SCENE1:Class;
+ 		[Embed(source = "../assets/cutscene/scene2.png")] public static var SCENE2:Class;
+ 		[Embed(source = "../assets/cutscene/scene3.png")] public static var SCENE3:Class;
 		
  		[Embed(source = "../assets/Furnitures/computerscreen_medium.png")] public static var COMPUTER:Class;
  		[Embed(source = "../assets/Furnitures/table_large.png")] public static var TABLE:Class;
