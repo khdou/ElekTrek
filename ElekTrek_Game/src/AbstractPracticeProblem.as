@@ -12,6 +12,7 @@ package
 		public var V:Number;
 		public var I:Number;
 		public var R:Number;
+		public var version:Number = 0;
 		
 		protected var config:Array;
 		
