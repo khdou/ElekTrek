@@ -45,6 +45,7 @@ package
 			generateValues();
 			
 			problemText = "The battery is " + V + " volts. Place the correct resistor so the resulting current is " + I + " amps.";
+			dialogue = "It looks like this door is missing a resistor and needs a certain magnitude of current flow for the door to open. The relationship between Voltage(V), Current(I) and Resistance(R) is V = I * R."
 		}
 
 		override protected function generateValues():void 
