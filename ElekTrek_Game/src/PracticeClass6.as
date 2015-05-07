@@ -2,15 +2,8 @@ package
 {
 	
 	//simple parallel
-	public class PracticeClass6
+	public class PracticeClass6 extends AbstractPracticeProblem
 	{
-		private var V:Number;
-		private var I:Number;
-		private var R:Number;
-		
-		public var missing;
-		
-		public var config1:Array; // there could be many map configuration to display for this knowledge model
 		
 		public function PracticeClass6() 
 		{

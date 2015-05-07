@@ -77,9 +77,8 @@ package
 		[Embed(source = "../assets/CircuitScreen/Lightbulb_on_block.png")] 
 		public static var LightBulbBlockOn:Class;
 		
-		
-
-		
+		[Embed(source = "../assets/CircuitScreen/Lightbulb_Horizontal_Spritesheet.png")] 
+		public static var LightbulbHorizontal:Class;
 		
 		[Embed(source = "../assets/CircuitScreen/medbattery_vertical.png")] 
 		public static var medBatteryVertical:Class;
