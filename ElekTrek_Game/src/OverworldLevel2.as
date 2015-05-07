@@ -293,11 +293,11 @@ package
 				FlxG.switchState(new CircuitInteractionState);
 			}
 			if (FlxG.overlap(player, circuitGroup1)) {
-				Information.CURRENT_PROBLEM = new PracticeClass3();
+				Information.CURRENT_PROBLEM = new PracticeClass2(1);
 				FlxG.switchState(new CircuitInteractionState);
 			}
 			if (FlxG.overlap(player, circuitGroup1)) {
-				Information.CURRENT_PROBLEM = new PracticeClass4();
+				Information.CURRENT_PROBLEM = new PracticeClass3();
 				FlxG.switchState(new CircuitInteractionState);
 			}			
 			if (FlxG.overlap(player, teleportGroup)) {
