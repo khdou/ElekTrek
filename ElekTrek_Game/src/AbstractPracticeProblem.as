@@ -13,8 +13,8 @@ package
 		public var I:Number;
 		public var R:Number;
 		public var version:Number = 0;
-		public var problemText:String
-		
+		public var problemText:String = "Click and drag an object in your inventory onto the circuit";
+		public var id:Number;
 		protected var config:Array;
 		
 		/**

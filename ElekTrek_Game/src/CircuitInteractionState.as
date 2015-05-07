@@ -57,9 +57,8 @@ package
 			}
 			
 			// Practice problem;
-			//practiceProblem = Information.CURRENT_PROBLEM;
-			practiceProblem = new PracticeClass2();
-
+			practiceProblem = Information.CURRENT_PROBLEM;
+//			practiceProblem = new PracticeClass5();
 			
 			setupMiscellaneous();
 			makeRobotSay(practiceProblem.getProblemText());
@@ -173,15 +172,16 @@ package
 							
 							circuitView.add(sprite);
 							
+							// Gerate info for item with value (except wires)
+							var infoText = new FlxText( 20 + j * 100, 93 + i * 100, 100, item.value == -1 || item.name.charAt(0) == "W" ? "" : item.value + " " + item.getUnit() );
+ 								infoText.size = 12;
+ 								circuitView.add(infoText);
+							
 							if (!practiceProblem.isOriginalPieces(new Coordinate(i, j))) {
 								// Draggable
 								// Define dropping area
 								sprite.enableMouseDrag();
 								
- 								var infoText = new FlxText( 20 + j * 100, 93 + i * 100, 100, item.value == -1 ? "" : item.value + " " + item.getUnit() );
- 								infoText.size = 12;
- 								circuitView.add(infoText);
- 								
 								sprite.mousePressedCallback = function(obj:SpecialFlxSprite, x:int, y:int) {
  									_currDragItem = practiceProblem.removeItemAt(obj.relativeLocale.X, obj.relativeLocale.Y);
  									_currFlxSprite = obj;
@@ -224,7 +224,17 @@ package
 					
 //					playSuccessAnimation();
 					textArea.text = "Success!";
-					
+					if (Information.CURRENT_PROBLEM.id == 0) {
+						Information.COMPLETION_STATUS = 50;
+					} else if (Information.CURRENT_PROBLEM.id == 1) {
+						Information.COMPLETION_STATUS = 100;
+					} else if (Information.CURRENT_PROBLEM.id == 2) {
+						Information.COMPLETION_STATUS = 25;
+					} else if (Information.CURRENT_PROBLEM.id == 3) {
+						Information.COMPLETION_STATUS = 50;
+					} else if (Information.CURRENT_PROBLEM.id == 4) {
+						Information.COMPLETION_STATUS = 75;							
+					}
 				}
 
 				if (prevItem != null)
@@ -236,15 +246,19 @@ package
 			else {
 				// Return to the inventory
 				Information.INVENTORY.addItem(_currDragItem);
-				
-				if (isModdingProblem) 
-					makeRobotSay("You shouldn't modify the original problem");
 			}
 			
 			if (practiceProblem.isCorrect()) {
 				makeRobotSay("Success!");
 			}else {
 				makeRobotSay("Try again"); // Get some feedback from PracticeProblem
+				
+				var timer = new FlxDelay(2000);
+				timer.start();
+				if (timer.hasExpired)
+				{
+					makeRobotSay(practiceProblem.getProblemText());
+				}
 			}
 			
 			changeItemState(practiceProblem.isCorrect());
@@ -296,7 +310,7 @@ package
 		}
 		
 		private function makeRobotSay(message:String) {
-			textArea.text = "Hekanaji: " + message;
+			textArea.text = "Hakenaji: " + message;
 		}
 		
 		/**

@@ -48,7 +48,9 @@ package
 		public function animate():void {
 			play("opening");
 		}				
-
+		public function close():void {
+			play("closing");
+		}			
 	}
 
 }

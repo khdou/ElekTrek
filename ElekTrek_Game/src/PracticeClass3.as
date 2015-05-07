@@ -7,6 +7,7 @@ package
 		public function PracticeClass3() 
 		{
 			super();
+			id = 3;			
 			itemContainer[2][0] = new Item(Item.BATTERY_VERTICAL);
 			itemContainer[1][0] = new Item(Item.WIRE_CORNER1);
 			itemContainer[1][2] = new Item(Item.WIRE_HORIZONTAL);

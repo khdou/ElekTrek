@@ -14,6 +14,8 @@ package
 		public function PracticeClass0() 
 		{
 			super();
+			
+			id = 0;
 			itemContainer[1][0] = new Item(Item.WIRE_CORNER1);
 			itemContainer[1][1] = new Item(Item.WIRE_HORIZONTAL);
 			itemContainer[1][2] = new Item(Item.LIGHTBULB_HORIZONTAL);
@@ -70,6 +72,7 @@ package
 		override public function getFeedback():String {
 			return "";
 		}
+	
 	}
 
 }
