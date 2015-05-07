@@ -113,6 +113,11 @@ package
 			var message:String = practiceProblem.getDialogue();
 			if (message.length > 0)
 				showDialogWithMessage(message);
+			
+			for each (var cc:Coordinate in practiceProblem.missingCoord) {
+				add(new FlxSprite(20 + cc.Y * 100, 83 + cc.X * 100, CircuitAssets["RedSquare"]));
+			}
+			
 		}
 		
 		private function showDialogWithMessage(message:String) {

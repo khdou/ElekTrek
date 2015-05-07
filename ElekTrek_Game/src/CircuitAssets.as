@@ -146,6 +146,9 @@ package
 		[Embed(source = "../assets/CircuitScreen/backbutton_sprite.png")] 
 		public static var BackButton:Class;
 		
+		[Embed(source = "../assets/CircuitScreen/redSquare.png")] 
+		public static var RedSquare:Class;
+		
 		public function CircuitAssets() 
 		{
 			//nothing
