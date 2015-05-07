@@ -17,6 +17,7 @@ package
 		public var id:Number;
 		protected var config:Array;
 		public var feedback:String = "";
+		public var dialogue:String = "";
 		
 		/**
 		 * Initate the backing array
@@ -142,6 +143,10 @@ package
 					complete = false;
 			}
 			return complete;
+		}
+		
+		public function getDialogue():String {
+			return dialogue;
 		}
 		
 	}

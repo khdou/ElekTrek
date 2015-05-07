@@ -110,7 +110,9 @@ package
 			FlxG.stream("../assets/sounds/ElectronicDrums.mp3", 1, true);
 			
 			// Add dialog box
-			showDialogWithMessage("Testing");
+			var message:String = practiceProblem.getDialogue();
+			if (message.length > 0)
+				showDialogWithMessage(message);
 		}
 		
 		private function showDialogWithMessage(message:String) {

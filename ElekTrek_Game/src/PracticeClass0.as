@@ -64,7 +64,7 @@ package
 				return true;
 			}
 			else { 
-				feedback = "Please use the battery!";
+				feedback = "We need a power source, not resistance!";
 				return false;
 			}
 		}
