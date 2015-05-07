@@ -95,7 +95,7 @@ package
 			add(new FlxSprite(705, 12, Assets.ROBOT_HEAD));
 			
 			// Play background music
-			FlxG.stream("../assets/sounds/Music.mp3",0.5,true);
+			FlxG.stream("../assets/sounds/ElectronicDrums.mp3",0.5,true);
 		}
 		
 		/**
