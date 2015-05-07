@@ -14,7 +14,7 @@ package
 			itemContainer[1][4] = new Item(Item.WIRE_CORNER2);
 			itemContainer[2][4] = new Item(Item.WIRE_VERTICAL);
 			itemContainer[3][4] = new Item(Item.WIRE_CORNER3);
-			itemContainer[3][3] = new Item(Item.WIRE_CORNER3);
+			itemContainer[3][3] = new Item(Item.WIRE_HORIZONTAL);
 			itemContainer[3][1] = new Item(Item.WIRE_HORIZONTAL);
 			itemContainer[3][0] = new Item(Item.WIRE_CORNER4);
 			
@@ -85,7 +85,17 @@ package
 			var missingComp3:Item = itemContainer[missingCoord[2].X][missingCoord[2].Y]
 			if (missingComp1 == null || missingComp2 == null || missingComp3 == null) return false;
 			
-			return (missingComp1.value + missingComp2.value + missingComp3.value) == R ? true : false;
+			if ((missingComp1.value + missingComp2.value + missingComp3.value) == R) {
+				return true;
+			}
+			else if ((missingComp1.value + missingComp2.value + missingComp3.value) > R) {
+				feedback = "Uh oh, it looks like the current generated is too low, try again!";
+				return false;
+			}
+			else {
+				feedback = "Uh oh, it looks like the current generated is too high, try again!";
+				return false;
+			}
 		}
 		
 	}
