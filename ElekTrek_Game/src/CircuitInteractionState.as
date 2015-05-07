@@ -30,7 +30,7 @@ package
 		private var circuitView:FlxGroup;	// Hold all the FlxSprite to be render for the circuit
 		private var textArea:FlxText;
 		
-		private var _currDragItem;		// Track the item being drag
+		private var _currDragItem:Item;		// Track the item being drag
 		private var _currFlxSprite;		// Track the graphic rep of _currDragItem
 		
 		private var backButton:FlxExtendedSprite; // Go back to overworld
@@ -50,9 +50,9 @@ package
 			FlxG.mouse.show();
 			
 			// Instantiate the item tracking array
-			var size = AbstractPracticeProblem.SIZE;
+			var size:int = AbstractPracticeProblem.SIZE;
 			itemsTracker = new Array(size);
-			for (var i = 0; i < size; i++) {
+			for (var i:int = 0; i < size; i++) {
 				itemsTracker[i] = new Array(size);
 			}
 			
@@ -95,7 +95,7 @@ package
 			add(new FlxSprite(705, 12, Assets.ROBOT_HEAD));
 			
 			// Play background music
-			FlxG.stream("../assets/sounds/music.mp3",0.5,true);
+			FlxG.stream("../assets/sounds/Music.mp3",0.5,true);
 		}
 		
 		/**
