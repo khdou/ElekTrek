@@ -89,12 +89,6 @@ package
 			}
 			add(backButton);
 			
-			var test:SpecialFlxSprite = new SpecialFlxSprite(50, 50);
-			test.itemName = Item.LIGHTBULB_HORIZONTAL;
-			test.loadGraphic(CircuitAssets.LightbulbHorizontal, false, false, 100, 100); 
-			Item.loadFlxSpriteAnimationOn(test);
-			add(test);
-			test.play(test.itemName+"ON");
 		}
 		
 		/**
