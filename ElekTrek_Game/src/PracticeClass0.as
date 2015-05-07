@@ -62,6 +62,11 @@ package
 				return itemContainer[m.X][m.Y].name == Item.BATTERY_VERTICAL;
 			}
 		}
+		
+		override public function getAnimatedLocations():Array 
+		{
+			return [new Coordinate(1, 2)];	// The Light BulB
+		}
 	}
 
 }
