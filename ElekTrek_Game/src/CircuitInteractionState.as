@@ -58,7 +58,7 @@ package
 			
 			// Practice problem;
 			//practiceProblem = Information.CURRENT_PROBLEM;
-			practiceProblem = new PracticeClass2(2);
+			practiceProblem = new PracticeClass5();
 
 			
 			setupMiscellaneous();
@@ -220,6 +220,13 @@ package
 				
 				var prevItem = practiceProblem.insertItemAt( _currDragItem, coord.X, coord.Y);
 				
+				if (practiceProblem.isCorrect()) {
+					
+//					playSuccessAnimation();
+					textArea.text = "Success!";
+					
+				}
+
 				if (prevItem != null)
 					Information.INVENTORY.addItem(prevItem);
 					

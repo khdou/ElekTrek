@@ -37,20 +37,12 @@ package
 				new Coordinate(3, 0),
 			];
 			
-			//new Item("BatteryVertical", 0, 2, 0, false), // Type of item, row, column, value
-			//new Item("WireCorner1", 0, 1, -1, false),
-			//new Item("WireHorizontal", 1, 1, -1, false),
-			//new Item("WireCorner2", 3, 1, -1, false),
-			//new Item("WireVertical", 3, 2, -1, false),
-			//new Item("WireCorner3", 3, 3, -1, false),
-			//new Item("WireHorizontal", 2, 3, -1, false),
-			//new Item("WireHorizontal", 1, 3, -1, false),
-			//new Item("WireCorner4", 0, 3, -1, false)
-			
 			//create missing coordinates
 			missingCoord = new Array(1);
 			missingCoord[0] = new Coordinate(1, 2);
 			generateValues();
+			
+			problemText = "The battery is " + V + "volts. Place the correct resistor so the resulting current is " + I + "amps.";
 		}
 
 		override protected function generateValues():void 

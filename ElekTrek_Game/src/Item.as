@@ -15,6 +15,8 @@ package
 		public static const WIRE_CORNER2:String = "WireCorner2";
 		public static const WIRE_CORNER3:String = "WireCorner3";
 		public static const WIRE_CORNER4:String = "WireCorner4";
+		public static const WIRE_T3:String = "WireT3";
+		public static const WIRE_T4:String = "WireT4";
 		public static const RESISTOR_HORIZONTAL:String = "ResistorHorizontal";
 		public static const RESISTOR_VERTICAL:String = "ResistorVertical";
 		public static const BATTERY_VERTICAL:String = "BatteryVertical";

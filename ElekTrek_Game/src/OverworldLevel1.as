@@ -13,6 +13,7 @@ package
 		/**
 		 * Custom groups
 		 */
+		protected var effectGroup:FlxGroup; // things without collisions		
 		protected var objectGroup:FlxGroup; // objects and obstacles (with collisions)
 		protected var circuitGroup0:FlxGroup; // switch to circuit interaction here
 		
@@ -24,63 +25,66 @@ package
 		/**
 		 * Game objects
 		 */
-		protected var flashlight:FlxSprite;				
+		protected var flashlight:FlxSprite;	
+		protected var ring:Ring;				
+		
 		protected var computer:FlxSprite;		
 		protected var table:FlxSprite;		
 		protected var portal:FlxSprite;		
-		protected var trunk:FlxSprite;		
+		protected var trunk:FlxSprite;	
+		protected var door:Door;				
 		var repairBar:FlxBar;		
+		
         /**
          * Floor layer
          */
         protected static var FLOORS:Array = new Array(
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+			3,2,1,3,2,2,2,1,1,0,2,2,2,2,1,0,3,3,2,2,1,1,1,2,2,2,1,
+			3,2,2,2,2,2,1,2,1,1,1,3,1,3,1,2,3,0,1,2,0,3,0,3,1,2,2,
+			1,2,3,0,1,0,2,3,1,3,0,1,3,3,3,1,0,3,0,1,2,1,1,1,0,0,2,
+			3,3,2,2,1,2,0,3,2,5,3,0,2,3,1,0,2,2,1,4,4,2,0,5,2,2,3,
+			3,0,2,3,3,5,2,2,0,3,2,2,3,2,2,2,1,2,3,1,3,0,5,1,2,1,2,
+			3,2,0,1,0,5,2,2,0,2,2,2,3,0,3,1,0,3,0,0,0,2,2,2,1,1,2,
+			3,2,2,3,3,2,0,1,4,5,5,0,1,2,1,2,2,0,0,3,1,2,1,4,1,3,1,
+			3,3,2,2,4,0,3,1,2,2,3,0,2,3,0,2,4,4,2,0,3,0,1,2,0,0,0,
+			3,3,3,1,3,2,0,3,3,2,0,0,3,1,3,0,0,2,3,3,3,0,0,2,1,0,3,
+			1,1,3,3,0,0,0,1,1,0,0,0,1,3,1,0,3,3,0,0,4,4,3,1,2,2,1,
+			2,3,3,0,0,0,1,0,2,7,1,1,1,3,3,3,3,3,3,0,2,0,0,2,3,1,3,
+			2,3,3,1,5,2,2,1,4,1,3,0,3,5,3,3,1,0,3,0,1,0,1,3,1,0,0,
+			1,1,2,0,0,3,0,3,1,1,0,2,2,3,2,0,1,3,3,3,3,1,2,2,2,3,3,
+			3,1,2,0,1,4,0,2,0,1,0,2,3,2,5,2,5,2,0,2,0,2,0,2,0,2,3,
+			0,3,2,3,3,2,3,3,5,0,3,0,2,4,2,3,1,1,0,3,0,3,2,2,2,1,1,
+			0,1,1,1,4,2,0,3,5,0,1,3,2,3,3,0,3,1,3,2,0,0,2,1,0,0,2,
+			0,2,2,3,0,4,3,1,0,1,1,2,1,0,1,2,4,2,0,5,0,4,3,5,1,3,0,
+			3,1,2,0,0,3,0,2,2,1,0,1,1,0,3,3,2,3,1,3,1,0,0,1,0,1,3,
+			1,0,2,2,2,1,2,2,1,1,2,2,0,2,3,0,1,4,0,1,3,2,1,0,1,2,3,
+			1,0,2,1,3,3,2,1,3,2,2,1,2,1,1,2,3,2,1,3,2,0,2,1,0,3,3
         );
          
         /**
          * Wall layer
          */
         protected static var WALLS:Array = new Array(
-			3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
-			3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
-			3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
-			3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
-			3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3,
-            3, 3, 3, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 3, 3, 3, 3,
-            3, 3, 3, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 3, 3, 3, 3,
-            3, 3, 3, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 3, 3, 3, 3,
-            3, 3, 3, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 3, 3, 3, 3,
-            3, 3, 3, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 3, 3, 3, 3,
-            3, 3, 3, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 3, 3, 3, 3,
-            3, 3, 3, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 3, 3, 3, 3,
-            3, 3, 3, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 3, 3, 3, 3,
-            3, 3, 3, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 3, 3, 3, 3,
-            3, 3, 3, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 3, 3, 3, 3,
-            3, 3, 3, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 3, 3, 3, 3,
-			3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3,
-			3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
-			3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
-			3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
-			3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3
+			3,1,2,4,5,6,4,5,6,4,5,6,4,5,6,4,5,6,4,5,6,4,5,6,3,1,2,
+			2,3,5,6,4,5,6,4,5,6,4,5,6,4,5,6,4,5,6,4,5,6,4,5,6,3,1,
+			1,2,6,4,5,6,4,5,6,4,5,6,4,5,6,4,5,6,4,5,6,4,5,6,4,2,3,
+			3,1,2,5,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,5,3,1,2,
+			2,3,1,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,2,3,1,
+			1,2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,
+			3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,1,2,
+			2,3,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,3,1,
+			1,2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,
+			3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,1,2,
+			2,3,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,3,1,
+			1,2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,
+			3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,1,2,
+			2,3,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,3,1,
+			1,2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,
+			3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,1,2,
+			2,3,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,3,1,
+			1,2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,
+			3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,1,2,
+			2,3,1,4,5,6,4,5,6,4,5,6,4,5,6,4,5,6,4,5,6,4,5,6,2,3,1
         );
          
         /**
@@ -92,7 +96,15 @@ package
         public function OverworldLevel1(state:FlxState, levelSize:FlxPoint, blockSize:FlxPoint):void {
             super(state, levelSize, blockSize);
         }
-         
+
+        /**
+         * Create the player, bullets, etc
+         */
+        override protected function createPlayer():void {
+			
+            player = new Spaceman(Information.X_LOCATION,Information.Y_LOCATION);
+        }		
+		
         /**
          * Create the map (walls, decals, etc)
          */
@@ -131,28 +143,13 @@ package
 		protected function createObjects():void {
 			var sprite:FlxSprite;
 			// create custom groups
+			effectGroup = new FlxGroup();
+			
 			objectGroup = new FlxGroup();
 			circuitGroup0 = new FlxGroup();
-			
 			circuitGroup1 = new FlxGroup();
 			circuitGroup2 = new FlxGroup();
 			teleportGroup = new FlxGroup();
-			
-			computer = new FlxSprite(
-				16 * tileSize.x, // x location
-				10 * tileSize.y, // y location 
-				Assets.COMPUTER // image to use
-			);
-			computer.immovable = true; // don't allow the player to move this object
-			objectGroup.add(computer);
-			
-			trunk = new FlxSprite(
-				16 * tileSize.x, // x location
-				10 * tileSize.y, // y location 
-				Assets.TRUNK // image to use
-			);
-			trunk.immovable = true; // don't allow the player to move this object
-			objectGroup.add(trunk);	
 			
 			if (Information.REPAIR_STATUS < 50) {
 				flashlight = new FlxSprite(
@@ -162,22 +159,20 @@ package
 				);
 				flashlight.immovable = true;
 				circuitGroup0.add(flashlight)
+				
+				ring = new Ring(14 * tileSize.x-7.5,
+								14 * tileSize.y-7.5);
+				ring.immovable = true;
+				effectGroup.add(ring);					
 			}
-			table = new FlxSprite(
-				10 * tileSize.x, // x location
-				12 * tileSize.y, // y location 
-				Assets.TABLE // image to use
-			);
-			table.immovable = true; // don't allow the player to move this object
-			objectGroup.add(table);			
 			
-			portal = new FlxSprite(
-				10 * tileSize.x, // x location
-				10 * tileSize.y, // y location 
-				Assets.PORTAL // image to use
-			);
-			portal.immovable = true; // don't allow the player to move this object
-			objectGroup.add(portal);				
+			door = new Door(12 * tileSize.x,
+							19 * tileSize.y);
+			door.immovable = true;
+			objectGroup.add(door);
+	
+		
+			
 		}		
 		
 		/**
@@ -187,6 +182,8 @@ package
 			add(floorGroup);
 			add(wallGroup);
 			add(objectGroup);
+			add(effectGroup);
+
 			add(circuitGroup0);
 			add(circuitGroup1);
 			add(circuitGroup2);
@@ -199,12 +196,12 @@ package
 		 * Create text, buttons, indicators, etc
 		 */
 		override protected function createGUI():void {
-			var instructions:FlxText = new FlxText(0, 0, 800, "Level1");
+			var instructions:FlxText = new FlxText(0, 0, 800, "Level 1 Progress: " + Information.X_LOCATION + " " + Information.Y_LOCATION);
 			instructions.alignment = "center";
 			instructions.size = 20;
 			guiGroup.add(instructions);
 			
-			repairBar = new FlxBar(450, 10, FlxBar.FILL_LEFT_TO_RIGHT);
+			repairBar = new FlxBar(380, 30, FlxBar.FILL_LEFT_TO_RIGHT);
 			repairBar.createImageBar(null, Assets.HEALTH_BAR, 0x88000000);
 			guiGroup.add(repairBar);			
 		}		
@@ -229,6 +226,9 @@ package
 				Information.LEVEL = 2;
 				FlxG.switchState(new OverworldState);
 			}
+			if (FlxG.overlap(player,objectGroup)) {
+				door.animate();
+			}			
 			repairBar.percent = Information.REPAIR_STATUS;
 		}		
     }

@@ -23,6 +23,10 @@ package
 		
         public static var BLOCK_SIZE:FlxPoint = new FlxPoint(30, 30); // block size (in pixels)		
 		
+		/**
+		 * Current cutscene
+		 */
+		public static var CURRENT_SCENE:AbstractAnimatable = new Scene1(0,0);
 		
 		/**
 		 * Current practice problem
