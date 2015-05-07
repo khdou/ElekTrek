@@ -13,7 +13,7 @@ package
 			super(X, Y);
 			loadGraphic(
 				Assets.OVERWORLD_SPACEMAN, // image to use
-				false, // animated
+				true, // animated
 				false, // don't generate "flipped" images since they're already in the image
 				AbstractCharacter.SIZE.x, // width of each frame (in pixels)
 				AbstractCharacter.SIZE.y // height of each frame (in pixels)

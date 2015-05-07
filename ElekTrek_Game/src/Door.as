@@ -20,7 +20,6 @@ package
 				30 // height of each frame (in pixels)
 			);			
 			createAnimations();
-			play("opening");
 			
 		}
 

@@ -220,7 +220,7 @@ package
 				
 				if (practiceProblem.isCorrect()) {
 					
-					playSuccessAnimation();
+//					playSuccessAnimation();
 					textArea.text = "Success!";
 					
 				}

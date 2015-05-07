@@ -16,7 +16,7 @@ package
 
 		// tiles
  		[Embed(source = "../assets/Backgrounds/floortiles.png")] public static var FLOOR_TILE:Class;
- 		[Embed(source = "../assets/temp_wallTile.png")] public static var WALL_TILE:Class;		
+ 		[Embed(source = "../assets/Backgrounds/walltiles-01.png")] public static var WALL_TILE:Class;		
 		
         // objects
  		[Embed(source = "../assets/Furnitures/computerscreen_medium.png")] public static var OVERWORLD_COMPUTER:Class;
@@ -26,7 +26,7 @@ package
 
  		[Embed(source = "../assets/Furnitures/flashlight.png")] public static var FLASHLIGHT:Class;
  		[Embed(source = "../assets/Furnitures/small_redlight.png")] public static var RING:Class;
-
+ 		[Embed(source = "../assets/cutscene/scene1.png")] public static var SCENE1:Class;
 		
  		[Embed(source = "../assets/Furnitures/computerscreen_medium.png")] public static var COMPUTER:Class;
  		[Embed(source = "../assets/Furnitures/table_large.png")] public static var TABLE:Class;
