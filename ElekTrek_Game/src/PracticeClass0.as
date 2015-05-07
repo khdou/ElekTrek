@@ -60,17 +60,17 @@ package
 			var correct:Boolean = false;
 			if ( itemContainer[m.X][m.Y] == null ) {
 				return correct;
-			}else {
-				return itemContainer[m.X][m.Y].name == Item.BATTERY_VERTICAL;
+			}else if (itemContainer[m.X][m.Y].name == Item.BATTERY_VERTICAL){
+				return true;
+			}
+			else { 
+				feedback = "We need a power source, not resistance!";
+				return false;
 			}
 		}
 		
 		override public function getAnimatedLocations():Array {
 			return [new Coordinate(1, 2)];	// The Light BulB
-		}
-		
-		override public function getFeedback():String {
-			return "";
 		}
 	
 	}

@@ -84,7 +84,17 @@ package
 			var missingComp1:Item = itemContainer[missingCoord[0].X][missingCoord[0].Y]
 			if (missingComp1 == null) return false;
 			
-			return (missingComp1.value) == R ? true : false;
+			if ((missingComp1.value) == R) {
+				return true;
+			}
+			else if ((missingComp1.value) > R) {
+				feedback = "Uh oh, it looks like the current generated is too low, try again!";
+				return false;
+			}
+			else {
+				feedback = "Uh oh, it looks like the current generated is too high, try again!";
+				return false;
+			}
 		}
 	}
 

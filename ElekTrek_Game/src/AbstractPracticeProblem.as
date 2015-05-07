@@ -16,6 +16,8 @@ package
 		public var problemText:String = "Click and drag an object in your inventory onto the circuit";
 		public var id:Number;
 		protected var config:Array;
+		public var feedback:String = "";
+		public var dialogue:String = "";
 		
 		/**
 		 * Initate the backing array
@@ -124,7 +126,7 @@ package
 		 * @return Feedback for what to do in the current problem state
 		 */
 		public function getFeedback():String {
-			return "";
+			return feedback;
 		}
 		
 		/**
@@ -132,6 +134,19 @@ package
 		 */
 		public function getProblemText():String {
 			return problemText;
+		}
+		
+		public function isComplete():Boolean {
+			var complete:Boolean = true;
+			for (var i:int; i < missingCoord.length; i++) {
+				if (itemContainer[missingCoord[i].X][missingCoord[i].Y] == null)
+					complete = false;
+			}
+			return complete;
+		}
+		
+		public function getDialogue():String {
+			return dialogue;
 		}
 		
 	}

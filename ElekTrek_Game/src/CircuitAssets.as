@@ -143,7 +143,7 @@ package
 		//[Embed(source = "../assets/CircuitScreen/medLightbulb_on_block.png.png")] 
 		//public static var medLightBulbBlockOn:Class;
 		
-		[Embed(source = "../assets/CircuitScreen/backbutton.png")] 
+		[Embed(source = "../assets/CircuitScreen/backbutton_sprite.png")] 
 		public static var BackButton:Class;
 		
 		public function CircuitAssets() 

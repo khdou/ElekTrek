@@ -88,8 +88,11 @@ package
 					sprite.addAnimation( sprite.itemName + Item.STATE_OFF, [0]);
 					sprite.addAnimation( sprite.itemName + Item.STATE_ON, [1]);
 					break;
-					
+				
+				
 			}
+			
+			
 			
 		}
 	}

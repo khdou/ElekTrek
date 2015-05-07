@@ -28,12 +28,18 @@ package
 		
 		private var inventoryView:FlxGroup;	// Hold all the FlxSprite to be render for the inventory
 		private var circuitView:FlxGroup;	// Hold all the FlxSprite to be render for the circuit
+		
+		private var dialogView:FlxGroup;
+		private var _dialogMessage:String;
+		private var _showDialog: Boolean;
+		
 		private var textArea:FlxText;
 		
 		private var _currDragItem:Item;		// Track the item being drag
 		private var _currFlxSprite;		// Track the graphic rep of _currDragItem
 		
 		private var backButton:FlxExtendedSprite; // Go back to overworld
+		private var robotHead:FlxExtendedSprite; 
 		
 		/**
 		 * Similar to the constructor, FlxG call this after FlxG.switchState() is done
@@ -58,7 +64,7 @@ package
 			
 			// Practice problem;
 			practiceProblem = Information.CURRENT_PROBLEM;
-//			practiceProblem = new PracticeClass5();
+			//practiceProblem = new PracticeClass4();
 			
 			setupMiscellaneous();
 			makeRobotSay(practiceProblem.getProblemText());
@@ -84,6 +90,9 @@ package
 			textArea.size = 10;
 			
 			backButton = new FlxExtendedSprite(5, 7, CircuitAssets.BackButton);
+			backButton.loadGraphic(CircuitAssets.BackButton, false, false, 55, 45);
+			backButton.addAnimation("OFF", [0]);
+			backButton.addAnimation("HIGHLIGHT", [1]);
 			backButton.enableMouseClicks(true);
 			backButton.mouseReleasedCallback = function() {
 				exitCircuitInteractionState();
@@ -91,10 +100,25 @@ package
 			add(backButton);
 			
 			// Add RobotHead
-			add(new FlxSprite(705, 12, Assets.ROBOT_HEAD));
+			robotHead = new FlxExtendedSprite(705, 12, Assets.ROBOT_HEAD);
+			add(robotHead);
+			robotHead.loadGraphic(Assets.ROBOT_HEAD, false, false, 60, 50);
+			robotHead.addAnimation("OFF", [0]);
+			robotHead.addAnimation("HIGHLIGHT", [1]);
 			
 			// Play background music
-			FlxG.stream("../assets/sounds/ElectronicDrums.mp3",0.5,true);
+			FlxG.stream("../assets/sounds/ElectronicDrums.mp3", 1, true);
+			
+			// Add dialog box
+			var message:String = practiceProblem.getDialogue();
+			if (message.length > 0)
+				showDialogWithMessage(message);
+		}
+		
+		private function showDialogWithMessage(message:String) {
+			_dialogMessage = message;
+			_showDialog = true;
+			add( dialogView = generateDialogView() );
 		}
 		
 		/**
@@ -141,6 +165,16 @@ package
 			}
 			
 			return inventoryView;
+		}
+		
+		private function generateDialogView():FlxGroup {
+			var dialogView = new FlxGroup();
+			dialogView.add(new FlxSprite(200, 200).makeGraphic(400, 200, FlxColor.getColor32(255,72, 100, 157)));
+			dialogView.add(new FlxText( 210, 210, 380, _dialogMessage));
+			dialogView.add(new FlxButton( 400, 350, "OK", function() {
+				_showDialog = false;
+			}));
+			return dialogView;
 		}
 		
 		/**
@@ -223,7 +257,7 @@ package
 				if (practiceProblem.isCorrect()) {
 					
 //					playSuccessAnimation();
-					textArea.text = "Success!";
+					makeRobotSay("Success!");
 					if (Information.CURRENT_PROBLEM.id == 0) {
 						Information.COMPLETION_STATUS = 50;
 					} else if (Information.CURRENT_PROBLEM.id == 1) {
@@ -236,7 +270,12 @@ package
 						Information.COMPLETION_STATUS = 75;							
 					}
 				}
-
+				else if (practiceProblem.isComplete()) {
+					makeRobotSay(practiceProblem.getFeedback());
+				}
+				else {
+					makeRobotSay(practiceProblem.getProblemText());
+				}
 				if (prevItem != null)
 					Information.INVENTORY.addItem(prevItem);
 					
@@ -248,7 +287,11 @@ package
 				Information.INVENTORY.addItem(_currDragItem);
 			}
 			
-			if (practiceProblem.isCorrect()) {
+			if (!practiceProblem.isComplete() && !practiceProblem.isCorrect()) {
+				makeRobotSay(practiceProblem.getProblemText());
+			}
+			
+			/*if (practiceProblem.isCorrect()) {
 				makeRobotSay("Success!");
 			}else {
 				makeRobotSay("Try again"); // Get some feedback from PracticeProblem
@@ -259,7 +302,7 @@ package
 				{
 					makeRobotSay(practiceProblem.getProblemText());
 				}
-			}
+			}*/
 			
 			changeItemState(practiceProblem.isCorrect());
 			remove( _currFlxSprite );		// Detach this item from the Inventory view
@@ -292,17 +335,26 @@ package
 			for each (var c:Coordinate in coords) {
 				practiceProblem.getItemAt(c.X, c.Y).state = correct ? Item.STATE_ON : Item.STATE_OFF;
 			}
+			
+			if (correct) {
+				backButton.play("HIGHLIGHT");
+				robotHead.play("HIGHLIGHT");
+			}else {
+				backButton.play("OFF");
+				robotHead.play("OFF");
+			}
 		}
 		
 
 		/**
 		 * Save practice problem result and Switch back to OverWorld state
 		 */
-		private function exitCircuitInteractionState() {
+		private function exitCircuitInteractionState():void {
 			for (var i = 0; i < AbstractPracticeProblem.SIZE; i++) {
 				for (var j = 0; j < AbstractPracticeProblem.SIZE; j++) {
 					if (practiceProblem.getItemAt(i, j) != null && !practiceProblem.isOriginalPieces(new Coordinate(i, j))) {
 						Information.INVENTORY.addItem(practiceProblem.getItemAt(i, j));
+						practiceProblem.insertItemAt(null, i, j);
 					}
 				}
 			}
@@ -321,10 +373,18 @@ package
 			// REgenerate circuitView and inventoryView here to reflect change in data
 			remove(inventoryView);
 			remove(circuitView);
+			remove(dialogView);
             inventoryView = generateInventoryView();
 			circuitView = generateCircuitView();
+			
 			add(inventoryView);
 			add(circuitView);
+			
+			
+			if ( _showDialog ) {
+				dialogView = generateDialogView();
+				add(dialogView);
+			}
 			
 			super.update();
 		}
