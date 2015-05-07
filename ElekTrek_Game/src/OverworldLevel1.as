@@ -203,8 +203,6 @@ package
 							19 * tileSize.y);
 			door.immovable = true;
 			teleportGroup.add(door);
-	
-		
 			
 		}		
 		
@@ -245,6 +243,8 @@ package
 		override public function update():void {
 			super.update(); // NOTE: map -> player collision happens in super.update()
 			FlxG.collide(objectGroup, player);
+			FlxG.collide(teleportGroup, player);
+			
 			if (Information.REPAIR_STATUS < 50) {
 				if (FlxG.overlap(player, circuitGroup0)) {
 					Information.CURRENT_PROBLEM = new PracticeClass0();
