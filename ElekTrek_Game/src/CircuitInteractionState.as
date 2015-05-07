@@ -58,7 +58,7 @@ package
 			
 			// Practice problem;
 			//practiceProblem = Information.CURRENT_PROBLEM;
-			practiceProblem = new PracticeClass7();
+			practiceProblem = new PracticeClass2();
 
 			
 			setupMiscellaneous();
@@ -90,6 +90,7 @@ package
 				exitCircuitInteractionState();
 			}
 			add(backButton);
+			
 			
 		}
 		
@@ -124,7 +125,6 @@ package
 				
 				// On MouseDown
 				draggableSprite.mousePressedCallback = function(obj:SpecialFlxSprite, x:int, y:int) {
-					textArea.text = "Mouse Pressed at: x " + FlxG.mouse.x + ",y " + FlxG.mouse.y;
 					obj.loadGraphic(CircuitAssets[obj.itemName]);
 					_currDragItem = Information.INVENTORY.removeItem(obj.relativeLocale);
 					_currFlxSprite = obj;
@@ -167,6 +167,8 @@ package
 								sprite.play(item.name+Item.STATE_ON);
 							}
 							
+							circuitView.add(sprite);
+							
 							if (!practiceProblem.isOriginalPieces(new Coordinate(i, j))) {
 								// Draggable
 								// Define dropping area
@@ -174,7 +176,7 @@ package
 								
  								var infoText = new FlxText( 20 + j * 100, 93 + i * 100, 100, item.value == -1 ? "" : item.value + " " + item.getUnit() );
  								infoText.size = 12;
- 								add(infoText);
+ 								circuitView.add(infoText);
  								
 								sprite.mousePressedCallback = function(obj:SpecialFlxSprite, x:int, y:int) {
  									_currDragItem = practiceProblem.removeItemAt(obj.relativeLocale.X, obj.relativeLocale.Y);
@@ -186,7 +188,6 @@ package
 								sprite.mouseReleasedCallback = onMouseReleased;
 								
 							}
-							circuitView.add(sprite);
 						}
 					}
 				}
@@ -205,9 +206,6 @@ package
 		private function onMouseReleased (obj:FlxExtendedSprite, x:int, y:int):void {
 					
 			var coord:Coordinate = translateCoordinateForPracticeProblem(FlxG.mouse.x, FlxG.mouse.y);
-			
-			textArea.text = "Mouse Pressed at: x " + FlxG.mouse.x + ",y " + FlxG.mouse.y;
-			//textArea.text = "Mouse Pressed at: x " + coord.X + ",y " + coord.Y;
 			
 			// Prevent player from dropping onto the original practice problem pieces
 			var isModdingProblem = practiceProblem.isOriginalPieces(coord);
