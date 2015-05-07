@@ -12,6 +12,7 @@ package
 		public var V:Number;
 		public var I:Number;
 		public var R:Number;
+		public var version:Number = 0;
 		
 		protected var config:Array;
 		
@@ -116,6 +117,13 @@ package
 		 */
 		public function getAnimatedLocations():Array {
 			return [];
+		}
+		
+		/**
+		 * @return Feedback for what to do in the current problem state
+		 */
+		public function getFeedback():String {
+			
 		}
 	}
 

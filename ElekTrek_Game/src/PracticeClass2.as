@@ -4,18 +4,24 @@ package
 	public class PracticeClass2 extends AbstractPracticeProblem
 	{		
 		
-		public function PracticeClass2() 
+		public function PracticeClass2(type:int=1) 
 		{
 			super();
+			version = type;
+			itemContainer[2][0] = new Item(Item.BATTERY_VERTICAL);
+			itemContainer[1][0] = new Item(Item.WIRE_CORNER1);
+			itemContainer[3][1] = new Item(Item.WIRE_HORIZONTAL);
+			itemContainer[3][0] = new Item(Item.WIRE_CORNER4);
 			missingCoord = new Array(2);
-		 	generateConfig1();
+			if (type == 1)
+		 		generateConfig1();
+			else 
+				generateConfig2();
 			generateValues();
 
 		}
 		
 		public function generateConfig1() {
-			itemContainer[2][0] = new Item(Item.BATTERY_VERTICAL);
-			itemContainer[1][0] = new Item(Item.WIRE_CORNER1);
 			itemContainer[1][1] = new Item(Item.WIRE_HORIZONTAL);
 			itemContainer[1][3] = new Item(Item.WIRE_CORNER2);
 			itemContainer[2][3] = new Item(Item.WIRE_VERTICAL);
@@ -41,16 +47,12 @@ package
 		}
 		
 		public function generateConfig2() {
-			itemContainer[2][0] = new Item(Item.BATTERY_VERTICAL);
-			itemContainer[1][0] = new Item(Item.WIRE_CORNER1);
 			itemContainer[1][2] = new Item(Item.WIRE_HORIZONTAL);
 			itemContainer[1][4] = new Item(Item.WIRE_CORNER2);
 			itemContainer[2][4] = new Item(Item.WIRE_VERTICAL);
 			itemContainer[3][4] = new Item(Item.WIRE_CORNER3);
-			itemContainer[3][3] = new Item(Item.WIRE_HORIZONTAL);
-			itemContainer[3][1] = new Item(Item.WIRE_HORIZONTAL);
 			itemContainer[3][2] = new Item(Item.WIRE_HORIZONTAL);
-			itemContainer[3][0] = new Item(Item.WIRE_CORNER4);
+			itemContainer[3][3] = new Item(Item.WIRE_HORIZONTAL);
 			
 			// Coordinate describing the original circuit problem
 			config = [ 
