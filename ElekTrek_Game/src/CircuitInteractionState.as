@@ -282,6 +282,13 @@ package
 		 * Save practice problem result and Switch back to OverWorld state
 		 */
 		private function exitCircuitInteractionState() {
+			for (var i = 0; i < AbstractPracticeProblem.SIZE; i++) {
+				for (var j = 0; j < AbstractPracticeProblem.SIZE; j++) {
+					if (practiceProblem.getItemAt(i, j) != null && !practiceProblem.isOriginalPieces(new Coordinate(i, j))) {
+						Information.INVENTORY.addItem(practiceProblem.getItemAt(i, j));
+					}
+				}
+			}
 			FlxG.switchState(new OverworldState());
 		}
 		 
