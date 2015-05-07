@@ -58,7 +58,7 @@ package
 			
 			// Practice problem;
 			//practiceProblem = Information.CURRENT_PROBLEM;
-			practiceProblem = new PracticeClass2(2);
+			practiceProblem = new PracticeClass5();
 
 			
 			setupMiscellaneous();
@@ -95,6 +95,7 @@ package
 			add(new FlxSprite(705, 12, Assets.ROBOT_HEAD));
 			
 			// Play background music
+
 //			FlxG.playMusic(Assets.BACKGROUND_MUSIC_ELECTRONIC, 0.5);
 		}
 		
