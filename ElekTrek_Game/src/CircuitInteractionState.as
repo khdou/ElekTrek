@@ -28,6 +28,11 @@ package
 		
 		private var inventoryView:FlxGroup;	// Hold all the FlxSprite to be render for the inventory
 		private var circuitView:FlxGroup;	// Hold all the FlxSprite to be render for the circuit
+		
+		private var dialogView:FlxGroup;
+		private var _dialogMessage:String;
+		private var _showDialog: Boolean;
+		
 		private var textArea:FlxText;
 		
 		private var _currDragItem:Item;		// Track the item being drag
@@ -94,7 +99,16 @@ package
 			add(new FlxSprite(705, 12, Assets.ROBOT_HEAD));
 			
 			// Play background music
-			FlxG.stream("../assets/sounds/ElectronicDrums.mp3",0.5,true);
+			FlxG.stream("../assets/sounds/ElectronicDrums.mp3", 1, true);
+			
+			// Add dialog box
+			showDialogWithMessage("Testing");
+		}
+		
+		private function showDialogWithMessage(message:String) {
+			_dialogMessage = message;
+			_showDialog = true;
+			add( dialogView = generateDialogView() );
 		}
 		
 		/**
@@ -141,6 +155,16 @@ package
 			}
 			
 			return inventoryView;
+		}
+		
+		private function generateDialogView():FlxGroup {
+			var dialogView = new FlxGroup();
+			dialogView.add(new FlxSprite(200, 200).makeGraphic(400, 200, FlxColor.getColor32(255,72, 100, 157)));
+			dialogView.add(new FlxText( 210, 210, 380, _dialogMessage));
+			dialogView.add(new FlxButton( 400, 350, "OK", function() {
+				_showDialog = false;
+			}));
+			return dialogView;
 		}
 		
 		/**
@@ -321,10 +345,18 @@ package
 			// REgenerate circuitView and inventoryView here to reflect change in data
 			remove(inventoryView);
 			remove(circuitView);
+			remove(dialogView);
             inventoryView = generateInventoryView();
 			circuitView = generateCircuitView();
+			
 			add(inventoryView);
 			add(circuitView);
+			
+			
+			if ( _showDialog ) {
+				dialogView = generateDialogView();
+				add(dialogView);
+			}
 			
 			super.update();
 		}
