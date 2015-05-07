@@ -58,11 +58,11 @@ package
 			
 			// Practice problem;
 			//practiceProblem = Information.CURRENT_PROBLEM;
-			practiceProblem = new PracticeClass7();
+			practiceProblem = new PracticeClass2(2);
 
 			
 			setupMiscellaneous();
-			textArea.text = practiceProblem.V + " " + practiceProblem.I;
+			makeRobotSay(practiceProblem.V + " " + practiceProblem.I);
 			
 			// Storing these group to remove them in updates
             inventoryView = generateInventoryView();
@@ -78,7 +78,7 @@ package
 		private function setupMiscellaneous(): void {
 			var background = new FlxSprite(0, 0, CircuitAssets.Screen);
 			add(background);
-			textArea = new FlxText(80, 20, 700, "Welcome to the CircuitInteraction!");
+			textArea = new FlxText(80, 20, 600, "Welcome to the CircuitInteraction!");
 			add(textArea);
 			
 			textArea.color = FlxColor.getColor32(255, 60, 60, 60);
@@ -91,6 +91,11 @@ package
 			}
 			add(backButton);
 			
+			// Add RobotHead
+			add(new FlxSprite(705, 12, Assets.ROBOT_HEAD));
+			
+			// Play background music
+			FlxG.playMusic(Assets.BACKGROUND_MUSIC_ELECTRONIC, 0.5);
 		}
 		
 		/**
@@ -124,7 +129,6 @@ package
 				
 				// On MouseDown
 				draggableSprite.mousePressedCallback = function(obj:SpecialFlxSprite, x:int, y:int) {
-					textArea.text = "Mouse Pressed at: x " + FlxG.mouse.x + ",y " + FlxG.mouse.y;
 					obj.loadGraphic(CircuitAssets[obj.itemName]);
 					_currDragItem = Information.INVENTORY.removeItem(obj.relativeLocale);
 					_currFlxSprite = obj;
@@ -167,6 +171,8 @@ package
 								sprite.play(item.name+Item.STATE_ON);
 							}
 							
+							circuitView.add(sprite);
+							
 							if (!practiceProblem.isOriginalPieces(new Coordinate(i, j))) {
 								// Draggable
 								// Define dropping area
@@ -174,7 +180,7 @@ package
 								
  								var infoText = new FlxText( 20 + j * 100, 93 + i * 100, 100, item.value == -1 ? "" : item.value + " " + item.getUnit() );
  								infoText.size = 12;
- 								add(infoText);
+ 								circuitView.add(infoText);
  								
 								sprite.mousePressedCallback = function(obj:SpecialFlxSprite, x:int, y:int) {
  									_currDragItem = practiceProblem.removeItemAt(obj.relativeLocale.X, obj.relativeLocale.Y);
@@ -186,7 +192,6 @@ package
 								sprite.mouseReleasedCallback = onMouseReleased;
 								
 							}
-							circuitView.add(sprite);
 						}
 					}
 				}
@@ -205,9 +210,6 @@ package
 		private function onMouseReleased (obj:FlxExtendedSprite, x:int, y:int):void {
 					
 			var coord:Coordinate = translateCoordinateForPracticeProblem(FlxG.mouse.x, FlxG.mouse.y);
-			
-			textArea.text = "Mouse Pressed at: x " + FlxG.mouse.x + ",y " + FlxG.mouse.y;
-			//textArea.text = "Mouse Pressed at: x " + coord.X + ",y " + coord.Y;
 			
 			// Prevent player from dropping onto the original practice problem pieces
 			var isModdingProblem = practiceProblem.isOriginalPieces(coord);
@@ -235,14 +237,14 @@ package
 				// Return to the inventory
 				Information.INVENTORY.addItem(_currDragItem);
 				
-				//if (isModdingProblem) 
-					//textArea.text = "You shouldn't modify the original problem";
+				if (isModdingProblem) 
+					makeRobotSay("You shouldn't modify the original problem");
 			}
 			
 			if (practiceProblem.isCorrect()) {
-				textArea.text = "Success!";
+				makeRobotSay("Success!");
 			}else {
-				textArea.text = "Try again"; // Get some feedback from PracticeProblem
+				makeRobotSay("Try again"); // Get some feedback from PracticeProblem
 			}
 			
 			changeItemState(practiceProblem.isCorrect());
@@ -292,7 +294,11 @@ package
 			}
 			FlxG.switchState(new OverworldState());
 		}
-		 
+		
+		private function makeRobotSay(message:String) {
+			textArea.text = "Hekanaji: " + message;
+		}
+		
 		/**
 		 * Handle some Sprite drop before updating
 		 */

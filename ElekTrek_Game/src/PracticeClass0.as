@@ -63,9 +63,12 @@ package
 			}
 		}
 		
-		override public function getAnimatedLocations():Array 
-		{
+		override public function getAnimatedLocations():Array {
 			return [new Coordinate(1, 2)];	// The Light BulB
+		}
+		
+		override public function getFeedback():String {
+			return "";
 		}
 	}
 

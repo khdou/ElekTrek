@@ -11,7 +11,8 @@ package
 		[Embed(source = "../assets/Homescreen/Homescreen-01.png")] public static var MENU_BACKGROUND:Class;
 		
         // sprites
- 		[Embed(source = "../assets/Characters/spaceman_spritesheet-01-01.png")] public static var OVERWORLD_SPACEMAN:Class;
+ 		[Embed(source = "../assets/Characters/spaceman_spritesheet-01.png")] public static var OVERWORLD_SPACEMAN:Class;
+		[Embed(source = "../assets/Characters/robotHead.png")] public static var ROBOT_HEAD:Class;
  		[Embed(source = "../assets/healthbar.png")] public static var HEALTH_BAR:Class;
 
 		// tiles
@@ -32,6 +33,8 @@ package
  		[Embed(source = "../assets/Furnitures/table_large.png")] public static var TABLE:Class;
  		[Embed(source = "../assets/Furnitures/trunk.png")] public static var TRUNK:Class;
  		[Embed(source = "../assets/Furnitures/Portal.png")] public static var PORTAL:Class;
+		
+//		[Embed(source="")	public var BACKGROUND_MUSIC_ELECTRONIC:Class;
 		
     }
 }
