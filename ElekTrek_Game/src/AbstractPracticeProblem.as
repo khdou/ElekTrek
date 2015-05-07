@@ -13,6 +13,7 @@ package
 		public var I:Number;
 		public var R:Number;
 		public var version:Number = 0;
+		public var problemText:String
 		
 		protected var config:Array;
 		
@@ -123,8 +124,16 @@ package
 		 * @return Feedback for what to do in the current problem state
 		 */
 		public function getFeedback():String {
-			
+			return "";
 		}
+		
+		/**
+		 * @return Feedback for what to do in the current problem state
+		 */
+		public function getProblemText():String {
+			return problemText;
+		}
+		
 	}
 
 }

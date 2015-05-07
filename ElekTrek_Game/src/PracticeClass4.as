@@ -3,13 +3,6 @@ package
 	//parallel and series 
 	public class PracticeClass4 extends AbstractPracticeProblem
 	{
-		private var V:Number;
-		private var I:Number;
-		private var R:Number;
-		
-		public var missing;
-		
-		public var config1:Array; // there could be many map configuration to display for this knowledge model
 		
 		public function PracticeClass4() 
 		{
@@ -42,60 +35,48 @@ package
 			];
 			
 			//create missing coordinates
-			missingCoord = new Array(2);
+			missingCoord = new Array(3);
 			missingCoord[0] = new Coordinate(1, 2);
-			missingCoord[0] = new Coordinate(0, 2);
-			missingCoord[1] = new Coordinate(3, 2);
-			//generateValues();
+			missingCoord[1] = new Coordinate(0, 2);
+			missingCoord[2] = new Coordinate(3, 2);
+			generateValues();
 
 		}
 		
-		private function setupCircuitConfig(): void
-		{
+		override protected function generateValues():void 
+		{		
+			var length:int = Inventory.getSize();
+			var index1:int = Math.floor(Math.random() * length);
+			var index2:int = Math.floor(Math.random() * length);
+			while (index2 == index1)
+				index2 = Math.floor(Math.random() * length);
+			var index3 = Math.floor(Math.random() * length);
+			while (index3 == index1 || index3 == index2)
+				var index3 = Math.floor(Math.random() * length);
 			
-			for each (var item in config1)
-			{
-				var indicator = item.name.charAt(0);
-				// Battery
-				if (indicator == "B") {
-					item.value = V;
-				}else if (indicator == "R" || indicator == "L") {
-					item.value = R;
-				}else {
-					item.value = I;
+			I = Math.floor(Math.random() * 10) + 1;					
+			R = Math.round(1/(1/Inventory.getItem(index1).value + 1/Inventory.getItem(index2).value)) + Inventory.getItem(index3).value;		
+			V = I * R;		
+			
+			for (var i:int = 0; i < AbstractPracticeProblem.SIZE; i++) {
+				for (var j:int = 0; j < AbstractPracticeProblem.SIZE; j++) {
+					
+					var component:Item = itemContainer[i][j];
+					if (component != null) {
+						var indicator:String = itemContainer[i][j].name.charAt(0);
+						// Battery
+						if (indicator == "B") {
+							itemContainer[i][j].value = V;
+						}else if (indicator == "R" || indicator == "L") {
+							itemContainer[i][j].value = R;
+						}else {
+							itemContainer[i][j].value = I;
+						}
+					}
 				}
 			}
+			
 		}
-		
-		public function getCircuitConfig(): Array 
-		{
-			// Get all resistors from Inventory
-			var resistors:Array = getResistanceFromInventory();
-			
-			if (resistors.length < 3)
-				return null;
-			
-			// These values should be randomized
-			I = Math.floor(Math.random() * 10) + 1;
-			
-			var index1 = Math.floor(Math.random() * resistors.length);
-			
-			var index2 = Math.floor(Math.random() * resistors.length);
-			while (index2 == index1)
-				index2 = Math.floor(Math.random() * resistors.length);
-			var index3 = Math.floor(Math.random() * resistors.length);
-			while (index3 == index1 || index3 == index2)
-				var index3 = Math.floor(Math.random() * resistors.length);
-			
-			R = Math.round(1/(1/resistors[index1] + 1/resistors[index2])) + resistors[index3];
-			
-			V = I * R
-			
-			setupCircuitConfig();
-			
-			return config1;
-		}
-		
 		
 		public function isCorrect(): Boolean 
 		{

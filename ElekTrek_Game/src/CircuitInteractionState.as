@@ -93,6 +93,9 @@ package
 			
 			// Add RobotHead
 			add(new FlxSprite(705, 12, Assets.ROBOT_HEAD));
+			
+			// Play background music
+			FlxG.playMusic(Assets.BACKGROUND_MUSIC_ELECTRONIC, 0.5);
 		}
 		
 		/**
