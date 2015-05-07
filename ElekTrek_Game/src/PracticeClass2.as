@@ -19,8 +19,8 @@ package
 			else 
 				generateConfig2();
 			generateValues();
-			problemText = "Now there are two missing resistors! When resistors are placed in the same loop(in series), the total resistance of the loop is the sum of the individual resistances. The battery is " + V + " volts. Place the correct resistors so the resulting current is " + I + " amps.";
-
+			problemText = "The battery is " + V + " volts. Place the correct resistors so the resulting current is " + I + " amps.";
+			dialogue = "There are two missing resistors! When resistors are placed in the same loop(in series), the total resistance of the loop is the sum of the individual resistances.";
 		}
 		
 		public function generateConfig1() {
