@@ -39,6 +39,7 @@ package
 		private var _currFlxSprite;		// Track the graphic rep of _currDragItem
 		
 		private var backButton:FlxExtendedSprite; // Go back to overworld
+		private var robotHead:FlxExtendedSprite; 
 		
 		/**
 		 * Similar to the constructor, FlxG call this after FlxG.switchState() is done
@@ -89,6 +90,9 @@ package
 			textArea.size = 10;
 			
 			backButton = new FlxExtendedSprite(5, 7, CircuitAssets.BackButton);
+			backButton.loadGraphic(CircuitAssets.BackButton, false, false, 55, 45);
+			backButton.addAnimation("OFF", [0]);
+			backButton.addAnimation("HIGHLIGHT", [1]);
 			backButton.enableMouseClicks(true);
 			backButton.mouseReleasedCallback = function() {
 				exitCircuitInteractionState();
@@ -96,7 +100,11 @@ package
 			add(backButton);
 			
 			// Add RobotHead
-			add(new FlxSprite(705, 12, Assets.ROBOT_HEAD));
+			robotHead = new FlxExtendedSprite(705, 12, Assets.ROBOT_HEAD);
+			add(robotHead);
+			robotHead.loadGraphic(Assets.ROBOT_HEAD, false, false, 60, 50);
+			robotHead.addAnimation("OFF", [0]);
+			robotHead.addAnimation("HIGHLIGHT", [1]);
 			
 			// Play background music
 			FlxG.stream("../assets/sounds/ElectronicDrums.mp3", 1, true);
@@ -315,6 +323,14 @@ package
 			var coords:Array = practiceProblem.getAnimatedLocations();
 			for each (var c:Coordinate in coords) {
 				practiceProblem.getItemAt(c.X, c.Y).state = correct ? Item.STATE_ON : Item.STATE_OFF;
+			}
+			
+			if (correct) {
+				backButton.play("HIGHLIGHT");
+				robotHead.play("HIGHLIGHT");
+			}else {
+				backButton.play("OFF");
+				robotHead.play("OFF");
 			}
 		}
 		
