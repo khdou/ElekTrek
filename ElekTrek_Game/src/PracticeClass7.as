@@ -1,10 +1,9 @@
 package
 {
-	//puzzle for 3 resistors in series 
-	public class PracticeClass3 extends AbstractPracticeProblem
+	//puzzle for 2 resistors in series on same line
+	public class PracticeClass7 extends AbstractPracticeProblem
 	{
-		
-		public function PracticeClass3() 
+		public function PracticeClass7()
 		{
 			super();
 			itemContainer[2][0] = new Item(Item.BATTERY_VERTICAL);
@@ -13,8 +12,9 @@ package
 			itemContainer[1][4] = new Item(Item.WIRE_CORNER2);
 			itemContainer[2][4] = new Item(Item.WIRE_VERTICAL);
 			itemContainer[3][4] = new Item(Item.WIRE_CORNER3);
-			itemContainer[3][3] = new Item(Item.WIRE_CORNER3);
+			itemContainer[3][3] = new Item(Item.WIRE_HORIZONTAL);
 			itemContainer[3][1] = new Item(Item.WIRE_HORIZONTAL);
+			itemContainer[3][2] = new Item(Item.WIRE_HORIZONTAL);
 			itemContainer[3][0] = new Item(Item.WIRE_CORNER4);
 			
 			// Coordinate describing the original circuit problem
@@ -27,18 +27,17 @@ package
 				new Coordinate(3, 4),
 				new Coordinate(3, 3),
 				new Coordinate(3, 1),
+				new Coordinate(3, 2),
 				new Coordinate(3, 0),
 			];
 			
 			//create missing coordinates
-			missingCoord = new Array(3);
+			missingCoord = new Array(2);
 			missingCoord[0] = new Coordinate(1, 1);
 			missingCoord[1] = new Coordinate(1, 3);
-			missingCoord[2] = new Coordinate(3, 2);
 			generateValues();
 			
 		}
-		
 		
 		override protected function generateValues():void 
 		{		
@@ -47,13 +46,11 @@ package
 			var index2:int = Math.floor(Math.random() * length);
 			while (index2 == index1)
 				index2 = Math.floor(Math.random() * length);
-			var index3 = Math.floor(Math.random() * length);
-			while (index3 == index1 || index3 == index2)
-				var index3 = Math.floor(Math.random() * length);
-			
+						
 			I = Math.floor(Math.random() * 10) + 1;					
-			R = Inventory.getItem(index1).value + Inventory.getItem(index2).value + Inventory.getItem(index3).value;		
+			R = Inventory.getItem(index1).value + Inventory.getItem(index2).value;		
 			V = I * R;		
+			
 			
 			for (var i:int = 0; i < AbstractPracticeProblem.SIZE; i++) {
 				for (var j:int = 0; j < AbstractPracticeProblem.SIZE; j++) {
@@ -79,11 +76,9 @@ package
 		{
 			var missingComp1:Item = itemContainer[missingCoord[0].X][missingCoord[0].Y]
 			var missingComp2:Item = itemContainer[missingCoord[1].X][missingCoord[1].Y]
-			var missingComp3:Item = itemContainer[missingCoord[2].X][missingCoord[2].Y]
-			if (missingComp1 == null || missingComp2 == null || missingComp3 == null) return false;
+			if (missingComp1 == null || missingComp2 == null) return false;
 			
-			return (missingComp1.value + missingComp2.value + missingComp3.value) == R ? true : false;
+			return (missingComp1.value + missingComp2.value) == R ? true : false;
 		}
-		
 	}
 }

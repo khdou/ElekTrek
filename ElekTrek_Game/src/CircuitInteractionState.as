@@ -58,7 +58,7 @@ package
 			
 			// Practice problem;
 			//practiceProblem = Information.CURRENT_PROBLEM;
-			practiceProblem = new PracticeClass2();
+			practiceProblem = new PracticeClass7();
 
 			
 			setupMiscellaneous();
@@ -91,12 +91,6 @@ package
 			}
 			add(backButton);
 			
-			var test:SpecialFlxSprite = new SpecialFlxSprite(50, 50);
-			test.itemName = Item.LIGHTBULB_HORIZONTAL;
-			test.loadGraphic(CircuitAssets.LightbulbHorizontal, false, false, 100, 100); 
-			Item.loadFlxSpriteAnimationOn(test);
-			add(test);
-			test.play(test.itemName+"ON");
 		}
 		
 		/**
@@ -282,6 +276,13 @@ package
 		 * Save practice problem result and Switch back to OverWorld state
 		 */
 		private function exitCircuitInteractionState() {
+			for (var i = 0; i < AbstractPracticeProblem.SIZE; i++) {
+				for (var j = 0; j < AbstractPracticeProblem.SIZE; j++) {
+					if (practiceProblem.getItemAt(i, j) != null && !practiceProblem.isOriginalPieces(new Coordinate(i, j))) {
+						Information.INVENTORY.addItem(practiceProblem.getItemAt(i, j));
+					}
+				}
+			}
 			FlxG.switchState(new OverworldState());
 		}
 		 
