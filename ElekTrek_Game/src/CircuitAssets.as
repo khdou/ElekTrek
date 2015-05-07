@@ -54,10 +54,10 @@ package
 		public static var WireT2:Class;
 		
 		[Embed(source = "../assets/CircuitScreen/rightT.png")] 
-		public static var WireT3:Class;
+		public static var WireT4:Class;
 		
 		[Embed(source = "../assets/CircuitScreen/leftT.png")] 
-		public static var WireT4:Class;
+		public static var WireT3:Class;
 		
 		[Embed(source = "../assets/CircuitScreen/flashlight_largeOff.png")] 
 		public static var FlashlightOff:Class;

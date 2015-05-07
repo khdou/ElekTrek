@@ -37,7 +37,7 @@ package
 			missingCoord[2] = new Coordinate(3, 2);
 			generateValues();
 			
-			problemText = "Now there are three missing resistors! When resistors are placed in the same loop(in series), the total resistance of the loop is the sum of the individual resistances. The battery is " + V + "volts. Place the correct resistors so the resulting current is " + I + "amps.";
+			problemText = "Now there are three missing resistors! When resistors are placed in the same loop(in series), the total resistance of the loop is the sum of the individual resistances. The battery is " + V + " volts. Place the correct resistors so the resulting current is " + I + " amps.";
 			
 		}
 		
