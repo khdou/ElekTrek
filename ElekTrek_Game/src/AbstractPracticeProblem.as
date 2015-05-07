@@ -115,7 +115,7 @@ package
 		 * Return locations in coordinates to animate
 		 */
 		public function getAnimatedLocations():Array {
-			return config;
+			return [];
 		}
 	}
 

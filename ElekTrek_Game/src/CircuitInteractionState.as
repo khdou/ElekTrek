@@ -90,6 +90,13 @@ package
 				exitCircuitInteractionState();
 			}
 			add(backButton);
+			
+			var test:SpecialFlxSprite = new SpecialFlxSprite(50, 50);
+			test.itemName = Item.LIGHTBULB_HORIZONTAL;
+			test.loadGraphic(CircuitAssets.LightbulbHorizontal, false, false, 100, 100); 
+			Item.loadFlxSpriteAnimationOn(test);
+			add(test);
+			test.play(test.itemName+"ON");
 		}
 		
 		/**
@@ -151,37 +158,41 @@ package
 					for (var j = 0; j < size; j++) {
 						var item:Item = practiceProblem.getItemAt(i, j);
 						if (item != null) {
-							if (practiceProblem.isOriginalPieces(new Coordinate(i, j))) {
-								// Not draggable
-								circuitView.add(new FlxSprite(20 + j * 100, 83 + i * 100, CircuitAssets[item.name]));
-							}else {
+							
+							// Load graphic manually on Spritesheet
+							var sprite:SpecialFlxSprite = new SpecialFlxSprite(20 + j * 100, 83 + i * 100);
+							sprite.loadGraphic(CircuitAssets[item.name], false, false, 100, 100);
+							
+							// Need to save this because of AS dynamic binding
+							sprite.relativeLocale = new Coordinate(i, j);
+							// Saving this for later use too
+							sprite.itemName = item.name; 
+							
+							if (item.state != Item.STATE_OFF) {
+								Item.loadFlxSpriteAnimationOn(sprite);
+								sprite.play(item.name+Item.STATE_ON);
+							}
+							
+							if (!practiceProblem.isOriginalPieces(new Coordinate(i, j))) {
 								// Draggable
 								// Define dropping area
-								var draggableSprite = new SpecialFlxSprite(20 + j * 100, 83 + i * 100, CircuitAssets[item.name]);
-								draggableSprite.enableMouseDrag();
-								circuitView.add(draggableSprite);
+								sprite.enableMouseDrag();
 								
-								var infoText = new FlxText( 20 + j * 100, 93 + i * 100, 100, item.value == -1 ? "" : item.value + " " + item.getUnit() );
-								infoText.size = 12;
-								infoText.alignment = 'center';
-								
-								circuitView.add(infoText);
-								
-								// Need to save this because of AS dynamic binding
-								draggableSprite.relativeLocale = new Coordinate(i, j);
-								// Saving this for later use too
-								draggableSprite.itemName = item.name; 		
-								
-								draggableSprite.mousePressedCallback = function(obj:SpecialFlxSprite, x:int, y:int) {
-									_currDragItem = practiceProblem.removeItemAt(obj.relativeLocale.X, obj.relativeLocale.Y);
-									_currFlxSprite = obj;
-									circuitView.remove(obj); // Detach this item from the Circuit view
-									add(obj); // add it to the state
-								}
-								
-								draggableSprite.mouseReleasedCallback = onMouseReleased;
+ 								var infoText = new FlxText( 20 + j * 100, 93 + i * 100, 100, item.value == -1 ? "" : item.value + " " + item.getUnit() );
+ 								infoText.size = 12;
+ 								add(infoText);
+ 								
+								sprite.mousePressedCallback = function(obj:SpecialFlxSprite, x:int, y:int) {
+ 									_currDragItem = practiceProblem.removeItemAt(obj.relativeLocale.X, obj.relativeLocale.Y);
+ 									_currFlxSprite = obj;
+ 									circuitView.remove(obj); // Detach this item from the Circuit view
+ 									add(obj); // add it to the state
+ 								}
+ 								
+								sprite.mouseReleasedCallback = onMouseReleased;
 								
 							}
+							circuitView.add(sprite);
 						}
 					}
 				}
@@ -213,12 +224,6 @@ package
 				
 				var prevItem = practiceProblem.insertItemAt( _currDragItem, coord.X, coord.Y);
 				
-				if (practiceProblem.isCorrect()) {
-					
-					playSuccessAnimation();
-					textArea.text = "Success!";
-				}
-				
 				if (prevItem != null)
 					Information.INVENTORY.addItem(prevItem);
 					
@@ -232,6 +237,14 @@ package
 				//if (isModdingProblem) 
 					//textArea.text = "You shouldn't modify the original problem";
 			}
+			
+			if (practiceProblem.isCorrect()) {
+				textArea.text = "Success!";
+			}else {
+				textArea.text = "Try again"; // Get some feedback from PracticeProblem
+			}
+			
+			changeItemState(practiceProblem.isCorrect());
 			remove( _currFlxSprite );		// Detach this item from the Inventory view
 		}
 		
@@ -254,17 +267,13 @@ package
 		}
 		
 		/**
-		 * Play animations of components 
+		 * Change item state to have component animated 
 		 */
-		private function playSuccessAnimation():void {
+		private function changeItemState(correct:Boolean):void {
+			
 			var coords:Array = practiceProblem.getAnimatedLocations();
 			for each (var c:Coordinate in coords) {
-				for each (var sprite in circuitView) {
-					var tempCoord:Coordinate = translateCoordinateForPracticeProblem(sprite.x, sprite.y);
-					if (c.equals(tempCoord)) {
-						sprite.play(practiceProblem.getItemAt(c.X, c.Y).name);
-					}						
-				}
+				practiceProblem.getItemAt(c.X, c.Y).state = correct ? Item.STATE_ON : Item.STATE_OFF;
 			}
 		}
 		

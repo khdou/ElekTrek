@@ -18,24 +18,30 @@ package
 		public static const RESISTOR_HORIZONTAL:String = "ResistorHorizontal";
 		public static const RESISTOR_VERTICAL:String = "ResistorVertical";
 		public static const BATTERY_VERTICAL:String = "BatteryVertical";
-		public static const LIGHTBULB_BLOCK_OFF:String = "LightBulbBlockOff";
-		public static const LIGHTBULB_BLOCK_On:String = "LightBulbBlockOn";
+		public static const LIGHTBULB_HORIZONTAL:String = "LightbulbHorizontal";
+		
+		public static const STATE_OFF:int = 0;
+		public static const STATE_ON:int = 1;
 		
 		public var name:String;
 		public var value:Number; 
 		public var description:String;
+		public var state:int;	// Used describe the item state in the display (i.e, on, off, solved, openned, closed);
 			
+		
 		/**
 		 * 
 		 * @param	type			Type of item, described by Item constant
 		 * @param	value			Value of the item
 		 * @param	description		Other information
+		 * @param	state			Stateful information of this item, specific for its user.
 		 */
-		public function Item(name:String, value:Number=-1,description:String='') 
+		public function Item(name:String, value:Number=-1,description:String='', state=Item.STATE_OFF) 
 		{
 			this.name = name;
 			this.value = value;
 			this.description = description;
+			this.state = state;
 		}
 		
 		/**
@@ -73,11 +79,12 @@ package
 		 * 
 		 * @param	sprite
 		 */
-		public static function strapFlxSpriteWithAnimation(sprite:SpecialFlxSprite) {
-			
+		public static function loadFlxSpriteAnimationOn(sprite:SpecialFlxSprite) {
+
 			switch (sprite.itemName) {
-				case Item.LIGHTBULB_BLOCK_OFF:
-					//sprite.addAnimation( SpecialFlxSprite.itemName
+				case Item.LIGHTBULB_HORIZONTAL:
+					sprite.addAnimation( sprite.itemName + Item.STATE_OFF, [0]);
+					sprite.addAnimation( sprite.itemName + Item.STATE_ON, [1]);
 					break;
 					
 			}
