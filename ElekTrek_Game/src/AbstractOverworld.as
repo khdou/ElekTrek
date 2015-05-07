@@ -66,7 +66,6 @@ package
          * Create the player, bullets, etc
          */
         protected function createPlayer():void {
-            player = new Spaceman(Information.X_LOCATION,Information.Y_LOCATION);
         }
          
         /**

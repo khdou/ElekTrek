@@ -18,7 +18,7 @@ package
  
 		public function playButtonCallback():void
 		{
-			FlxG.switchState(new OverworldState);
+			FlxG.switchState(new CutsceneState);
 		}
 		
 		override public function update():void
