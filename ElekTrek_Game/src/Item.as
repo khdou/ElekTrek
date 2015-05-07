@@ -69,7 +69,7 @@ package
 		 * 
 		 * @param	sprite
 		 */
-//		public static function strapFlxSpriteWithAnimation(sprite:SpecialFlxSprite) {
+		public static function strapFlxSpriteWithAnimation(sprite:SpecialFlxSprite) {
 			
 			switch (sprite.itemName) {
 				case Item.LIGHTBULB_BLOCK_OFF:

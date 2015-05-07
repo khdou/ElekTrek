@@ -215,6 +215,7 @@ package
 					
 					playSuccessAnimation();
 					textArea.text = "Success!";
+					
 				}
 				
 				if (prevItem != null)

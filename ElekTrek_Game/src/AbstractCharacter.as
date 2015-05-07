@@ -11,7 +11,7 @@ package
         /**
          * Constants
          */
-        public static const SIZE:FlxPoint = new FlxPoint(30, 38); // size in pixels
+        public static const SIZE:FlxPoint = new FlxPoint(60, 76); // size in pixels
         public static const RUNSPEED:int = 150;
          
         /**
