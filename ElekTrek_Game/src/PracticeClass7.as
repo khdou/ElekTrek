@@ -6,35 +6,6 @@ package
 		public function PracticeClass7()
 		{
 			super();
-			itemContainer[2][0] = new Item(Item.BATTERY_VERTICAL);
-			itemContainer[1][0] = new Item(Item.WIRE_CORNER1);
-			itemContainer[1][2] = new Item(Item.WIRE_HORIZONTAL);
-			itemContainer[1][4] = new Item(Item.WIRE_CORNER2);
-			itemContainer[2][4] = new Item(Item.WIRE_VERTICAL);
-			itemContainer[3][4] = new Item(Item.WIRE_CORNER3);
-			itemContainer[3][3] = new Item(Item.WIRE_HORIZONTAL);
-			itemContainer[3][1] = new Item(Item.WIRE_HORIZONTAL);
-			itemContainer[3][2] = new Item(Item.WIRE_HORIZONTAL);
-			itemContainer[3][0] = new Item(Item.WIRE_CORNER4);
-			
-			// Coordinate describing the original circuit problem
-			config = [ 
-				new Coordinate(2, 0),
-				new Coordinate(1, 0),
-				new Coordinate(1, 2),
-				new Coordinate(1, 4),
-				new Coordinate(2, 4),
-				new Coordinate(3, 4),
-				new Coordinate(3, 3),
-				new Coordinate(3, 1),
-				new Coordinate(3, 2),
-				new Coordinate(3, 0),
-			];
-			
-			//create missing coordinates
-			missingCoord = new Array(2);
-			missingCoord[0] = new Coordinate(1, 1);
-			missingCoord[1] = new Coordinate(1, 3);
 			generateValues();
 			
 		}
