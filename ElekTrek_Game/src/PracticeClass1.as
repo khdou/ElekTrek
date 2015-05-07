@@ -10,9 +10,6 @@ package
 	 */
 	public class PracticeClass1 extends AbstractPracticeProblem
 	{
-		private var V:Number;
-		private var I:Number;
-		private var R:Number;
 		
 		public function PracticeClass1() 
 		{
@@ -35,6 +32,7 @@ package
 				new Coordinate(1, 3),
 				new Coordinate(2, 3),
 				new Coordinate(3, 3),
+				new Coordinate(3, 2),
 				new Coordinate(3, 1),
 				new Coordinate(3, 0),
 			];
@@ -52,32 +50,40 @@ package
 			//create missing coordinates
 			missingCoord = new Array(1);
 			missingCoord[0] = new Coordinate(1, 2);
+			generateValues();
 		}
 
 		override protected function generateValues():void 
 		{
 			
-			var length:int = Information.INVENTORY.getSize();
+			var length:int = Inventory.getSize();
 			var index1:int = Math.floor(Math.random() * length);
+			
 			
 			I = Math.floor(Math.random() * 10) + 1;			
 			
-			R = Information.INVENTORY.getItem(index1).value;		
+			R = Inventory.getItem(index1).value;		
 			V = I * R;		
+			
 			
 			for (var i:int = 0; i < AbstractPracticeProblem.SIZE; i++) {
 				for (var j:int = 0; j < AbstractPracticeProblem.SIZE; j++) {
-					var indicator:String = itemContainer[i][j].name.charAt(0);
-					// Battery
-					if (indicator == "B") {
-						itemContainer[i][j].value = V;
-					}else if (indicator == "R" || indicator == "L") {
-						itemContainer[i][j].value = R;
-					}else {
-						itemContainer[i][j].value = I;
+					
+					var component:Item = itemContainer[i][j];
+					if (component != null) {
+						var indicator:String = itemContainer[i][j].name.charAt(0);
+						// Battery
+						if (indicator == "B") {
+							itemContainer[i][j].value = V;
+						}else if (indicator == "R" || indicator == "L") {
+							itemContainer[i][j].value = R;
+						}else {
+							itemContainer[i][j].value = I;
+						}
 					}
 				}
 			}
+				
 		}
 		
 		override public function isCorrect():Boolean {

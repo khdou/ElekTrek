@@ -1,7 +1,7 @@
 package
 {
 	//parallel and series 
-	public class PracticeClass4
+	public class PracticeClass4 extends AbstractPracticeProblem
 	{
 		private var V:Number;
 		private var I:Number;
@@ -13,19 +13,41 @@ package
 		
 		public function PracticeClass4() 
 		{
-			config1 = [
-				new Item("BatteryVertical", 0, 2, 0, false), // Type of item, row, column, value
-				new Item("WireCorner1", 0, 1, -1, false),
-				new Item("WireCorner1", 0, 0, -1, false),
-				new Item("WireHorizontal", 1, 1, -1, false),
-				new Item("WireHorizontal", 1, 0, -1, false),
-				new Item("WireCorner2", 3, 1, -1, false),
-				new Item("WireCorner2", 3, 0, -1, false),
-				new Item("WireVertical", 3, 2, -1, false),
-				new Item("WireCorner3", 3, 3, -1, false),
-				new Item("WireHorizontal", 1, 3, -1, false),
-				new Item("WireCorner4", 0, 3, -1, false)
+			super();
+			itemContainer[2][0] = new Item(Item.BATTERY_VERTICAL);
+			itemContainer[1][0] = new Item(Item.WIRE_CORNER1);
+			itemContainer[0][0] = new Item(Item.WIRE_CORNER1);
+			itemContainer[1][1] = new Item(Item.WIRE_HORIZONTAL);
+			itemContainer[0][1] = new Item(Item.WIRE_HORIZONTAL);
+			itemContainer[0][3] = new Item(Item.WIRE_CORNER2);
+			itemContainer[1][3] = new Item(Item.WIRE_CORNER2);
+			itemContainer[2][3] = new Item(Item.WIRE_VERTICAL);
+			itemContainer[3][3] = new Item(Item.WIRE_CORNER3);
+			itemContainer[3][1] = new Item(Item.WIRE_HORIZONTAL);
+			itemContainer[3][0] = new Item(Item.WIRE_CORNER4);
+			
+			// Coordinate describing the original circuit problem
+			config = [ 
+				new Coordinate(2, 0),
+				new Coordinate(1, 0),
+				new Coordinate(0, 0),
+				new Coordinate(1, 1),
+				new Coordinate(0, 1),
+				new Coordinate(0, 3),
+				new Coordinate(1, 3),
+				new Coordinate(2, 3),
+				new Coordinate(3, 3),
+				new Coordinate(3, 1),
+				new Coordinate(3, 0),
 			];
+			
+			//create missing coordinates
+			missingCoord = new Array(2);
+			missingCoord[0] = new Coordinate(1, 2);
+			missingCoord[0] = new Coordinate(0, 2);
+			missingCoord[1] = new Coordinate(3, 2);
+			//generateValues();
+
 		}
 		
 		private function setupCircuitConfig(): void
@@ -77,25 +99,13 @@ package
 		
 		public function isCorrect(): Boolean 
 		{
-			var missingComp1 = CircuitInteractionState.getItem(2,1);
-			var missingComp2 = CircuitInteractionState.getItem(2,0);
-			var missingComp3 = CircuitInteractionState.getItem(2,3);
+			var missingComp1:Item = itemContainer[missingCoord[0].X][missingCoord[0].Y]
+			var missingComp2:Item = itemContainer[missingCoord[1].X][missingCoord[1].Y]
+			var missingComp3:Item = itemContainer[missingCoord[2].X][missingCoord[2].Y]
 			if (missingComp1 == null || missingComp2 == null || missingComp3 == null) return false;
 			
 			return (Math.round(1/(1/missingComp1.value + 1/missingComp2.value)) + missingComp3.value) == R ? true : false;
 		}
 		
-		private function getResistanceFromInventory(): Array 
-		{
-			//var resistors:Array = [];
-			//for each (var item:Item in Inventory.items)
-			//{
-			//if (item.name.charAt(0) == "R")
-			//resistors.push(item.value);
-			//}
-			//return resistors;
-			
-			return Inventory.items;
-		}
 	}
 }

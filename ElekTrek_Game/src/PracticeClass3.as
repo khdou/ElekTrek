@@ -1,46 +1,42 @@
 package
 {
 	//puzzle for 3 resistors in series 
-	public class PracticeClass3
+	public class PracticeClass3 extends AbstractPracticeProblem
 	{
-		private var V:Number;
-		private var I:Number;
-		private var R:Number;
-		
-		public var missing;
-		
-		public var config1:Array; // there could be many map configuration to display for this knowledge model
 		
 		public function PracticeClass3() 
 		{
-			config1 = [
-				new Item("BatteryVertical", 0, 2, 0, false), // Type of item, row, column, value
-				new Item("WireCorner1", 0, 1, -1, false),
-				new Item("WireHorizontal", 2, 1, -1, false),
-				new Item("WireCorner2", 4, 1, -1, false),
-				new Item("WireVertical", 4, 2, -1, false),
-				new Item("WireCorner3", 4, 3, -1, false),
-				new Item("WireHorizontal", 3, 3, -1, false),
-				new Item("WireHorizontal", 1, 3, -1, false),
-				new Item("WireCorner4", 0, 3, -1, false)
-			];
-		}
-		
-		private function setupCircuitConfig(): void
-		{
+			super();
+			itemContainer[2][0] = new Item(Item.BATTERY_VERTICAL);
+			itemContainer[1][0] = new Item(Item.WIRE_CORNER1);
+			itemContainer[1][2] = new Item(Item.WIRE_HORIZONTAL);
+			itemContainer[1][4] = new Item(Item.WIRE_CORNER2);
+			itemContainer[2][4] = new Item(Item.WIRE_VERTICAL);
+			itemContainer[3][4] = new Item(Item.WIRE_CORNER3);
+			itemContainer[3][3] = new Item(Item.WIRE_CORNER3);
+			itemContainer[3][1] = new Item(Item.WIRE_HORIZONTAL);
+			itemContainer[3][0] = new Item(Item.WIRE_CORNER4);
 			
-			for each (var item in config1)
-			{
-				var indicator = item.name.charAt(0);
-				// Battery
-				if (indicator == "B") {
-					item.value = V;
-				}else if (indicator == "R" || indicator == "L") {
-					item.value = R;
-				}else {
-					item.value = I;
-				}
-			}
+			// Coordinate describing the original circuit problem
+			config = [ 
+				new Coordinate(2, 0),
+				new Coordinate(1, 0),
+				new Coordinate(1, 2),
+				new Coordinate(1, 4),
+				new Coordinate(2, 4),
+				new Coordinate(3, 4),
+				new Coordinate(3, 3),
+				new Coordinate(3, 1),
+				new Coordinate(3, 0),
+			];
+			
+			//create missing coordinates
+			missingCoord = new Array(3);
+			missingCoord[0] = new Coordinate(1, 1);
+			missingCoord[1] = new Coordinate(1, 3);
+			missingCoord[2] = new Coordinate(3, 2);
+			//generateValues();
+			
 		}
 		
 		public function getCircuitConfig(): Array 
@@ -66,35 +62,21 @@ package
 			
 			R = resistors[index1] + resistors[index2] + resistors[index3];
 			
-			V = I * R
-			
-			setupCircuitConfig();
+			V = I * R			
 			
 			return config1;
 		}
 		
 		
-		public function isCorrect(): Boolean 
+		override public function isCorrect(): Boolean 
 		{
-			var missingComp1 = CircuitInteractionState.getItem(1,1);
-			var missingComp2 = CircuitInteractionState.getItem(2,3);
-			var missingComp3 = CircuitInteractionState.getItem(3,1);
+			var missingComp1:Item = itemContainer[missingCoord[0].X][missingCoord[0].Y]
+			var missingComp2:Item = itemContainer[missingCoord[1].X][missingCoord[1].Y]
+			var missingComp3:Item = itemContainer[missingCoord[2].X][missingCoord[2].Y]
 			if (missingComp1 == null || missingComp2 == null || missingComp3 == null) return false;
 			
 			return (missingComp1.value + missingComp2.value + missingComp3.value) == R ? true : false;
 		}
 		
-		private function getResistanceFromInventory(): Array 
-		{
-			//var resistors:Array = [];
-			//for each (var item:Item in Inventory.items)
-			//{
-			//if (item.name.charAt(0) == "R")
-			//resistors.push(item.value);
-			//}
-			//return resistors;
-			
-			return Inventory.items;
-		}
 	}
 }
