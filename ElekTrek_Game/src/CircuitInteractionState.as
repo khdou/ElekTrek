@@ -95,7 +95,8 @@ package
 			add(new FlxSprite(705, 12, Assets.ROBOT_HEAD));
 			
 			// Play background music
-			//FlxG.playMusic(Assets.BACKGROUND_MUSIC_ELECTRONIC, 0.5);
+
+//			FlxG.playMusic(Assets.BACKGROUND_MUSIC_ELECTRONIC, 0.5);
 		}
 		
 		/**
@@ -220,6 +221,13 @@ package
 				
 				var prevItem = practiceProblem.insertItemAt( _currDragItem, coord.X, coord.Y);
 				
+				if (practiceProblem.isCorrect()) {
+					
+//					playSuccessAnimation();
+					textArea.text = "Success!";
+					
+				}
+
 				if (prevItem != null)
 					Information.INVENTORY.addItem(prevItem);
 					
