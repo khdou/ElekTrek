@@ -69,6 +69,10 @@ package
 			return unit;
 		}
 		
+		public function setValue(v:Number) {
+			this.value = v;
+		}
+		
 		/**
 		 * Adding the animation for this sprite based on its Item name. To play
 		 * its animation, call sprite.play(sprite.itemName);

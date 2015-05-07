@@ -9,6 +9,9 @@ package
 		protected var itemContainer:Array;	// 2D array representing the [row][col] grid of all practice problem
 		protected var missingCoord:Array; // Manage the missing spots to be checked
 		public static const SIZE:int = 5;
+		public var V:Number;
+		public var I:Number;
+		public var R:Number;
 		
 		protected var config:Array;
 		
@@ -21,6 +24,9 @@ package
 			itemContainer = new Array(SIZE);
 			for (var i = 0; i < SIZE; i++) {
 				itemContainer[i] = new Array(SIZE);
+				for (var j = 0; j < SIZE; j++) {
+					itemContainer[i][j] = null;
+				}
 			}
 		}
 		
