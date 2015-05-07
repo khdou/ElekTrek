@@ -44,7 +44,7 @@ package
 			missingCoord[0] = new Coordinate(1, 2);
 			generateValues();
 			
-			problemText = "The battery is " + V + "volts. Place the correct resistor so the resulting current is " + I + "amps.";
+			problemText = "The battery is " + V + " volts. Place the correct resistor so the resulting current is " + I + " amps.";
 		}
 
 		override protected function generateValues():void 
