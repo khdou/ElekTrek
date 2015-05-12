@@ -41,6 +41,8 @@ package
 		private var backButton:FlxExtendedSprite; // Go back to overworld
 		private var robotHead:FlxExtendedSprite; 
 		
+		public var solved:Boolean = false;
+		
 		/**
 		 * Similar to the constructor, FlxG call this after FlxG.switchState() is done
 		 */
@@ -111,7 +113,7 @@ package
 			
 			// Add dialog box
 			var message:String = practiceProblem.getDialogue();
-			if (message.length > 0)
+			if (message.length > 0 && Information.PROGRESS == 1)
 				showDialogWithMessage(message);
 			
 			for each (var cc:Coordinate in practiceProblem.missingCoord) {
@@ -260,20 +262,27 @@ package
 				var prevItem = practiceProblem.insertItemAt( _currDragItem, coord.X, coord.Y);
 				
 				if (practiceProblem.isCorrect()) {
-					
+					solved = true;
 //					playSuccessAnimation();
-					makeRobotSay("Success!");
-					if (Information.CURRENT_PROBLEM.id == 0) {
-						Information.COMPLETION_STATUS = 50;
-					} else if (Information.CURRENT_PROBLEM.id == 1) {
-						Information.COMPLETION_STATUS = 100;
-					} else if (Information.CURRENT_PROBLEM.id == 2) {
-						Information.COMPLETION_STATUS = 25;
-					} else if (Information.CURRENT_PROBLEM.id == 3) {
-						Information.COMPLETION_STATUS = 50;
-					} else if (Information.CURRENT_PROBLEM.id == 4) {
-						Information.COMPLETION_STATUS = 75;							
+					if (Information.PROGRESS == 3 || Information.CURRENT_PROBLEM.id == 0) {
+						makeRobotSay("Success! Click flashing button on left to exit");
+						if (Information.CURRENT_PROBLEM.id == 0) {
+							Information.COMPLETION_STATUS = 50;
+						} else if (Information.CURRENT_PROBLEM.id == 1) {
+							Information.COMPLETION_STATUS = 100;
+						} else if (Information.CURRENT_PROBLEM.id == 2) {
+							Information.COMPLETION_STATUS = 25;
+						} else if (Information.CURRENT_PROBLEM.id == 3) {
+							Information.COMPLETION_STATUS = 50;
+						} else if (Information.CURRENT_PROBLEM.id == 4) {
+							Information.COMPLETION_STATUS = 75;							
+						}
 					}
+					else {
+						
+						makeRobotSay("Success! Click flashing button on left to advance to next puzzle");
+					}
+					Information.PROGRESS += 1;
 				}
 				else if (practiceProblem.isComplete()) {
 					makeRobotSay(practiceProblem.getFeedback());
@@ -363,7 +372,33 @@ package
 					}
 				}
 			}
-			FlxG.switchState(new OverworldState());
+			if (solved && Information.PROGRESS <= 3 && Information.CURRENT_PROBLEM.id != 0) {
+				regenerateProblem()
+				FlxG.switchState(new CircuitInteractionState());
+			}
+			else {
+				Information.PROGRESS = 1;
+				FlxG.switchState(new OverworldState());
+			}
+		}
+		
+		private function regenerateProblem() {
+			if (practiceProblem.id == 1) {
+				Information.CURRENT_PROBLEM = new PracticeClass1();
+			}
+			else if (practiceProblem.id == 2) {
+				Information.CURRENT_PROBLEM = new PracticeClass2();
+			}
+			else if (practiceProblem.id == 3) {
+				Information.CURRENT_PROBLEM = new PracticeClass3();
+			}
+			else if (practiceProblem.id == 4) {
+				Information.CURRENT_PROBLEM = new PracticeClass4();
+			}
+			else if (practiceProblem.id == 5) {
+				Information.CURRENT_PROBLEM = new PracticeClass5();
+			}
+			
 		}
 		
 		private function makeRobotSay(message:String) {
