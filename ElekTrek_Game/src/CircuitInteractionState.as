@@ -274,7 +274,7 @@ package
 							Information.COMPLETION_STATUS = 25;
 						} else if (Information.CURRENT_PROBLEM.id == 3) {
 							Information.COMPLETION_STATUS = 50;
-						} else if (Information.CURRENT_PROBLEM.id == 4) {
+						} else if (Information.CURRENT_PROBLEM.id == 6) {
 							Information.COMPLETION_STATUS = 75;							
 						}
 					}
@@ -387,7 +387,7 @@ package
 				Information.CURRENT_PROBLEM = new PracticeClass1();
 			}
 			else if (practiceProblem.id == 2) {
-				Information.CURRENT_PROBLEM = new PracticeClass2();
+				Information.CURRENT_PROBLEM = new PracticeClass2(Information.PROGRESS);
 			}
 			else if (practiceProblem.id == 3) {
 				Information.CURRENT_PROBLEM = new PracticeClass3();
@@ -397,6 +397,9 @@ package
 			}
 			else if (practiceProblem.id == 5) {
 				Information.CURRENT_PROBLEM = new PracticeClass5();
+			}
+			else if (practiceProblem.id == 6) {
+				Information.CURRENT_PROBLEM = new PracticeClass6();
 			}
 			
 		}
