@@ -13,7 +13,6 @@ package
 		public static var Y_LOCATION:Number=250;
 		public static var LEVEL:Number=1;		
 		public static var COMPLETION_STATUS:Number = 0;
-		public static var PROGRESS:Number = 1;
 		public static var INVENTORY:Inventory = new Inventory();
 		
         /**
