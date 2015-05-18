@@ -53,7 +53,7 @@ package
 			missingCoord = new Array(1);
 			missingCoord[0] = new Coordinate(2, 0);
 			problemText = "Add a power source so the light will turn on!";
-			dialogue = "Oh no, the flashlight won't turn on. In order for the flashlight to turn on, we will need to create a complete circuit by adding a source of energy. When an energy source is added and the circuit is fully connected, a current will flow through the circuit, powering up our flashlight.";
+			dialogue = "Oh no, the flashlight won't turn on because of the missing gap in the circuit! In order for the flashlight to turn on, we will need to create a complete circuit by adding a source of energy. When an energy source is added and the circuit is fully connected, a current will flow through the circuit, powering up our flashlight.";
 		}
 		
 		override public function isCorrect():Boolean {
